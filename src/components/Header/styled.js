@@ -1,20 +1,25 @@
 import styled from 'styled-components';
 
-export const AreaHeader = styled.div`
+export const AreaHeader = styled.section`
+    
     background-color: #007256;
     color: white;
-    height: 70px;
+    height: 11%;
     position: fixed;
     width: 100%;
 
-    .navbar {
-        margin-top: -50px;
-        margin-left: 160px;
-        width: 20px;
-    }
+    Button{
 
-    button {
-        margin-top: -85px;
-        margin-left: 1150px;
+        float: right;
+        margin-top: 12px;
+        margin-right: 12px;
+    }
+    
+    img{
+        max-height:68px;
+        width: auto;
+        
     }
 `;
+ 
+
