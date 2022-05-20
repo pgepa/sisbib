@@ -1,23 +1,20 @@
-import styledComponents from "styled-components";
+import styled from 'styled-components';
 
-export const AreaHeader = styledComponents.div`
+export const AreaHeader = styled.div`
+    background-color: #007256;
+    color: white;
+    height: 70px;
+    position: fixed;
+    width: 100%;
 
-background-color:#208320;
-color: white;
-height:70px;
-width:100%;
-position:fixed;
+    .navbar {
+        margin-top: -50px;
+        margin-left: 160px;
+        width: 20px;
+    }
 
-
-.navbar{
-    margin-top:-50px;
-    margin-left:160px;
-    width:20px;
-    
-}
-
-button{
-    margin-top:-85px;
-    margin-left:1150px;
-}
+    button {
+        margin-top: -85px;
+        margin-left: 1150px;
+    }
 `;
