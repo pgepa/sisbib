@@ -1,9 +1,9 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container';
+import { Container } from 'react-bootstrap';
 
 const PageNotFound = () => {
     return (
-        <Container>
+        <Container className="display-6 my-4 p-5">
             Página Não Encontrada
         </Container>
     );
