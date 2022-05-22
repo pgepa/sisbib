@@ -1,18 +1,11 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
 
 const Obras = () => {
     return (
-        <div className="container"
-            style={{
-                color: 'black',
-                display: 'flex',
-                justifyContent: 'Right',
-                alignItems: 'Right',
-                height: '100vh',
-            }}
-        >
-            <h1>GeeksforGeeks is a Computer Science portal for geeks.</h1>
-        </div>
+        <Container className="display-6 my-4 p-5">
+            Lista de Obras
+        </Container>
     );
 };
 
