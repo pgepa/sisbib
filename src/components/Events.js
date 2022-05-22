@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Home = () => {
+const Blogs = () => {
 return (
 	<div
 	style={{
@@ -10,9 +10,9 @@ return (
 		height: '100vh'
 	}}
 	>
-	<h1>Welcome to GeeksforGeeks</h1>
+	<h1>Welcome to GeeksforGeeks Blogs</h1>
 	</div>
 );
 };
 
-export default Home;
+export default Blogs;
