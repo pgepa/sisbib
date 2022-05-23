@@ -1,16 +1,15 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Container, Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import brasao from '../brasao.png';
 
 const NavigationBar = () => {
   return (
     <>
       <Navbar bg="success" variant="dark">
-        <Container>
+        <>
           <Navbar.Brand as={Link} to="/">
-            <img src={brasao} width="40%" height="40%"
-              className="d-inline-block align-top" alt="brasao.png" />
+            <img src={brasao} width="40%" height="40%" alt="brasao.png" />
           </Navbar.Brand>
           <Nav className="me-auto text-large">
             <Nav.Link as={NavLink} className="margin-large" to="/obras">
@@ -20,7 +19,7 @@ const NavigationBar = () => {
               Usuários
             </Nav.Link>
           </Nav>
-        </Container>
+        </>
       </Navbar>
     </>
   );
