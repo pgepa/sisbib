@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "SiSBiB",
+  "name": "Sistema de Controle Bibliográfico",
   "icons": [
     {
       "src": "favicon.ico",
