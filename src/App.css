@@ -3,5 +3,16 @@
 }
 
 .margin-large {
-    margin: 0rem 3rem;
+    margin: 0rem 5rem;
+    
+}
+
+.register-form{
+    padding:1rem;
+    width: 25rem;
+    margin-left: 28rem;
+}
+.btn{
+    margin-top: 1rem;
+    margin-left: 4rem;
 }

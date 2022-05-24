@@ -7,6 +7,8 @@ import Home from './components/Home';
 import Obras from './components/Obras';
 import Usuarios from './components/Usuarios';
 import PageNotFound from './components/PageNotFound';
+import RegistroUsuario from './components/CadastroUsuario';
+
 
 const App = () => {
     return (
@@ -16,6 +18,7 @@ const App = () => {
                 <Route exact path="/" element={<Home />} />
                 <Route exact path="/obras" element={<Obras />} />
                 <Route exact path="/usuarios" element={<Usuarios />} />
+                <Route exact path="/cadastrousuario" element={<RegistroUsuario />} />
                 <Route exact path="/404" element={<PageNotFound />} />
                 <Route exact path="*" element={<Navigate replace to="/404" />} />
             </Routes>

@@ -89,6 +89,7 @@ const Obras = (props) => {
           <li className="page-item"><button className="page-link" onClick={() => setPage(page + 1)}>Seguinte</button></li>
         </ul>
       </nav>
+      
       <div className="col-md-12 list my-3">
         <table className="table table-striped table-bordered"
           {...getTableProps()} >
