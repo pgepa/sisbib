@@ -7,9 +7,8 @@ import CheckButton from 'react-validation/build/button';
 import { useTable } from 'react-table';
 import { useNavigate } from 'react-router-dom';
 import colunasObras from './resources/ColunasObras';
-import BuscaObras from './BuscaObras';
 
-const Obras = (props) => {
+const BuscaObras = (props) => {
   const limit = 20;
   const [page, setPage] = useState(1);
   const [obras, setObras] = useState([]);
@@ -22,7 +21,7 @@ const Obras = (props) => {
   const checkBtn = useRef();
   
   useEffect(async () => {
-    const awaitObras = await ObraService.getAll(limit, page);
+    const awaitObras = await ObraService.getSome({ termo: props.termo}, limit, page);
     return setObras(awaitObras.data);
   }, [page]);
 
@@ -168,4 +167,4 @@ const Obras = (props) => {
   );
 };
 
-export default Obras;
+export default BuscaObras;

@@ -15,6 +15,10 @@ const getAll = (limit,page) => {
     return axios.get(APIURL.concat(`all?limit=${limit}&page=${page}`));
 }
 
+const getSome = (termo,limit,page) => {
+    return axios.post(APIURL.concat(`search?limit=${limit}&page=${page}`), termo);
+}
+
 const update = (id, data) => {
     return axios.post(APIURL.concat(id), data);
 }
@@ -23,6 +27,6 @@ const remove = (id) => {
     return axios.delete(APIURL.concat(id));
 }
 
-const ObraService = { addObra, getOne, getAll, update, remove };
+const ObraService = { addObra, getOne, getAll, getSome, update, remove };
 
 export default ObraService;

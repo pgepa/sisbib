@@ -6,6 +6,7 @@ import NavigationBar from './components/NavigationBar';
 import Home from './components/Home';
 import Obras from './components/Obras';
 import Usuarios from './components/Usuarios';
+import BuscaObras from './components/BuscaObras';
 import PageNotFound from './components/PageNotFound';
 import RegistroUsuario from './components/CadastroUsuario';
 
@@ -18,6 +19,7 @@ const App = () => {
                 <Route exact path="/" element={<Home />} />
                 <Route exact path="/obras" element={<Obras />} />
                 <Route exact path="/usuarios" element={<Usuarios />} />
+                <Route exact path="/search" element={<BuscaObras />} />
                 <Route exact path="/cadastrousuario" element={<RegistroUsuario />} />
                 <Route exact path="/404" element={<PageNotFound />} />
                 <Route exact path="*" element={<Navigate replace to="/404" />} />
