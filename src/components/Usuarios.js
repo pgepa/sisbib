@@ -1,6 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+// eslint-disable-next-line react-hooks/exhaustive-deps
 import React, { useState, useEffect, useMemo } from 'react';
-import usuarioService from '../services/usuario.service';
+import UsuarioService from '../services/usuario.service';
 import { useTable } from 'react-table';
 
 const Usuarios = (props) => {
@@ -9,7 +9,7 @@ const Usuarios = (props) => {
   const [usuarios, setUsuarios] = useState([]);
 
   useEffect(async () => {
-    const awaitUsuarios = await usuarioService.getAll(limit, page);
+    const awaitUsuarios = await UsuarioService.getAll(limit, page);
     return setUsuarios(awaitUsuarios.data);
   }, [page]);
 

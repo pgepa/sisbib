@@ -1,4 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+// eslint-disable react-hooks/exhaustive-deps
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import ObraService from '../services/obra.service';
 import Form from 'react-validation/build/form';
@@ -7,7 +7,6 @@ import CheckButton from 'react-validation/build/button';
 import { useTable } from 'react-table';
 import { useNavigate } from 'react-router-dom';
 import colunasObras from './resources/ColunasObras';
-import BuscaObras from './BuscaObras';
 
 const Obras = (props) => {
   const limit = 20;
@@ -26,7 +25,7 @@ const Obras = (props) => {
     return setObras(awaitObras.data);
   }, [page]);
 
-    const columns = useMemo(() => colunasObras.concat([
+  const columns = useMemo(() => colunasObras.concat([
     {
       Header: 'Cadastrado em',
       accessor: 'createdAt',
