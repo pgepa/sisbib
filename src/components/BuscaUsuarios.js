@@ -2,22 +2,22 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import UsuarioService from '../services/usuario.service';
 import { useTable } from 'react-table';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Container, Button, Form, Row, Col, Navbar, Nav, Table } from 'react-bootstrap';
 import colunasUsuarios from './resources/ColunasUsuarios';
 
-
-const Usuarios = (props) => {
+const BuscaUsuarios = (props) => {
   const limit = 20;
   const [page, setPage] = useState(1);
   const [usuarios, setUsuarios] = useState([]);
-  const [keyword, setKeyword] = useState('');
+  const location = useLocation();
+  const [keyword, setKeyword] = useState(location.state.termo);
 
   const navigate = useNavigate();
   const form = useRef();
-
+  
   useEffect(async () => {
-    const awaitUsuarios = await UsuarioService.getAll(limit, page);
+    const awaitUsuarios = await UsuarioService.getSome({ termo: location.state.termo }, limit, page);
     return setUsuarios(awaitUsuarios.data);
   }, [page]);
 
@@ -45,6 +45,7 @@ const Usuarios = (props) => {
     e.preventDefault();
     setKeyword(keyword);
     navigate('/usuarios/search', { state: { termo: keyword } } );
+    window.location.reload();
   };
 
   return (
@@ -83,8 +84,9 @@ const Usuarios = (props) => {
           </Form>
         </Col>
       </Row>
+      
       <Container fluid className="col-md-12 list my-3">
-      <Table size="sm" striped hover responsive {...getTableProps()}>
+        <Table size="sm" striped hover responsive {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
@@ -131,4 +133,4 @@ const Usuarios = (props) => {
   );
 };
 
-export default Usuarios;
+export default BuscaUsuarios;

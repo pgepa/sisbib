@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Obras from './components/Obras';
 import Usuarios from './components/Usuarios';
 import BuscaObras from './components/BuscaObras';
+import BuscaUsuarios from './components/BuscaUsuarios';
 import PageNotFound from './components/PageNotFound';
 import RegistroUsuario from './components/CadastroUsuario';
 import RegistroObra from './components/CadastroObra';
@@ -19,8 +20,9 @@ const App = () => {
             <Routes>
                 <Route exact path="/" element={<Home />} />
                 <Route exact path="/obras" element={<Obras />} />
+                <Route exact path="/obras/search" element={<BuscaObras />} />
                 <Route exact path="/usuarios" element={<Usuarios />} />
-                <Route exact path="/search" element={<BuscaObras />} />
+                <Route exact path="/usuarios/search" element={<BuscaUsuarios />} />
                 <Route exact path="/cadastrousuario" element={<RegistroUsuario />} />
                 <Route exact path="/cadastroobra" element={<RegistroObra />} />
                 <Route exact path="/404" element={<PageNotFound />} />

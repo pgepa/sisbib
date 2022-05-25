@@ -26,7 +26,7 @@ const RegistroUsuario = () => {
         confirmPassword: Yup.string()
           .required('Confirmação de senha necessária')
           .oneOf([Yup.ref('password'), null], 'Confirmação de senha incorreta')
-          
+
       });
     
       const handleSubmit = (data) => {
@@ -40,8 +40,7 @@ const RegistroUsuario = () => {
         cpf: '',
         email: '',
         password: '',
-        confirmPassword: '',
-        setor: ''
+        confirmPassword: ''
       };
     
       return (

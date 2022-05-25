@@ -12,21 +12,16 @@ const RegistroObra = () => {
             .required('Campo obrigatório')
             .min(4,'Ano incorreto')
             .max(4,'Ano incorreto'),
-        classificacao: Yup.string() .required('Campo obrigatório'),
-        descritores: Yup.string() .required('Campo obrigatório'),
-        editor: Yup.string() .required('Campo obrigatório'),
-        edicao: Yup.string() .required('Campo obrigatório'),
-        idioma: Yup.string() .required('Campo obrigtório'),
-        localPublicacao: Yup.string() .required('Campo obrigatório'),
+        classificacao: Yup.string().required('Campo obrigatório'),
+        descritores: Yup.string().required('Campo obrigatório'),
+        editor: Yup.string().required('Campo obrigatório'),
+        edicao: Yup.string().required('Campo obrigatório'),
+        idioma: Yup.string().required('Campo obrigtório'),
+        localPublicacao: Yup.string().required('Campo obrigatório'),
         paginas: Yup.string().required('Campo obrigatório'),
-        registro: Yup.string() .required('Campo obrigatório'),
+        registro: Yup.string().required('Campo obrigatório'),
         titulo: Yup.string().required('Campo obrigatório'),
-        tipoDocumental: Yup.string() .required('Campo obrigatório'),
-        
-
-
-
-          
+        tipoDocumental: Yup.string().required('Campo obrigatório'),
       });
     
       const handleSubmit = (data) => {
@@ -46,7 +41,6 @@ const RegistroObra = () => {
         registro: '',
         titulo: '',
         tipoDocumental: ''
-
       };
     
       return (

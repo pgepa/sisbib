@@ -43,12 +43,8 @@ const Obras = (props) => {
   const handleSearch = (e) => {
     e.preventDefault();
     setKeyword(keyword);
-    navigate('/search', { state: { termo: keyword } } );
+    navigate('/obras/search', { state: { termo: keyword } } );
   };
-
-  const scrollToBottom = () => {
-    document.getElementById("footer").scrollIntoView();
-  }
 
   return (
     <Container fluid className="list row p-0">
@@ -68,7 +64,7 @@ const Obras = (props) => {
         </Col>
         <Col>
           <Form className="d-flex" onSubmit={handleSearch} ref={form}>
-            <Form.Group className="col-4 pt-4">
+            <Form.Group className="col-4 pt-2">
               <Form.Control
                 type="text"
                 className="form-control mt-1"
@@ -78,7 +74,7 @@ const Obras = (props) => {
                 placeholder="termo de busca"
               />
             </Form.Group>
-            <Form.Group className="col-2 pt-4">
+            <Form.Group className="col-2 pt-2">
               <Button type="submit" className="btn-primary mt-1 mx-2">
                 Buscar
               </Button>
