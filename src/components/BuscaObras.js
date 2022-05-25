@@ -1,18 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import ObraService from '../services/obra.service';
-import { Button, Form } from 'react-bootstrap';
 import { useTable } from 'react-table';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { Container, Button, Form, Row, Col, Navbar, Nav, Table } from 'react-bootstrap';
 import colunasObras from './resources/ColunasObras';
 
 const BuscaObras = (props) => {
   const limit = 20;
   const [page, setPage] = useState(1);
   const [obras, setObras] = useState([]);
-  const [keyword, setKeyword] = useState('');
-
   const location = useLocation();
+  const [keyword, setKeyword] = useState(location.state.termo);
+
   const navigate = useNavigate();
   const form = useRef();
   
@@ -21,7 +21,7 @@ const BuscaObras = (props) => {
     return setObras(awaitObras.data);
   }, [page]);
 
-    const columns = useMemo(() => colunasObras.concat([
+  const columns = useMemo(() => colunasObras.concat([
     {
       Header: 'Cadastrado em',
       accessor: 'createdAt',
@@ -49,46 +49,49 @@ const BuscaObras = (props) => {
   };
 
   return (
-    <div className="list row">
-      <div className="row">
-        <nav className="col-3 pt-3" aria-label="Page navigation example">
-          <ul className="pagination">
-            <li className="page-item"><button className="page-link" onClick={() => setPage(page - 1)}>Anterior</button></li>
-            <li className="page-item"><button className="page-link" onClick={() => setPage(1)}>1</button></li>
-            <li className="page-item"><button className="page-link" onClick={() => setPage(2)}>2</button></li>
-            <li className="page-item"><button className="page-link" onClick={() => setPage(3)}>3</button></li>
-            <li className="page-item"><button className="page-link" onClick={() => setPage(4)}>4</button></li>
-            <li className="page-item"><button className="page-link" onClick={() => setPage(5)}>5</button></li>
-            <li className="page-item"><button className="page-link" onClick={() => setPage(page + 1)}>Seguinte</button></li>
-          </ul>
-        </nav>
-        <Form onSubmit={handleSearch} ref={form}>
-          <Form.Group className="form-group col-3 pt-3">
-            <Form.Control
-              type="text"
-              className="form-control mt-1"
-              name="termo"
-              value={keyword}
-              onChange={onChangeKeyword}
-              placeholder="termo de busca"
-            />
-          </Form.Group>
-          <Form.Group className="form-group col-3 pt-3">
-            <Button type="submit" className="btn btn-primary btn-block mt-1">
-              Buscar
-            </Button>
-          </Form.Group>
-        </Form>
-      </div>
+    <Container fluid className="list row p-0">
+      <Row>
+        <Col md={3}>
+          <Navbar className="pt-2" aria-label="Page navigation example">
+            <Nav className="pagination pt-1">
+              <Nav.Item className="page-item"><Button className="page-link mx-1" onClick={() => setPage(page - 1)}>Anterior</Button></Nav.Item>
+              <Nav.Item className="page-item"><Button className="page-link" onClick={() => setPage(1)}>1</Button></Nav.Item>
+              <Nav.Item className="page-item"><Button className="page-link" onClick={() => setPage(2)}>2</Button></Nav.Item>
+              <Nav.Item className="page-item"><Button className="page-link" onClick={() => setPage(3)}>3</Button></Nav.Item>
+              <Nav.Item className="page-item"><Button className="page-link" onClick={() => setPage(4)}>4</Button></Nav.Item>
+              <Nav.Item className="page-item"><Button className="page-link" onClick={() => setPage(5)}>5</Button></Nav.Item>
+              <Nav.Item className="page-item"><Button className="page-link mx-1" onClick={() => setPage(page + 1)}>Seguinte</Button></Nav.Item>
+            </Nav>
+          </Navbar>
+        </Col>
+        <Col>
+          <Form className="d-flex" onSubmit={handleSearch} ref={form}>
+            <Form.Group className="col-4 pt-4">
+              <Form.Control
+                type="text"
+                className="form-control mt-1"
+                name="termo"
+                value={keyword}
+                onChange={onChangeKeyword}
+                placeholder="termo de busca"
+              />
+            </Form.Group>
+            <Form.Group className="col-2 pt-4">
+              <Button type="submit" className="btn-primary mt-1 mx-2">
+                Buscar
+              </Button>
+            </Form.Group>
+          </Form>
+        </Col>
+      </Row>
       
-      <div className="col-md-12 list my-3">
-        <table className="table table-striped table-bordered"
-          {...getTableProps()} >
+      <Container fluid className="col-md-12 list my-3">
+        <Table size="sm" striped hover responsive {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps()}>
+                  <th className="text-center" {...column.getHeaderProps()}>
                     {column.render('Header')}
                   </th>
                 ))}
@@ -102,7 +105,7 @@ const BuscaObras = (props) => {
                 <tr {...row.getRowProps()}>
                   {row.cells.map((cell) => {
                     return (
-                      <td {...cell.getCellProps()}>
+                      <td className="text-center" {...cell.getCellProps()}>
                         {cell.render('Cell')}
                       </td>
                     );
@@ -111,20 +114,22 @@ const BuscaObras = (props) => {
               );
             })}
           </tbody>
-        </table>
-      </div>
-      <nav aria-label="Page navigation example">
-        <ul className="pagination">
-          <li className="page-item"><button className="page-link" onClick={() => setPage(page - 1)}>Anterior</button></li>
-          <li className="page-item"><button className="page-link" onClick={() => setPage(1)}>1</button></li>
-          <li className="page-item"><button className="page-link" onClick={() => setPage(2)}>2</button></li>
-          <li className="page-item"><button className="page-link" onClick={() => setPage(3)}>3</button></li>
-          <li className="page-item"><button className="page-link" onClick={() => setPage(4)}>4</button></li>
-          <li className="page-item"><button className="page-link" onClick={() => setPage(5)}>5</button></li>
-          <li className="page-item"><button className="page-link" onClick={() => setPage(page + 1)}>Seguinte</button></li>
-        </ul>
-      </nav>
-    </div>
+        </Table>
+      </Container>
+      <Col md={3}>
+        <Navbar className="pt-2" aria-label="Page navigation example">
+          <Nav className="pagination pt-1">
+            <Nav.Item className="page-item"><Button className="page-link mx-1" onClick={() => setPage(page - 1)}>Anterior</Button></Nav.Item>
+            <Nav.Item className="page-item"><Button className="page-link" onClick={() => setPage(1)}>1</Button></Nav.Item>
+            <Nav.Item className="page-item"><Button className="page-link" onClick={() => setPage(2)}>2</Button></Nav.Item>
+            <Nav.Item className="page-item"><Button className="page-link" onClick={() => setPage(3)}>3</Button></Nav.Item>
+            <Nav.Item className="page-item"><Button className="page-link" onClick={() => setPage(4)}>4</Button></Nav.Item>
+            <Nav.Item className="page-item"><Button className="page-link" onClick={() => setPage(5)}>5</Button></Nav.Item>
+            <Nav.Item className="page-item"><Button className="page-link mx-1" onClick={() => setPage(page + 1)}>Seguinte</Button></Nav.Item>
+          </Nav>
+        </Navbar>
+      </Col>
+    </Container>
   );
 };
 
