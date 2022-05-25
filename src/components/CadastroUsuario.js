@@ -8,6 +8,10 @@ const RegistroUsuario = () => {
     const validationSchema = Yup.object().shape({
         fullname: Yup.string().required('Nome obrigatório'),
         setor: Yup.string().required('Setor obrigatório'),
+        matricula: Yup.string()
+        .required('Número de matrícula obrigatŕio')
+        .min(6,'Número de matrícula incorreto')
+        .max(8,'Número de matrícula incorreto'),
         cpf: Yup.string()
           .required('CPF obrigatório')
           .min(11, 'CPF incompleto')
@@ -31,6 +35,8 @@ const RegistroUsuario = () => {
     
       const initialValues = {
         fullname: '',
+        setor: '',
+        matricula: '',
         cpf: '',
         email: '',
         password: '',
@@ -61,6 +67,15 @@ const RegistroUsuario = () => {
                     <Field name="setor" type="text" className="form-control" />
                     <ErrorMessage
                       name="setor"
+                      component="div"
+                      className="text-danger"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="matricula"> Matrícula </label>
+                    <Field name="matricula" type="text" className="form-control" />
+                    <ErrorMessage
+                      name="matricula"
                       component="div"
                       className="text-danger"
                     />
@@ -110,13 +125,13 @@ const RegistroUsuario = () => {
                     />
                   </div>
                   <div className="form-group">
-                    <button type="submit" className="btn btn-success">
+                    <button type="submit" className="btn btn-usuario btn-success">
                       Registrar
                     </button>
                     <button
                       type="button"
                       onClick={resetForm}
-                      className="btn btn-warning float-right"
+                      className="btn btn-usuario btn-warning float-right"
                     >
                       Limpar
                     </button>

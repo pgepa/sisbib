@@ -9,6 +9,7 @@ import Usuarios from './components/Usuarios';
 import BuscaObras from './components/BuscaObras';
 import PageNotFound from './components/PageNotFound';
 import RegistroUsuario from './components/CadastroUsuario';
+import RegistroObra from './components/CadastroObra';
 
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
                 <Route exact path="/usuarios" element={<Usuarios />} />
                 <Route exact path="/search" element={<BuscaObras />} />
                 <Route exact path="/cadastrousuario" element={<RegistroUsuario />} />
+                <Route exact path="/cadastroobra" element={<RegistroObra />} />
                 <Route exact path="/404" element={<PageNotFound />} />
                 <Route exact path="*" element={<Navigate replace to="/404" />} />
             </Routes>

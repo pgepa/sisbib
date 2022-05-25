@@ -1,13 +1,25 @@
 .text-large {
-    font-size: 150%;
+    font-size: 120%;
+    
 }
 
+.margin-large {
+    margin: 0rem 2rem;
+}
+
+.area {
+    height: 10rem;
+}
 .register-form{
     padding:1rem;
-    width: 25rem;
-    margin-left: 28rem;
+    max-width: 24rem;
+    margin: auto;
 }
-.btn{
+.btn-usuario {
     margin-top: 1rem;
-    margin-left: 4rem;
+    margin-left: 3.5rem;
+}
+.btn-obra {
+    margin-top: 1rem;
+    margin-left: 2.4rem;
 }
