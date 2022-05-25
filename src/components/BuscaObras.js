@@ -1,27 +1,23 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import ObraService from '../services/obra.service';
-import Form from 'react-validation/build/form';
-import Input from 'react-validation/build/input';
-import CheckButton from 'react-validation/build/button';
+import { Button, Form } from 'react-bootstrap';
 import { useTable } from 'react-table';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import colunasObras from './resources/ColunasObras';
 
 const BuscaObras = (props) => {
   const limit = 20;
   const [page, setPage] = useState(1);
   const [obras, setObras] = useState([]);
-  const [termo, setTermo] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
+  const [keyword, setKeyword] = useState('');
 
+  const location = useLocation();
   const navigate = useNavigate();
   const form = useRef();
-  const checkBtn = useRef();
   
   useEffect(async () => {
-    const awaitObras = await ObraService.getSome({ termo: props.termo}, limit, page);
+    const awaitObras = await ObraService.getSome({ termo: location.state.termo }, limit, page);
     return setObras(awaitObras.data);
   }, [page]);
 
@@ -40,36 +36,17 @@ const BuscaObras = (props) => {
       data: obras
     });
   
-  const onChangeTermo = (e) => {
-    const termo = e.target.value;
-    setTermo(termo);
+  const onChangeKeyword = (e) => {
+    const keyword = e.target.value;
+    setKeyword(keyword);
   }
 
   const handleSearch = (e) => {
     e.preventDefault();
-    setMessage('');
-    setLoading(true);
-    if (checkBtn.current.context._errors.length === 0) {
-      ObraService.getSome({ termo: termo },limit,page).then(
-        () => {
-          navigate('/search', { termo: termo } );
-          window.location.reload();
-        },
-        (error) => {
-          const resMessage =
-            (error.response &&
-                error.response.data &&
-                error.response.data.message) ||
-            error.message ||
-            error.toString();
-            setLoading(false);
-            setMessage(resMessage);
-        }
-      );
-    }
-    else {
-      setLoading(false);
-    }
+    setKeyword(keyword);
+    console.log(`BuscaObras handleSearch keyword = ${keyword}`);
+    navigate('/search', { state: { termo: keyword } } );
+    window.location.reload();
   };
 
   return (
@@ -87,36 +64,21 @@ const BuscaObras = (props) => {
           </ul>
         </nav>
         <Form onSubmit={handleSearch} ref={form}>
-          <div className="form-group col-3 pt-3">
-            <Input
+          <Form.Group className="form-group col-3 pt-3">
+            <Form.Control
               type="text"
               className="form-control mt-1"
               name="termo"
-              value={termo}
-              onChange={onChangeTermo}
+              value={keyword}
+              onChange={onChangeKeyword}
               placeholder="termo de busca"
             />
-          </div>
-          <div className="form-group col-3 pt-3">
-            <button
-              type="submit"
-              className="btn btn-primary btn-block mt-1"
-              disabled={loading}
-            >
-              {loading && (
-                <span className="spinner-border spinner-border-sm"></span>
-              )}
-              <span>Buscar</span>
-            </button>
-          </div>
-          {message && (
-            <div className="form-group">
-              <div className="alert alert-danger" role="alert">
-                {message}
-              </div>
-            </div>
-          )}
-          <CheckButton style={{ display: 'none' }} ref={checkBtn} />
+          </Form.Group>
+          <Form.Group className="form-group col-3 pt-3">
+            <Button type="submit" className="btn btn-primary btn-block mt-1">
+              Buscar
+            </Button>
+          </Form.Group>
         </Form>
       </div>
       
