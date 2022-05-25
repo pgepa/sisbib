@@ -4,7 +4,7 @@ const columns = [
     accessor: 'classificacao'
   },
   {
-    Header: 'Tipo Documental',
+    Header: 'Tipo',
     accessor: 'tipo_documental'
   },
   {
@@ -20,7 +20,7 @@ const columns = [
     accessor: 'ano'
   },
   {
-    Header: 'Local de Publicação',
+    Header: 'Local',
     accessor: 'local_publicacao'
   },
   {

@@ -44,7 +44,6 @@ const BuscaObras = (props) => {
   const handleSearch = (e) => {
     e.preventDefault();
     setKeyword(keyword);
-    console.log(`BuscaObras handleSearch keyword = ${keyword}`);
     navigate('/search', { state: { termo: keyword } } );
     window.location.reload();
   };
