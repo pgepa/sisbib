@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, Dropdown } from 'react-bootstrap';
 import brasao from '../brasao.png';
 import {FaBook} from 'react-icons/fa';
 import {FaUsers} from 'react-icons/fa';
@@ -22,10 +22,23 @@ const NavigationBar = () => {
           <FaUsers/>
           Usuários
         </Nav.Link>
-        <Nav.Link as={NavLink} className="mx-5" to="/cadastrousuario">
+        <Nav.Link as={NavLink} className="mx-5" to="/cadastrousuario" text-center>
           <FaUserPlus/>
-          ADD Usuários
+          Cadastrar Usuários
         </Nav.Link>
+      
+        <Dropdown>
+  <Dropdown.Toggle variant="success" id="dropdown-basic">
+    Dropdown Button
+  </Dropdown.Toggle>
+
+  <Dropdown.Menu>
+    <Dropdown.Item href="/cadastrousuario"><FaUserPlus/>Cadastrar Usuário</Dropdown.Item>
+    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+  </Dropdown.Menu>
+</Dropdown>
+
       </Nav>
     </Navbar>
   );
