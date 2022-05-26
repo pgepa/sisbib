@@ -1,10 +1,9 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
 import brasao from '../brasao.png';
-import {FaBook} from 'react-icons/fa';
-import {FaUsers} from 'react-icons/fa';
-import {FaUserPlus} from 'react-icons/fa';
+import {FaBook, FaUserPlus, FaHome} from 'react-icons/fa';
+
 
 
 const NavigationBar = () => {
@@ -18,13 +17,13 @@ const NavigationBar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto font-size">
             <Nav.Link as={Link} to="/">
-                Inicio
+               <FaHome className='icons'/> Inicio
             </Nav.Link>
             <Nav.Link as={Link} to="/obras">
-                <FaBook/> Obras
+                <FaBook className='icons'/> Obras
             </Nav.Link>
             <Nav.Link as={Link} to="/usuarios">
-                <FaUserPlus/> Usuarios
+                <FaUserPlus className='icons'/> Usuarios
             </Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
             <NavDropdown.Item as={Link} to="/usuarios">Usuários</NavDropdown.Item>
