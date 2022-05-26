@@ -4,6 +4,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 import brasao from '../brasao.png';
 import {FaBook} from 'react-icons/fa';
 import {FaUsers} from 'react-icons/fa';
+import {FaUserPlus} from 'react-icons/fa';
 
 
 const NavigationBar = () => {
@@ -20,6 +21,10 @@ const NavigationBar = () => {
         <Nav.Link as={NavLink} className="mx-5" to="/usuarios">
           <FaUsers/>
           Usuários
+        </Nav.Link>
+        <Nav.Link as={NavLink} className="mx-5" to="/cadastrousuario">
+          <FaUserPlus/>
+          ADD Usuários
         </Nav.Link>
       </Nav>
     </Navbar>
