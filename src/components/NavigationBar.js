@@ -2,6 +2,8 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
 import brasao from '../brasao.png';
+import {FaBook} from 'react-icons/fa';
+import {FaUsers} from 'react-icons/fa';
 
 
 const NavigationBar = () => {
@@ -12,9 +14,11 @@ const NavigationBar = () => {
       </Navbar.Brand>
       <Nav className="mx-0 text-large">
         <Nav.Link as={NavLink} className="mx-3" to="/obras">
+          <FaBook/>
           Obras
         </Nav.Link>
         <Nav.Link as={NavLink} className="mx-5" to="/usuarios">
+          <FaUsers/>
           Usuários
         </Nav.Link>
       </Nav>
