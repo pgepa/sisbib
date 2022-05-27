@@ -4,6 +4,7 @@ import { Navbar, Nav, Container } from 'react-bootstrap';
 import brasao from '../brasao.png';
 import { FaHome, FaUsers} from 'react-icons/fa';
 import {SiBookstack} from "react-icons/si";
+import './BO.css';
 
 
 
@@ -17,14 +18,14 @@ const NavigationBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto font-size">
-            <Nav.Link as={Link} to="/">
-               <FaHome className='icons'/> Inicio
+            <Nav.Link as={Link} to="/" className="navs">
+               <FaHome/> Inicio
             </Nav.Link>
-            <Nav.Link as={Link} to="/obras">
+            <Nav.Link as={Link} to="/obras" className="navs">
                <SiBookstack/>Obras
             </Nav.Link>
 
-            <Nav.Link as={Link} to="/usuarios">
+            <Nav.Link as={Link} to="/usuarios" className="navs">
                <FaUsers/>Usuários
             </Nav.Link>
         </Nav>

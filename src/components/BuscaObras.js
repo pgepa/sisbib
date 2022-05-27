@@ -84,6 +84,7 @@ const BuscaObras = (props) => {
             </Form.Group>
           </Form>
         </Col>
+      
       </Row>
       
       <Container fluid className="col-md-12 list my-3">
