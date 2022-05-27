@@ -9,7 +9,7 @@ const RegistroUsuario = () => {
         fullname: Yup.string().required('Nome obrigatório'),
         setor: Yup.string().required('Setor obrigatório'),
         matricula: Yup.string()
-        .required('Número de matrícula obrigatŕio')
+        .required('Número de matrícula obrigatório')
         .min(6,'Número de matrícula incorreto')
         .max(8,'Número de matrícula incorreto'),
         cpf: Yup.string()

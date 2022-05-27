@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect, useMemo, useRef } from "react";
-import UsuarioService from "../services/usuario.service";
-import { useTable } from "react-table";
-import { useNavigate, Link } from "react-router-dom";
-import { Container, Button, Form, Row, Col, Navbar, Nav, Table } from "react-bootstrap";
-import colunasUsuarios from "./resources/ColunasUsuarios";
-import { FaUserPlus } from "react-icons/fa";
-import "./BO.css";
+import React, { useState, useEffect, useMemo, useRef } from 'react';
+import UsuarioService from '../services/usuario.service';
+import { useTable } from 'react-table';
+import { useNavigate, Link } from 'react-router-dom';
+import { Container, Button, Form, Row, Col, Navbar, Nav, Table } from 'react-bootstrap';
+import colunasUsuarios from './resources/ColunasUsuarios';
+import { FaUserPlus } from 'react-icons/fa';
+import './BO.css';
 
 const Usuarios = (props) => {
   const limit = 20;
@@ -22,20 +22,46 @@ const Usuarios = (props) => {
     return setUsuarios(awaitUsuarios.data);
   }, [page]);
 
+  const editUser = (rowIndex) => {
+
+  }
+
+  const editPassword = (rowIndex) => {
+
+  }
+
   const columns = useMemo(
     () =>
       colunasUsuarios.concat([
         {
-          Header: "Cadastrado em",
-          accessor: "createdAt",
+          Header: 'Cadastrado em',
+          accessor: 'createdAt',
           Cell: ({ row }) => (
             <span>
-              {new Intl.DateTimeFormat("pt-BR", {}).format(
+              {new Intl.DateTimeFormat('pt-BR', {}).format(
                 new Date(row.original.createdAt)
               )}
             </span>
           ),
         },
+        {
+          Header: 'Ações',
+          acessor: 'actions',
+          Cell: (props) => {
+            const rowIndex = Number(props.row.id);
+            return (
+              <div>
+                <span onclick={() => editUser(rowIndex)}>
+                  <i className="far far-edit action mr-2" title="Editar"></i>
+                </span>
+                <span> </span>
+                <span onclick={() => editPassword(rowIndex)}>
+                  <i className="far far-edit action mr-2" title="Editar"></i>
+                </span>
+              </div>
+            );
+          }
+        }
       ]),
     []
   );
@@ -71,31 +97,12 @@ const Usuarios = (props) => {
                   Anterior
                 </Button>
               </Nav.Item>
-              <Nav.Item className="page-item">
-                <Button className="page-link" onClick={() => setPage(1)}>
-                  1
-                </Button>
-              </Nav.Item>
-              <Nav.Item className="page-item">
-                <Button className="page-link" onClick={() => setPage(2)}>
-                  2
-                </Button>
-              </Nav.Item>
-              <Nav.Item className="page-item">
-                <Button className="page-link" onClick={() => setPage(3)}>
-                  3
-                </Button>
-              </Nav.Item>
-              <Nav.Item className="page-item">
-                <Button className="page-link" onClick={() => setPage(4)}>
-                  4
-                </Button>
-              </Nav.Item>
-              <Nav.Item className="page-item">
-                <Button className="page-link" onClick={() => setPage(5)}>
-                  5
-                </Button>
-              </Nav.Item>
+              { [...Array(5)].map((object,i) =>
+                <Nav.Item className="page-item">
+                  <Button className="page-link" onClick={() => setPage(i + 1)}>
+                    {i + 1}
+                  </Button>
+                </Nav.Item>) }
               <Nav.Item className="page-item">
                 <Button
                   className="page-link mx-1"
@@ -178,31 +185,14 @@ const Usuarios = (props) => {
                 Anterior
               </Button>
             </Nav.Item>
-            <Nav.Item className="page-item">
-              <Button className="page-link" onClick={() => setPage(1)}>
-                1
-              </Button>
-            </Nav.Item>
-            <Nav.Item className="page-item">
-              <Button className="page-link" onClick={() => setPage(2)}>
-                2
-              </Button>
-            </Nav.Item>
-            <Nav.Item className="page-item">
-              <Button className="page-link" onClick={() => setPage(3)}>
-                3
-              </Button>
-            </Nav.Item>
-            <Nav.Item className="page-item">
-              <Button className="page-link" onClick={() => setPage(4)}>
-                4
-              </Button>
-            </Nav.Item>
-            <Nav.Item className="page-item">
-              <Button className="page-link" onClick={() => setPage(5)}>
-                5
-              </Button>
-            </Nav.Item>
+            {
+              [...Array(5)].map((object,i) =>
+                <Nav.Item className="page-item">
+                  <Button className="page-link" onClick={() => setPage(i + 1)}>
+                    {i + 1}
+                  </Button>
+                </Nav.Item>)
+            }
             <Nav.Item className="page-item">
               <Button
                 className="page-link mx-1"
