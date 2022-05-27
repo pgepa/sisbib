@@ -5,6 +5,7 @@ import { useTable } from 'react-table';
 import { useNavigate } from 'react-router-dom';
 import { Container, Button, Form, Row, Col, Navbar, Nav, Table } from 'react-bootstrap';
 import colunasObras from './resources/ColunasObras';
+//import './BO.css';
 
 const Obras = (props) => {
   const limit = 20;
@@ -62,16 +63,17 @@ const Obras = (props) => {
             </Nav>
           </Navbar>
         </Col>
+        <Col md={1}></Col>
         <Col>
           <Form className="d-flex" onSubmit={handleSearch} ref={form}>
-            <Form.Group className="col-4 pt-2">
+            <Form.Group className="col-5 pt-2">
               <Form.Control
                 type="text"
                 className="form-control mt-1"
                 name="termo"
                 value={keyword}
                 onChange={onChangeKeyword}
-                placeholder="termo de busca"
+                placeholder="termo de busca1"
               />
             </Form.Group>
             <Form.Group className="col-2 pt-2">
@@ -81,6 +83,7 @@ const Obras = (props) => {
             </Form.Group>
           </Form>
         </Col>
+        
       </Row>
       
       <Container fluid className="col-md-12 list my-3">

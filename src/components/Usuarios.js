@@ -63,9 +63,10 @@ const Usuarios = (props) => {
             </Nav>
           </Navbar>
         </Col>
+        <Col md={1}></Col>
         <Col>
           <Form className="d-flex" onSubmit={handleSearch} ref={form}>
-            <Form.Group className="col-4 pt-2">
+            <Form.Group className="col-5 pt-2">
               <Form.Control
                 type="text"
                 className="form-control mt-1"
