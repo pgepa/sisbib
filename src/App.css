@@ -1,27 +1,40 @@
-
-.text-large {
-    font-size: 120%;
-    
-}
-.font-size {
-    font-size: 1.3em;
-}
-.margin-large {
-    margin: 0rem 2rem;
-}
 .area-descricao {
     height: 10rem;
 }
-.register-form{
-    padding:1rem;
-    max-width: 24rem;
-    margin: auto;
-}
-.btn-usuario {
-    margin-top: 1rem;
-    margin-left: 3.5rem;
-}
+
 .btn-obra {
     margin-top: 1rem;
     margin-left: 2.4rem;
 }
+
+.btn-usuario {
+    margin-top: 1rem;
+    margin-left: 3.5rem;
+}
+
+.display-6:hover {
+    opacity: 0.75;
+}
+
+.font-size {
+    font-size: 1.3em;
+}
+
+img:hover {
+    opacity: 0.5;
+}
+
+.margin-large {
+    margin: 0rem 2rem;
+}
+
+.register-form {
+    padding:1rem;
+    max-width: 24rem;
+    margin: auto;
+}
+
+.text-large {
+    font-size: 120%;
+}
+

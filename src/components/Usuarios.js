@@ -5,8 +5,7 @@ import { useTable } from 'react-table';
 import { useNavigate, Link } from 'react-router-dom';
 import { Container, Button, Form, Row, Col, Navbar, Nav, Table } from 'react-bootstrap';
 import colunasUsuarios from './resources/ColunasUsuarios';
-import { FaUserPlus } from 'react-icons/fa';
-import './BO.css';
+import { FaUserPlus, FaEdit, FaUnlockAlt } from 'react-icons/fa';
 
 const Usuarios = (props) => {
   const limit = 20;
@@ -21,14 +20,6 @@ const Usuarios = (props) => {
     const awaitUsuarios = await UsuarioService.getAll(limit, page);
     return setUsuarios(awaitUsuarios.data);
   }, [page]);
-
-  const editUser = (rowIndex) => {
-
-  }
-
-  const editPassword = (rowIndex) => {
-
-  }
 
   const columns = useMemo(
     () =>
@@ -48,16 +39,15 @@ const Usuarios = (props) => {
           Header: 'Ações',
           acessor: 'actions',
           Cell: (props) => {
-            const rowIndex = Number(props.row.id);
             return (
               <div>
-                <span onclick={() => editUser(rowIndex)}>
-                  <i className="far far-edit action mr-2" title="Editar"></i>
-                </span>
+                <Button variant="info" title="Editar" as={Link} to="/cadastrousuario">
+                  <FaEdit size='1rem'/>
+                </Button>
                 <span> </span>
-                <span onclick={() => editPassword(rowIndex)}>
-                  <i className="far far-edit action mr-2" title="Editar"></i>
-                </span>
+                <Button variant="warning" title="Trocar senha">
+                  <FaUnlockAlt size='1rem'/>
+                </Button>
               </div>
             );
           }
@@ -137,7 +127,8 @@ const Usuarios = (props) => {
         <Col md={3} className="btn32">
           <Form.Group className="col-12 pt-2">
             <Button variant="success" className="btn32" as={Link} to="/cadastrousuario">
-              <FaUserPlus />
+              <FaUserPlus size='1rem'/>
+              <span> </span>
               Adicionar usuário
             </Button>
           </Form.Group>
