@@ -2,17 +2,8 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import UsuarioService from "../services/usuario.service";
 import { useTable } from "react-table";
-import { useNavigate } from "react-router-dom";
-import {
-  Container,
-  Button,
-  Form,
-  Row,
-  Col,
-  Navbar,
-  Nav,
-  Table,
-} from "react-bootstrap";
+import { useNavigate, Link } from "react-router-dom";
+import { Container, Button, Form, Row, Col, Navbar, Nav, Table } from "react-bootstrap";
 import colunasUsuarios from "./resources/ColunasUsuarios";
 import { FaUserPlus } from "react-icons/fa";
 import "./BO.css";
@@ -138,7 +129,7 @@ const Usuarios = (props) => {
         </Col>
         <Col md={3} className="btn32">
           <Form.Group className="col-12 pt-2">
-            <Button variant="success" className="btn32">
+            <Button variant="success" className="btn32" as={Link} to="/cadastrousuario">
               <FaUserPlus />
               Adicionar usuário
             </Button>
