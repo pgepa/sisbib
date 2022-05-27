@@ -45,7 +45,7 @@ const Usuarios = (props) => {
                   <FaEdit size='1rem'/>
                 </Button>
                 <span> </span>
-                <Button variant="warning" title="Trocar senha">
+                <Button variant="warning" title="Alterar senha">
                   <FaUnlockAlt size='1rem'/>
                 </Button>
               </div>
@@ -134,7 +134,7 @@ const Usuarios = (props) => {
           </Form.Group>
         </Col>
       </Row>
-      <Container fluid className="col-md-12 list my-3">
+      <Container fluid className="col-md-12 list my-3 align-items-center">
         <Table size="sm" striped hover responsive {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup) => (

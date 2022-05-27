@@ -34,6 +34,10 @@ img:hover {
     margin: auto;
 }
 
+td {
+    vertical-align: middle;
+}
+
 .text-large {
     font-size: 120%;
 }
