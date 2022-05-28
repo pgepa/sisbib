@@ -10,17 +10,18 @@ const CadastroUsuario = () => {
   const validationSchema = Yup.object().shape({
     fullname: Yup.string()
       .required('Nome obrigatório'),
-    setor: Yup.string()
-      .required('Setor obrigatório'),
+    email: Yup.string()
+      .required('Email obrigatório')
+      .email('Email deve conter "@" e ponto "."'),
+    cpf: Yup.string()
+      .required('CPF obrigatório')
+      .length(11,'CPF deve conter 11 dígitos'),
     matricula: Yup.string()
       .required('Número de matrícula obrigatório')
       .min(6, 'Número de matrícula deve conter no mínimo 6 caracteres')
       .max(8, 'Número de matrícula deve conter no máximo 8 caracteres'),
-    cpf: Yup.string()
-      .required('CPF obrigatório'),
-    email: Yup.string()
-      .required('Email obrigatório')
-      .email('Email deve conter "@" e ponto "."'),
+    setor: Yup.string()
+      .required('Setor obrigatório'),
     password: Yup.string()
       .required('Defina uma senha')
       .min(6, 'A senha deve conter no mínimo 6 caracteres')
@@ -39,10 +40,10 @@ const CadastroUsuario = () => {
 
   const initialValues = {
     fullname: '',
-    setor: '',
-    matricula: '',
-    cpf: '',
     email: '',
+    cpf: '',
+    matricula: '',
+    setor: '',
     password: '',
     confirmPassword: '',
   };

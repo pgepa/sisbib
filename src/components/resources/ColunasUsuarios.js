@@ -14,6 +14,10 @@ const columns = [
   {
     Header: 'CPF',
     accessor: 'cpf'
+  },
+  {
+    Header: 'Email',
+    accessor: 'email'
   }
 ];
 

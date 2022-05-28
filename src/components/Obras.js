@@ -74,7 +74,7 @@ const Obras = (props) => {
                 name="termo"
                 value={keyword}
                 onChange={onChangeKeyword}
-                placeholder="termo de busca1"
+                placeholder="termo de busca"
               />
             </Form.Group>
             <Form.Group className="col-2 pt-2">
