@@ -41,7 +41,7 @@ const Usuarios = (props) => {
           Cell: (props) => {
             return (
               <div>
-                <Button variant="info" title="Editar" as={Link} to="/cadastrousuario">
+                <Button variant="info" title="Editar" as={Link} to="/usuarios/register">
                   <FaEdit size='1rem'/>
                 </Button>
                 <span> </span>
@@ -126,7 +126,7 @@ const Usuarios = (props) => {
         </Col>
         <Col md={3} className="btn32">
           <Form.Group className="col-12 pt-2">
-            <Button variant="success" className="btn32" as={Link} to="/cadastrousuario">
+            <Button variant="success" className="btn32" as={Link} to="/usuarios/register">
               <FaUserPlus size='1rem'/>
               <span> </span>
               Adicionar usuário

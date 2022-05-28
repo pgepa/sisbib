@@ -2,9 +2,10 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import UsuarioService from '../services/usuario.service';
 import { useTable } from 'react-table';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { Container, Button, Form, Row, Col, Navbar, Nav, Table } from 'react-bootstrap';
 import colunasUsuarios from './resources/ColunasUsuarios';
+import { FaUserPlus, FaEdit, FaUnlockAlt } from 'react-icons/fa';
 
 const BuscaUsuarios = (props) => {
   const limit = 20;
@@ -27,6 +28,23 @@ const BuscaUsuarios = (props) => {
       accessor: 'createdAt',
       Cell: ({ row }) => (<span>{new Intl.DateTimeFormat("pt-BR", {}).format(
         new Date(row.original.createdAt))}</span>)
+    },
+    {
+      Header: 'Ações',
+      acessor: 'actions',
+      Cell: (props) => {
+        return (
+          <div>
+            <Button variant="info" title="Editar" as={Link} to="/usuarios/register">
+              <FaEdit size='1rem'/>
+            </Button>
+            <span> </span>
+            <Button variant="warning" title="Alterar senha">
+              <FaUnlockAlt size='1rem'/>
+            </Button>
+          </div>
+        );
+      }
     }
   ]), []);
 
@@ -74,7 +92,7 @@ const BuscaUsuarios = (props) => {
           </Navbar>
         </Col>
         <Col md={1}></Col>
-        <Col>
+        <Col md={5}>
           <Form className="d-flex" onSubmit={handleSearch} ref={form}>
             <Form.Group className="col-5 pt-2">
               <Form.Control
@@ -92,6 +110,15 @@ const BuscaUsuarios = (props) => {
               </Button>
             </Form.Group>
           </Form>
+        </Col>
+        <Col md={3} className="btn32">
+          <Form.Group className="col-12 pt-2">
+            <Button variant="success" className="btn32" as={Link} to="/usuarios/register">
+              <FaUserPlus size='1rem'/>
+              <span> </span>
+              Adicionar usuário
+            </Button>
+          </Form.Group>
         </Col>
       </Row>
       

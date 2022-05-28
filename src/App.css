@@ -11,6 +11,10 @@
     opacity: 0.75;
 }
 
+div.text-danger {
+    width: 50%;
+}
+
 .font-size {
     font-size: 1.3em;
 }

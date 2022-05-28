@@ -36,7 +36,6 @@ const CadastroUsuario = () => {
   });
 
   const handleSubmit = (data) => {
-    // alert(JSON.stringify(data, null, 2));
     UsuarioService.addUsuario(data)
     .then((response) => {
       alert(response.data.message);
@@ -64,7 +63,7 @@ const CadastroUsuario = () => {
           <FormGroup>
             <FormLabel className="h4 my-2">Nome</FormLabel>
             <Field name="name" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2 w-50" />
-            <ErrorMessage name="name" component="div" className="text-danger" />
+            <ErrorMessage name="name" component="div" className="text-danger w-50" />
           </FormGroup>
           <FormGroup>
             <FormLabel className="h4 my-2">Email</FormLabel>
