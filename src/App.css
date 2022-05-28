@@ -7,11 +7,6 @@
     margin-left: 2.4rem;
 }
 
-.btn-usuario {
-    margin-top: 1rem;
-    margin-left: 3.5rem;
-}
-
 .display-6:hover {
     opacity: 0.75;
 }
@@ -29,7 +24,7 @@ img:hover {
 }
 
 .register-form {
-    padding:1rem;
+    padding: 1rem;
     max-width: 24rem;
     margin: auto;
 }
