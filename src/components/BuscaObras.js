@@ -2,9 +2,11 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import ObraService from '../services/obra.service';
 import { useTable } from 'react-table';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { Container, Button, Form, Row, Col, Navbar, Nav, Table } from 'react-bootstrap';
 import colunasObras from './resources/ColunasObras';
+import { FaEdit } from 'react-icons/fa';
+import { BiBookAdd } from 'react-icons/bi';
 
 const BuscaObras = (props) => {
   const limit = 20;
@@ -27,6 +29,19 @@ const BuscaObras = (props) => {
       accessor: 'createdAt',
       Cell: ({ row }) => (<span>{new Intl.DateTimeFormat("pt-BR", {}).format(
         new Date(row.original.createdAt))}</span>)
+    },
+    {
+      Header: 'Ações',
+      acessor: 'actions',
+      Cell: (props) => {
+        return (
+          <div>
+            <Button variant="info" title="Editar" as={Link} to="/obras/register">
+              <FaEdit size='1rem'/>
+            </Button>
+          </div>
+        );
+      }
     }
   ]), []);
 
@@ -94,6 +109,15 @@ const BuscaObras = (props) => {
               </Button>
             </Form.Group>
           </Form>
+        </Col>
+        <Col md={3} className="btn32">
+          <Form.Group className="col-12 pt-2">
+            <Button variant="success" className="btn32" as={Link} to="/obras/register">
+              <BiBookAdd size='1rem'/>
+              <span> </span>
+              Adicionar obra
+            </Button>
+          </Form.Group>
         </Col>
       </Row>
       
