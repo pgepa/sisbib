@@ -1,8 +1,8 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Button } from 'react-bootstrap';
-import { Formik, ErrorMessage } from 'formik';
-import { Form } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { FormGroup, FormLabel } from 'react-bootstrap';
 import { BsCheckLg, BsXLg } from 'react-icons/bs';
 import * as Yup from 'yup';
 
@@ -34,7 +34,7 @@ const CadastroUsuario = () => {
   });
 
   const handleSubmit = (data) => {
-    console.log(JSON.stringify(data, null, 2));
+    alert(JSON.stringify(data, null, 2));
   };
 
   const initialValues = {
@@ -50,54 +50,52 @@ const CadastroUsuario = () => {
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema}
       onSubmit={handleSubmit}>
-      {({ resetForm }) => (
-        <Container>
-          <Form>
-            <Form.Group>
-              <Form.Label className="h4 my-2">Nome</Form.Label>
-              <Form.Control name="fullname" type="text" size="lg" className="shadow h4 mx-1 mb-2 w-50" />
-              <ErrorMessage name="fullname" className="text-danger" />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label className="h4 my-2">Email</Form.Label>
-              <Form.Control name="email" type="email" size="lg" className="shadow h4 mx-1 mb-2 w-50" />
-              <ErrorMessage name="email" className="text-danger" />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label className="h4 my-2">CPF</Form.Label>
-              <Form.Control name="cpf" type="text" size="lg" className="shadow h4 mx-1 mb-2 w-50" />
-              <ErrorMessage name="cpf"className="text-danger" />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label className="h4 my-2">Matrícula</Form.Label>
-              <Form.Control name="matricula" type="text" size="lg" className="shadow h4 mx-1 mb-2 w-50" />
-              <ErrorMessage name="matricula" className="text-danger" />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label className="h4 my-2">Setor</Form.Label>
-              <Form.Control name="setor" type="text" size="lg" className="shadow h4 mx-1 mb-2 w-50" />
-              <ErrorMessage name="setor" className="text-danger" />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label className="h4 my-2">Senha</Form.Label>
-              <Form.Control name="password" type="password" size="lg" className="shadow h4 mx-1 mb-2 w-50" />
-              <ErrorMessage name="password" className="text-danger" />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label className="h4 my-2">Confirmar senha</Form.Label>
-              <Form.Control name="confirmPassword" type="password" size="lg" className="shadow h4 mx-1 mb-2 w-50" />
-              <ErrorMessage name="confirmPassword" className="text-danger" />
-            </Form.Group>
-            <Form.Group>
-              <Button type="submit" className="btn-lg btn-primary rounded-pill shadow-lg px-5 py-3 m-5">
-                <BsCheckLg /><span className="mx-2">REGISTRAR</span>
-              </Button>
-              <Button type="button" onClick={resetForm} className="btn-lg btn-danger rounded-pill shadow-lg px-5 py-3 m-5">
-                <BsXLg /><span className="mx-2">CANCELAR</span>
-              </Button>
-            </Form.Group>
-          </Form>
-        </Container>
+        {({ resetForm }) => (
+        <Form class="container my-3">
+          <FormGroup>
+            <FormLabel className="h4 my-2">Nome</FormLabel>
+            <Field name="fullname" type="text"  size="lg" className="form-control shadow h4 mx-1 mb-2 w-50" />
+            <ErrorMessage name="fullname" component="div" className="text-danger" />
+          </FormGroup>
+          <FormGroup>
+            <FormLabel className="h4 my-2">Email</FormLabel>
+            <Field name="email" type="email"  size="lg" className="form-control shadow h4 mx-1 mb-2 w-50" />
+            <ErrorMessage name="email" component="div" className="text-danger" />
+          </FormGroup>
+          <FormGroup>
+            <FormLabel className="h4 my-2">CPF</FormLabel>
+            <Field name="cpf" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2 w-50" />
+            <ErrorMessage name="cpf" component="div" className="text-danger" />
+          </FormGroup>
+          <FormGroup>
+            <FormLabel className="h4 my-2">Matrícula</FormLabel>
+            <Field name="matricula" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2 w-50" />
+            <ErrorMessage name="matricula" component="div" className="text-danger" />
+          </FormGroup>
+          <FormGroup>
+            <FormLabel className="h4 my-2">Setor</FormLabel>
+            <Field name="setor" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2 w-50" />
+            <ErrorMessage name="setor" component="div" className="text-danger" />
+          </FormGroup>
+          <FormGroup>
+            <FormLabel className="h4 my-2">Senha</FormLabel>
+            <Field name="password" type="password" size="lg" className="form-control shadow h4 mx-1 mb-2 w-50" />
+            <ErrorMessage name="password" component="div" className="text-danger" />
+          </FormGroup>
+          <FormGroup>
+            <FormLabel className="h4 my-2">Confirmar senha</FormLabel>
+            <Field name="confirmPassword" type="password" size="lg" className="form-control shadow h4 mx-1 mb-2 w-50" />
+            <ErrorMessage name="confirmPassword" component="div" className="text-danger" />
+          </FormGroup>
+          <FormGroup>
+            <Button type="submit" onClick={handleSubmit} className="btn-lg btn-primary rounded-pill shadow-lg px-5 py-3 m-5">
+              <BsCheckLg /><span className="mx-2">REGISTRAR</span>
+            </Button>
+            <Button type="button" onClick={resetForm} className="btn-lg btn-danger rounded-pill shadow-lg px-5 py-3 m-5">
+              <BsXLg /><span className="mx-2">CANCELAR</span>
+            </Button>
+          </FormGroup>
+        </Form>
       )}
     </Formik>
   );
