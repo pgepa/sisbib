@@ -52,7 +52,7 @@ const CadastroUsuario = () => {
     inscription: '',
     department: '',
     password: '',
-    confirmPassword: '',
+    confirmPassword: ''
   };
 
   return (

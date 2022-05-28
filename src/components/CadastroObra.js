@@ -1,41 +1,61 @@
-import React from "react";
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Button } from 'react-bootstrap';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { FormGroup, FormLabel, Row, Col } from 'react-bootstrap';
+import { BsCheckLg, BsXLg } from 'react-icons/bs';
+import ObraService from '../services/obra.service';
 import * as Yup from 'yup';
-
 
 const CadastroObra = () => {
     
     const validationSchema = Yup.object().shape({
-        autor: Yup.string().required('Campo obrigatório'),
         ano: Yup.string() 
-            .required('Campo obrigatório')
-            .length(4,'Ano deve conter 4 dígitos'),
-        classificacao: Yup.string().required('Campo obrigatório'),
-        descritores: Yup.string().required('Campo obrigatório'),
-        editor: Yup.string().required('Campo obrigatório'),
-        edicao: Yup.string().required('Campo obrigatório'),
-        idioma: Yup.string().required('Campo obrigatório'),
-        localPublicacao: Yup.string().required('Campo obrigatório'),
-        paginas: Yup.string().required('Campo obrigatório'),
-        registro: Yup.string().required('Campo obrigatório'),
-        titulo: Yup.string().required('Campo obrigatório'),
-        tipoDocumental: Yup.string().required('Campo obrigatório'),
+          .required('Ano obrigatório')
+          .length(4,'Ano deve conter 4 dígitos'),
+        autor: Yup.string()
+          .required('Autor obrigatório'),
+        classificacao: Yup.string()
+          .required('Classificação obrigatória'),
+        descritores: Yup.string()
+          .required('Descritores obrigatórios'),
+        edicao: Yup.string()
+          .required('Número da edição obrigatório'),
+        editor: Yup.string()
+          .required('Editor obrigatório'),
+        idioma: Yup.string()
+          .required('Idioma obrigatório'),
+        local_publicacao: Yup.string()
+          .required('Local de publicação obrigatório'),
+        paginas: Yup.string()
+          .required('Quantidade de páginas obrigatória'),
+        registro: Yup.string()
+          .required('Número de registro obrigatório'),
+        tipo_documental: Yup.string()
+          .required('Tipo documental obrigatório'),
+        titulo: Yup.string()
+          .required('Título da obra obrigatório')
       });
     
       const handleSubmit = (data) => {
-        console.log(JSON.stringify(data, null, 2));
+        ObraService.addObra(data)
+        .then((response) => {
+          alert(response.data.message);
+        })
+        .catch((error) => {
+          console.log(error.response.data.message);
+        });
       };
     
       const initialValues = {
-        autor: '',
         ano: '',
+        autor: '',
         classificacao: '',
         descritores: '',
-        editor: '',
         edicao: '',
+        editor: '',
         idioma: '',
-        localPublicacao: '',
+        local_publicacao: '',
         paginas: '',
         registro: '',
         titulo: '',
@@ -43,124 +63,110 @@ const CadastroObra = () => {
       };
     
       return (
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={handleSubmit}
-        >
+        <Formik initialValues={initialValues} validationSchema={validationSchema}
+          onSubmit={handleSubmit}>
           {({ resetForm }) => (
-            <Form>
-              <div className="form-group">
-                <label>Título</label>
-                <Field name="titulo" type="text" className="form-control" />
-                <ErrorMessage
-                  name="titulo"
-                  component="div"
-                  className="text-danger"
-                />
-              </div>
-              <div className="form-group">
-                <label>Autor</label>
-                <Field name="autor" type="text" className="form-control" />
-                <ErrorMessage
-                  name="autor"
-                  component="div"
-                  className="text-danger"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="registro"> Registro </label>
-                <Field name="registro" type="text" className="form-control" />
-                <ErrorMessage
-                  name="registro"
-                  component="div"
-                  className="text-danger"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="ano"> Ano </label>
-                <Field name="ano" type="number" className="form-control" />
-                <ErrorMessage
-                  name="ano"
-                  component="div"
-                  className="text-danger"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="paginas"> Páginas </label>
-                <Field name="paginas" type="number" className="form-control" />
-                <ErrorMessage
-                  name="paginas"
-                  component="div"
-                  className="text-danger"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="idioma"> Idioma </label>
-                <Field name="idioma" type="text" className="form-control" />
-                <ErrorMessage
-                  name="idioma"
-                  component="div"
-                  className="text-danger"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="classificacao"> Classificação </label>
-                <Field name="classificacao" type="text" className="form-control" />
-                <ErrorMessage
-                  name="classificacao"
-                  component="div"
-                  className="text-danger"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="tipoDocumental"> Tipo Documental </label>
-                <Field name="tipoDocumental" type="text" className="form-control" />
-                <ErrorMessage
-                  name="tipoDocumental"
-                  component="div"
-                  className="text-danger"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="edicao"> Edição </label>
-                <Field name="edicao" type="number" className="form-control" />
-                <ErrorMessage
-                  name="edicao"
-                  component="div"
-                  className="text-danger"
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="localPublicacao"> Local de Publicação </label>
-                <Field name="localPublicacao" type="text" className="form-control" />
-                <ErrorMessage
-                  name="localPublicacao"
-                  component="div"
-                  className="text-danger"
-                />
-              </div>
-              <div className="descritores">
-                <label htmlFor="descritores"> Descritores </label>
-                <Field name="descritores" type="text" className="area form-control" component="textarea"/>
-                <ErrorMessage
-                  name="descritores"
-                  component="div"
-                  className="text-danger"
-                />
-              </div>
-              <div className="form-group row='5'">
-                <button type="submit" className="btn btn-obra btn-success">
-                  Registrar Obra
-                </button>
-                <button
-                  type="button"
-                  onClick={resetForm}
-                  className="btn btn-obra btn-warning float-right"
-                >
-                  Limpar
-                </button>
-              </div>
+            <Form className="container my-3">
+              <Row className="my-3">
+                <Col>
+                  <FormGroup>
+                    <FormLabel className="h4 my-2">Registro</FormLabel>
+                    <Field name="registro" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+                    <ErrorMessage name="registro" component="div" className="text-danger" />
+                  </FormGroup>
+                </Col>
+                <Col>
+                  <FormGroup>
+                    <FormLabel className="h4 my-2">Classificação</FormLabel>
+                    <Field name="classificacao" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+                    <ErrorMessage name="classificacao" component="div" className="text-danger" />
+                  </FormGroup>
+                </Col>
+                <Col>
+                  <FormGroup>
+                    <FormLabel className="h4 my-2">Tipo Documental</FormLabel>
+                    <Field name="tipo_documental" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+                    <ErrorMessage name="tipo_documental" component="div" className="text-danger" />
+                  </FormGroup>
+                </Col>
+                <Col>
+                  <FormGroup>
+                    <FormLabel className="h4 my-2">Idioma</FormLabel>
+                    <Field name="idioma" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+                    <ErrorMessage name="idioma" component="div" className="text-danger" />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row className="my-3">
+                <Col>
+                  <FormGroup>
+                    <FormLabel className="h4 my-2">Título</FormLabel>
+                    <Field name="titulo" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+                    <ErrorMessage name="titulo" component="div" className="text-danger" />
+                  </FormGroup>
+                </Col>
+                <Col>
+                  <FormGroup>
+                    <FormLabel className="h4 my-2">Autor</FormLabel>
+                    <Field name="autor" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+                    <ErrorMessage name="autor" component="div" className="text-danger" />
+                  </FormGroup>
+                </Col>
+              </Row >
+              <Row className="my-3">
+                <Col>
+                  <FormGroup>
+                    <FormLabel className="h4 my-2">Editor</FormLabel>
+                    <Field name="editor" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+                    <ErrorMessage name="editor" component="div" className="text-danger" />
+                  </FormGroup>
+                </Col>
+                <Col>
+                  <FormGroup>
+                    <FormLabel className="h4 my-2">Edição</FormLabel>
+                    <Field name="edicao" type="number" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+                    <ErrorMessage name="edicao" component="div" className="text-danger" />
+                  </FormGroup>
+                </Col>
+                <Col>
+                  <FormGroup>
+                    <FormLabel className="h4 my-2">Páginas</FormLabel>
+                    <Field name="paginas" type="number" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+                    <ErrorMessage name="paginas" component="div" className="text-danger" />
+                  </FormGroup>
+                </Col>
+                <Col>
+                  <FormGroup>
+                    <FormLabel className="h4 my-2">Local de Publicação</FormLabel>
+                    <Field name="local_publicacao" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+                    <ErrorMessage name="local_publicacao" component="div" className="text-danger" />
+                  </FormGroup>
+                </Col>
+                <Col>
+                  <FormGroup>
+                    <FormLabel className="h4 my-2">Ano</FormLabel>
+                    <Field name="ano" type="number" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+                    <ErrorMessage name="ano" component="div" className="text-danger" />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <FormGroup>
+                    <FormLabel className="h4 my-2">Descritores</FormLabel>
+                    <Field name="descritores" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+                    <ErrorMessage name="descritores" component="div" className="text-danger" />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <FormGroup>
+                <Button type="submit" onClick={handleSubmit} className="btn-lg btn-primary rounded-pill shadow-lg px-5 py-3 m-5">
+                  <BsCheckLg /><span className="mx-2">REGISTRAR</span>
+                </Button>
+                <Button type="button" onClick={resetForm} className="btn-lg btn-danger rounded-pill shadow-lg px-5 py-3 m-5">
+                  <BsXLg /><span className="mx-2">CANCELAR</span>
+                </Button>
+              </FormGroup>
             </Form>
           )}
         </Formik>
