@@ -54,14 +54,24 @@ const BuscaObras = (props) => {
         <Col md={3}>
           <Navbar className="pt-2" aria-label="Page navigation example">
             <Nav className="pagination pt-1">
-              <Nav.Item className="page-item"><Button className="page-link mx-1" onClick={() => setPage(page - 1)}>Anterior</Button></Nav.Item>
-              { [...Array(5)].map((object,i) =>
-                <Nav.Item className="page-item">
+              <Nav.Item key="anterior" className="page-item">
+                <Button className="page-link mx-1" onClick={() => setPage(page - 1)}>
+                  Anterior
+                </Button>
+              </Nav.Item>
+              {
+                [...Array(5)].map((object,i) =>
+                <Nav.Item key={i} className="page-item">
                   <Button className="page-link" onClick={() => setPage(i + 1)}>
                     {i + 1}
                   </Button>
-                </Nav.Item>) }
-              <Nav.Item className="page-item"><Button className="page-link mx-1" onClick={() => setPage(page + 1)}>Seguinte</Button></Nav.Item>
+                </Nav.Item>)
+              }
+              <Nav.Item key="seguinte" className="page-item">
+                <Button className="page-link mx-1" onClick={() => setPage(page + 1)}>
+                  Seguinte
+                </Button>
+              </Nav.Item>
             </Nav>
           </Navbar>
         </Col>
@@ -85,7 +95,6 @@ const BuscaObras = (props) => {
             </Form.Group>
           </Form>
         </Col>
-      
       </Row>
       
       <Container fluid className="col-md-12 list my-3">
@@ -122,14 +131,24 @@ const BuscaObras = (props) => {
       <Col md={3}>
         <Navbar className="pt-2" aria-label="Page navigation example">
           <Nav className="pagination pt-1">
-            <Nav.Item className="page-item"><Button className="page-link mx-1" onClick={() => setPage(page - 1)}>Anterior</Button></Nav.Item>
-            { [...Array(5)].map((object,i) =>
-                <Nav.Item className="page-item">
+            <Nav.Item key="anterior" className="page-item">
+              <Button className="page-link mx-1" onClick={() => setPage(page - 1)}>
+                Anterior
+              </Button>
+            </Nav.Item>
+            {
+              [...Array(5)].map((object,i) =>
+                <Nav.Item key={i} className="page-item">
                   <Button className="page-link" onClick={() => setPage(i + 1)}>
                     {i + 1}
                   </Button>
-                </Nav.Item>) }
-            <Nav.Item className="page-item"><Button className="page-link mx-1" onClick={() => setPage(page + 1)}>Seguinte</Button></Nav.Item>
+                </Nav.Item>)
+            }
+            <Nav.Item key="seguinte" className="page-item">
+              <Button className="page-link mx-1" onClick={() => setPage(page + 1)}>
+                Seguinte
+              </Button>
+            </Nav.Item>
           </Nav>
         </Navbar>
       </Col>

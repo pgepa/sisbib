@@ -4,11 +4,12 @@ import { Button } from 'react-bootstrap';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { FormGroup, FormLabel } from 'react-bootstrap';
 import { BsCheckLg, BsXLg } from 'react-icons/bs';
+import UsuarioService from '../services/usuario.service';
 import * as Yup from 'yup';
 
 const CadastroUsuario = () => {
   const validationSchema = Yup.object().shape({
-    fullname: Yup.string()
+    name: Yup.string()
       .required('Nome obrigatório'),
     email: Yup.string()
       .required('Email obrigatório')
@@ -16,11 +17,11 @@ const CadastroUsuario = () => {
     cpf: Yup.string()
       .required('CPF obrigatório')
       .length(11,'CPF deve conter 11 dígitos'),
-    matricula: Yup.string()
+    inscription: Yup.string()
       .required('Número de matrícula obrigatório')
       .min(6, 'Número de matrícula deve conter no mínimo 6 caracteres')
       .max(8, 'Número de matrícula deve conter no máximo 8 caracteres'),
-    setor: Yup.string()
+    department: Yup.string()
       .required('Setor obrigatório'),
     password: Yup.string()
       .required('Defina uma senha')
@@ -35,15 +36,22 @@ const CadastroUsuario = () => {
   });
 
   const handleSubmit = (data) => {
-    alert(JSON.stringify(data, null, 2));
+    // alert(JSON.stringify(data, null, 2));
+    UsuarioService.addUsuario(data)
+    .then((response) => {
+      alert(response.data.message);
+    })
+    .catch((error) => {
+      console.log(error.response.data.message);
+    });
   };
 
   const initialValues = {
-    fullname: '',
+    name: '',
     email: '',
     cpf: '',
-    matricula: '',
-    setor: '',
+    inscription: '',
+    department: '',
     password: '',
     confirmPassword: '',
   };
@@ -52,15 +60,15 @@ const CadastroUsuario = () => {
     <Formik initialValues={initialValues} validationSchema={validationSchema}
       onSubmit={handleSubmit}>
         {({ resetForm }) => (
-        <Form class="container my-3">
+        <Form className="container my-3">
           <FormGroup>
             <FormLabel className="h4 my-2">Nome</FormLabel>
-            <Field name="fullname" type="text"  size="lg" className="form-control shadow h4 mx-1 mb-2 w-50" />
-            <ErrorMessage name="fullname" component="div" className="text-danger" />
+            <Field name="name" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2 w-50" />
+            <ErrorMessage name="name" component="div" className="text-danger" />
           </FormGroup>
           <FormGroup>
             <FormLabel className="h4 my-2">Email</FormLabel>
-            <Field name="email" type="email"  size="lg" className="form-control shadow h4 mx-1 mb-2 w-50" />
+            <Field name="email" type="email" size="lg" className="form-control shadow h4 mx-1 mb-2 w-50" />
             <ErrorMessage name="email" component="div" className="text-danger" />
           </FormGroup>
           <FormGroup>
@@ -70,13 +78,13 @@ const CadastroUsuario = () => {
           </FormGroup>
           <FormGroup>
             <FormLabel className="h4 my-2">Matrícula</FormLabel>
-            <Field name="matricula" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2 w-50" />
-            <ErrorMessage name="matricula" component="div" className="text-danger" />
+            <Field name="inscription" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2 w-50" />
+            <ErrorMessage name="inscription" component="div" className="text-danger" />
           </FormGroup>
           <FormGroup>
             <FormLabel className="h4 my-2">Setor</FormLabel>
-            <Field name="setor" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2 w-50" />
-            <ErrorMessage name="setor" component="div" className="text-danger" />
+            <Field name="department" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2 w-50" />
+            <ErrorMessage name="department" component="div" className="text-danger" />
           </FormGroup>
           <FormGroup>
             <FormLabel className="h4 my-2">Senha</FormLabel>
