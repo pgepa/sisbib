@@ -25,7 +25,7 @@ const Obras = (props) => {
 
   const editObra = (rowIndex) => {
     const id = form.current[rowIndex].id;
-    navigate(`/obras/${id}`);
+    navigate(`/obras/edit/${id}`);
   }
 
   const columns = useMemo(() => colunasObras.concat([

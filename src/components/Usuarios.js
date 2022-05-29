@@ -24,7 +24,7 @@ const Usuarios = (props) => {
 
   const editUser = (rowIndex) => {
     const id = form.current[rowIndex].id;
-    navigate(`/usuarios/${id}`);
+    navigate(`/usuarios/edit/${id}`);
   }
 
   const columns = useMemo(

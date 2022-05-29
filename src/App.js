@@ -25,11 +25,11 @@ const App = () => {
                     <Route exact path="/obras" element={<Obras />} />
                     <Route path="/obras/register" element={<CadastroObra />} />
                     <Route path="/obras/search" element={<BuscaObras />} />
-                    <Route path="/obras/:id" element={<EditarObra />} />
+                    <Route path="/obras/edit/:id" element={<EditarObra />} />
                     <Route exact path="/usuarios" element={<Usuarios />} />
                     <Route path="/usuarios/register" element={<CadastroUsuario />} />
                     <Route path="/usuarios/search" element={<BuscaUsuarios />} />
-                    <Route path="/usuarios/:id" element={<EditarUsuario />} />
+                    <Route path="/usuarios/edit/:id" element={<EditarUsuario />} />
                     <Route path="/login" element={<LoginUsuario/>} />
                     <Route path="/404" element={<PageNotFound />} />
                     <Route path="*" element={<Navigate replace to="/404" />} />
