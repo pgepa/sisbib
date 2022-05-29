@@ -19,8 +19,8 @@ const getSome = (termo,limit,page) => {
     return axios.post(APIURL.concat(`search?limit=${limit}&page=${page}`), termo);
 }
 
-const update = (id, data) => {
-    return axios.post(APIURL.concat(id), data);
+const update = (data) => {
+    return axios.post(APIURL.concat(`update`), data);
 }
 
 const remove = (id) => {

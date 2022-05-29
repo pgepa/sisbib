@@ -60,7 +60,7 @@ const BuscaObras = (props) => {
     e.preventDefault();
     setKeyword(keyword);
     navigate('/obras/search', { state: { termo: keyword } } );
-    window.location.reload();
+    props.parent.reload();
   };
 
   return (

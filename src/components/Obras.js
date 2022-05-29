@@ -16,11 +16,17 @@ const Obras = (props) => {
 
   const navigate = useNavigate();
   const form = useRef();
+  form.current = obras;
   
   useEffect(async () => {
     const awaitObras = await ObraService.getAll(limit, page);
     return setObras(awaitObras.data);
   }, [page]);
+
+  const editObra = (rowIndex) => {
+    const id = form.current[rowIndex].id;
+    navigate(`/obras/${id}`);
+  }
 
   const columns = useMemo(() => colunasObras.concat([
     {
@@ -33,9 +39,10 @@ const Obras = (props) => {
       Header: 'Ações',
       acessor: 'actions',
       Cell: (props) => {
+        const rowIdx = Number(props.row.id);
         return (
           <div>
-            <Button variant="info" title="Editar" as={Link} to="/obras/register">
+            <Button variant="info" title="Editar" onClick={() => editObra(rowIdx)}>
               <FaEdit size='1rem'/>
             </Button>
           </div>

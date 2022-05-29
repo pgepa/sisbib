@@ -15,11 +15,17 @@ const Usuarios = (props) => {
 
   const navigate = useNavigate();
   const form = useRef();
+  form.current = usuarios;
 
   useEffect(async () => {
     const awaitUsuarios = await UsuarioService.getAll(limit, page);
     return setUsuarios(awaitUsuarios.data);
   }, [page]);
+
+  const editUser = (rowIndex) => {
+    const id = form.current[rowIndex].id;
+    navigate(`/usuarios/${id}`);
+  }
 
   const columns = useMemo(
     () =>
@@ -39,9 +45,10 @@ const Usuarios = (props) => {
           Header: 'Ações',
           acessor: 'actions',
           Cell: (props) => {
+            const rowIdx = Number(props.row.id);
             return (
               <div>
-                <Button variant="info" title="Editar" as={Link} to="/usuarios/register">
+                <Button variant="info" title="Editar" onClick={() => editUser(rowIdx)}>
                   <FaEdit size='1rem'/>
                 </Button>
                 <span> </span>

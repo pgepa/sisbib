@@ -63,7 +63,7 @@ const BuscaUsuarios = (props) => {
     e.preventDefault();
     setKeyword(keyword);
     navigate('/usuarios/search', { state: { termo: keyword } } );
-    window.location.reload();
+    props.parent.reload();
   };
 
   return (
