@@ -179,7 +179,7 @@ const EditarObra = (props) => {
           <FormGroup>
             <Button type="submit" onClick={handleUpdate} className="btn-lg btn-primary rounded-pill shadow-lg px-5 py-3 m-5">
               <BsCheckLg />
-              <span className="mx-2">REGISTRAR</span>
+              <span className="mx-2">ATUALIZAR</span>
             </Button>
           </FormGroup>
         </Form>

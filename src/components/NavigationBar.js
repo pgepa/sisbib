@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import brasao from "../brasao.png";
-import { FaHome, FaUsers } from "react-icons/fa";
+import { FaHome, FaUsers, FaExchangeAlt } from "react-icons/fa";
 import { SiBookstack } from "react-icons/si";
 
 const NavigationBar = () => {
@@ -23,6 +23,9 @@ const NavigationBar = () => {
             </Nav.Link>
             <Nav.Link as={Link} to="/usuarios" variant="white" className="mx-4" >
               <FaUsers />&nbsp;&nbsp;Usuários
+            </Nav.Link>
+            <Nav.Link as={Link} to="/emprestimos" variant="white" className="mx-4" >
+              <FaExchangeAlt />&nbsp;&nbsp;Empréstimos
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

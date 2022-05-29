@@ -7,7 +7,7 @@
     margin-left: 2.4rem;
 }
 
-.card-usuario.card {
+.card-usuario.card, .card-emprestimo.card {
     background-color: #f7f7f7;
     max-width: 30rem;
     padding: 40px 40px;
