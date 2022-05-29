@@ -66,7 +66,7 @@ const CadastroObra = () => {
         <Formik initialValues={initialValues} validationSchema={validationSchema}
           onSubmit={handleSubmit}>
           {({ resetForm }) => (
-            <Form className="container my-3">
+            <Form className="container card card-obra my-3">
               <Row className="my-3">
                 <Col>
                   <FormGroup>
