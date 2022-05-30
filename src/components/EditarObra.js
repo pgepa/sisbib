@@ -155,7 +155,7 @@ const EditarObra = (props) => {
             <Col>
               <FormGroup>
                 <FormLabel className="h4 my-2">Local</FormLabel>
-                <Field name="local_publicacao" type="text" size="lg" value={currentObra.local} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
+                <Field name="local_publicacao" type="text" size="lg" value={currentObra.local_publicacao} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
                 <ErrorMessage name="local_publicacao" component="div" className="text-danger" />
               </FormGroup>
             </Col>
