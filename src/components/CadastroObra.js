@@ -160,10 +160,10 @@ const CadastroObra = () => {
                 </Col>
               </Row>
               <FormGroup>
-                <Button type="submit" onClick={handleSubmit} className="btn-lg btn-primary rounded-pill shadow-lg px-5 py-3 m-5">
+                <Button type="submit" onClick={handleSubmit} className="btn-lg btn-obra btn-success rounded-pill shadow-lg px-5 py-3">
                   <BsCheckLg /><span className="mx-2">REGISTRAR</span>
                 </Button>
-                <Button type="button" onClick={resetForm} className="btn-lg btn-danger rounded-pill shadow-lg px-5 py-3 m-5">
+                <Button type="button" onClick={resetForm} className="btn-lg btn-obra btn-danger rounded-pill shadow-lg px-5 py-3">
                   <BsXLg /><span className="mx-2">CANCELAR</span>
                 </Button>
               </FormGroup>

@@ -101,10 +101,10 @@ const CadastroUsuario = (props) => {
             <ErrorMessage name="confirmPassword" component="div" className="text-danger" />
           </FormGroup>
           <FormGroup>
-            <Button type="submit" onClick={handleSubmit} className="btn btn-primary rounded-pill shadow-lg px-4 py-3 m-3">
+            <Button type="submit" onClick={handleSubmit} className="btn btn-usuario btn-success rounded-pill shadow-lg px-4 py-3">
               <BsCheckLg /><span className="mx-2">REGISTRAR</span>
             </Button>
-            <Button type="button" onClick={resetForm} className="btn btn-danger rounded-pill shadow-lg px-4 py-3 m-3">
+            <Button type="button" onClick={resetForm} className="btn btn-usuario btn-danger rounded-pill shadow-lg px-4 py-3">
               <BsXLg /><span className="mx-2">CANCELAR</span>
             </Button>
           </FormGroup>

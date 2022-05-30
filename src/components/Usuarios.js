@@ -125,7 +125,7 @@ const Usuarios = (props) => {
               />
             </Form.Group>
             <Form.Group className="col-2 pt-2">
-              <Button type="submit" className="btn-primary mt-1 mx-2">
+              <Button type="submit" className="btn-success mt-1 mx-2">
                 Buscar
               </Button>
             </Form.Group>

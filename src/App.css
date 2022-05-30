@@ -65,3 +65,11 @@ td {
     font-size: 120%;
 }
 
+.btn-usuario {
+    margin-top: 2rem;
+    margin-left: 2rem;
+}
+.btn-obra {
+    margin-top: 2rem;
+    margin-left: 16rem;
+}
