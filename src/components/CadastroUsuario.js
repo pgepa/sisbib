@@ -6,8 +6,9 @@ import { FormGroup, FormLabel } from 'react-bootstrap';
 import { BsCheckLg, BsXLg } from 'react-icons/bs';
 import UsuarioService from '../services/usuario.service';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
 
-const CadastroUsuario = () => {
+const CadastroUsuario = (props) => {
   const validationSchema = Yup.object().shape({
     name: Yup.string()
       .required('Nome obrigatório'),
@@ -35,10 +36,14 @@ const CadastroUsuario = () => {
       ),
   });
 
+  const navigate = useNavigate();
+
   const handleSubmit = (data) => {
     UsuarioService.addUsuario(data)
     .then((response) => {
       alert(response.data.message);
+      navigate('/usuarios');
+      props.parent.reload();
     })
     .catch((error) => {
       console.log(error.response.data.message);

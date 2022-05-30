@@ -6,9 +6,11 @@ import { FormGroup, FormLabel } from 'react-bootstrap';
 import { BsCheckLg, BsXLg } from 'react-icons/bs';
 import EmprestimoService from '../services/emprestimo.service';
 import DateUtils from '../utils/date.utils';
+import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
+import { propTypes } from 'react-bootstrap/esm/Image';
 
-const CadastroEmprestimo = () => {
+const CadastroEmprestimo = (props) => {
   const validationSchema = Yup.object().shape({
     id_transacao: Yup.string()
       .required('Código da transação obrigatório.'),
@@ -24,10 +26,14 @@ const CadastroEmprestimo = () => {
       .required('Data prevista obrigatória.'),
   });
 
+  const navigate = useNavigate();
+
   const handleSubmit = (data) => {
     EmprestimoService.addEmprestimo(data)
     .then((response) => {
       alert(response.data.message);
+      navigate('/emprestimos');
+      propTypes.parent.reload();
     })
     .catch((error) => {
       console.log(error.response.data.message);
@@ -74,12 +80,12 @@ const CadastroEmprestimo = () => {
             <ErrorMessage name="data_emprestimo" component="div" className="text-danger" />
           </FormGroup>
           <FormGroup>
-            <FormLabel className="h4 my-2">Data prevista</FormLabel>
+            <FormLabel className="h4 my-2">Data prevista de devolução</FormLabel>
             <Field name="data_prevista" type="date" size="lg" className="form-control shadow h4 mx-1 mb-2" />
             <ErrorMessage name="data_prevista" component="div" className="text-danger" />
           </FormGroup>
           <FormGroup>
-            <FormLabel className="h4 my-2">Data de devolução</FormLabel>
+            <FormLabel className="h4 my-2">Data real de devolução</FormLabel>
             <Field name="data_devolucao" type="date" size="lg" className="form-control shadow h4 mx-1 mb-2" />
             <ErrorMessage name="data_devolucao" component="div" className="text-danger" />
           </FormGroup>

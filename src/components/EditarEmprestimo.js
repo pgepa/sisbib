@@ -90,12 +90,12 @@ const EditarEmprestimo = (props) => {
           <ErrorMessage name="data_emprestimo" component="div" className="text-danger" />
         </FormGroup>
         <FormGroup>
-          <FormLabel className="h4 my-2">Data prevista</FormLabel>
+          <FormLabel className="h4 my-2">Data prevista de devolução</FormLabel>
           <Field name="data_prevista" type="date" size="lg" value={currentEmprestimo.data_prevista} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
           <ErrorMessage name="data_prevista" component="div" className="text-danger" />
         </FormGroup>
         <FormGroup>
-          <FormLabel className="h4 my-2">Data de devolução</FormLabel>
+          <FormLabel className="h4 my-2">Data real de devolução</FormLabel>
           <Field name="data_devolucao" type="date" size="lg" value={currentEmprestimo.data_devolucao} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
           <ErrorMessage name="data_devolucao" component="div" className="text-danger" />
         </FormGroup>
