@@ -30,7 +30,7 @@ const Obras = (props) => {
 
   const columns = useMemo(() => colunasObras.concat([
     {
-      Header: 'Cadastro',
+      Header: 'Cadastrado em',
       accessor: 'createdAt',
       Cell: ({ row }) => (<span>{new Intl.DateTimeFormat("pt-BR", {}).format(
         new Date(row.original.createdAt))}</span>)
