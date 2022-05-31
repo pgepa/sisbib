@@ -19,6 +19,7 @@ const Emprestimos = (props) => {
 
   useEffect(async () => {
     const awaitEmprestimos = await EmprestimoService.getAll(limit, page);
+    
     return setEmprestimos(awaitEmprestimos.data);
   }, [page]);
 
@@ -30,6 +31,39 @@ const Emprestimos = (props) => {
   const columns = useMemo(
     () =>
       colunasEmprestimos.concat([
+        {
+          Header: 'Data de empréstimo',
+          accessor: 'data_emprestimo',
+          Cell: ({ row }) => (
+            <span>
+              {new Intl.DateTimeFormat('pt-BR', {}).format(
+                new Date(row.original.data_emprestimo.concat('T03:00Z'))
+              )}
+            </span>
+          ),
+        },
+        {
+          Header: 'Data prevista',
+          accessor: 'data_prevista',
+          Cell: ({ row }) => (
+            <span>
+              {new Intl.DateTimeFormat('pt-BR', {}).format(
+                new Date(row.original.data_prevista.concat('T03:00Z'))
+              )}
+            </span>
+          ),
+        },
+        {
+          Header: 'Data de devolução',
+          accessor: 'data_devolucao',
+          Cell: ({ row }) => (
+            <span>
+              {new Intl.DateTimeFormat('pt-BR', {}).format(
+                new Date(row.original.data_devolucao.concat('T03:00Z'))
+              )}
+            </span>
+          ),
+        },
         {
           Header: 'Cadastrado em',
           accessor: 'createdAt',
