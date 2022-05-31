@@ -1,17 +1,33 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Button } from 'react-bootstrap';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { FormGroup, FormLabel } from 'react-bootstrap';
+import { BsCheckLg, BsXLg } from 'react-icons/bs';
+import UsuarioService from '../services/usuario.service';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
 
-const LoginUsuario = () => {
+const LoginUsuario = (props) => {
     const validationSchema = Yup.object().shape({
-        fullname: Yup.string().required('Campo não preenchido'),
-        password: Yup.string().required('Campo não preenchido')
-
+        fullname: Yup.string()
+        .required('Email obrigatório'),
+        password: Yup.string()
+        .required('Senha obrigatória')
       });
     
+      const navigate = useNavigate();
+
       const handleSubmit = (data) => {
-        console.log(JSON.stringify(data, null, 2));
+        UsuarioService.addUsuario(data)
+        .then((response) => {
+          alert(response.data.message);
+          navigate('/usuarios');
+          props.parent.reload();
+        })
+        .catch((error) => {
+          console.log(error.response.data.message);
+        });
       };
     
       const initialValues = {
@@ -20,54 +36,32 @@ const LoginUsuario = () => {
       };
     
       return (
-        <div className="register-form">
-            <Formik
-              initialValues={initialValues}
-              validationSchema={validationSchema}
-              onSubmit={handleSubmit}
-            >
-              {({ resetForm }) => (
-                <Form>
-                  <div className="form-group">
-                    <label>Nome</label>
-                    <Field name="fullname" type="text" className="form-control" />
-                    <ErrorMessage
-                      name="fullname"
-                      component="div"
-                      className="text-danger"
-                    />
-                  </div>
-                  
-                  <div className="form-group">
-                    <label htmlFor="password"> Senha </label>
-                    <Field
-                      name="password"
-                      type="password"
-                      className="form-control"
-                    />
-                    <ErrorMessage
-                      name="password"
-                      component="div"
-                      className="text-danger"
-                    />
-                  </div>
-                  
-                  <div className="form-group">
-                    <button type="submit" className="btn btn-usuario btn-success">
-                      Entrar
-                    </button>
-                    <button
-                      type="button"
-                      onClick={resetForm}
-                      className="btn btn-usuario btn-warning float-right"
-                    >
-                      Limpar
-                    </button>
-                  </div>
-                </Form>
-              )}
-            </Formik>
-          </div>
+        <Formik initialValues={initialValues} validationSchema={validationSchema}
+        onSubmit={handleSubmit}>
+          {({ resetForm }) => (
+          <Form className="container card card-usuario my-3">
+            <FormGroup>
+              <FormLabel className="h4 my-2">Email</FormLabel>
+              <Field name="email" type="email" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+              <ErrorMessage name="email" component="div" className="text-danger" />
+            </FormGroup>
+            
+            <FormGroup>
+              <FormLabel className="h4 my-2">Senha</FormLabel>
+              <Field name="password" type="password" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+              <ErrorMessage name="password" component="div" className="text-danger" />
+            </FormGroup>
+            <FormGroup>
+              <Button type="submit" onClick={handleSubmit} className="btn btn-login btn-success rounded-pill shadow-lg px-4 py-3">
+                <BsCheckLg /><span className="mx-2">Entrar</span>
+              </Button>
+              <Button type="button" onClick={resetForm} className="btn btn-login btn-danger rounded-pill shadow-lg px-4 py-3">
+                <BsXLg /><span className="mx-2">CANCELAR</span>
+              </Button>
+            </FormGroup>
+          </Form>
+        )}
+      </Formik>
       );
 }
 
