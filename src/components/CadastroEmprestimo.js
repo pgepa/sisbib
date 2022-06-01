@@ -29,8 +29,6 @@ const CadastroEmprestimo = (props) => {
 
   const handleSubmit = (data) => {
     data.id_transacao = DateUtils.getTransactionId();  
-    console.log('data =');
-    console.log(data);
     EmprestimoService.addEmprestimo(data)
     .then((response) => {
       alert(response.data.message);
@@ -84,7 +82,7 @@ const CadastroEmprestimo = (props) => {
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema}
       onSubmit={handleSubmit}>
-        {({ values, resetForm }) => (
+        {({ values }) => (
         <Form className="container card card-emprestimo my-3">
           <Row className="my-3">
             <Col>
@@ -126,21 +124,21 @@ const CadastroEmprestimo = (props) => {
           <Row className="my-3">
             <Col>
               <FormGroup>
-                <FormLabel className="h4 my-2">Registro da obra 1</FormLabel>
+                <FormLabel className="h4 my-2">Nº do registro da obra 1</FormLabel>
                 <Field name="registro_obra1" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2" />
                 <ErrorMessage name="registro_obra1" component="div" className="text-danger" />
               </FormGroup>
             </Col>
             <Col>
               <FormGroup>
-                <FormLabel className="h4 my-2">Registro da obra 2</FormLabel>
+                <FormLabel className="h4 my-2">Nº do registro da obra 2</FormLabel>
                 <Field name="registro_obra2" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2" />
                 <ErrorMessage name="registro_obra2" component="div" className="text-danger" />
               </FormGroup>
             </Col>
             <Col>
               <FormGroup>
-                <FormLabel className="h4 my-2">Registro da obra 3</FormLabel>
+                <FormLabel className="h4 my-2">Nº do registro da obra 3</FormLabel>
                 <Field name="registro_obra3" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2" />
                 <ErrorMessage name="registro_obra3" component="div" className="text-danger" />
               </FormGroup>
@@ -169,14 +167,25 @@ const CadastroEmprestimo = (props) => {
               </FormGroup>
             </Col>
           </Row>
-          <FormGroup>
-            <Button type="submit" className="btn btn-primary rounded-pill shadow-lg px-4 py-3 m-3">
-              <BsCheckLg /><span className="mx-2">REGISTRAR</span>
-            </Button>
-            <Button type="button" onClick={resetForm} className="btn btn-danger rounded-pill shadow-lg px-4 py-3 m-3">
-              <BsXLg /><span className="mx-2">CANCELAR</span>
-            </Button>
-          </FormGroup>
+          <Row className="mt-4">
+            <Col></Col>
+            <Col>
+              <FormGroup>
+                <Button type="submit" className="btn-md btn-primary rounded-pill shadow-lg px-3 py-3">
+                  <BsCheckLg /><span className="mx-2">REGISTRAR</span>
+                </Button>
+              </FormGroup>
+            </Col>
+            <Col></Col>
+            <Col>
+              <FormGroup>
+                <Button type="button" onClick={() => navigate('/emprestimos')} className="btn-md btn-danger rounded-pill shadow-lg px-3 py-3">
+                  <BsXLg /><span className="mx-2">CANCELAR</span>
+                </Button>
+              </FormGroup>
+            </Col>
+            <Col></Col>
+          </Row>
         </Form>
       )}
     </Formik>

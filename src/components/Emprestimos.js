@@ -53,6 +53,10 @@ const Emprestimos = (props) => {
           ),
         },
         {
+          Header: 'Nº de registro 1',
+          accessor: 'registro_obra1'
+        },
+        {
           Header: 'Devolução 1',
           accessor: 'data_devolucao1',
           Cell: ({ row }) => (
@@ -63,6 +67,10 @@ const Emprestimos = (props) => {
                   'dd/mm/yyyy' ) }
             </span>
           ),
+        },
+        {
+          Header: 'Nº de registro 2',
+          accessor: 'registro_obra2'
         },
         {
           Header: 'Devolução 2',
@@ -76,6 +84,11 @@ const Emprestimos = (props) => {
             </span>
           ),
         },
+        {
+          Header: 'Nº de registro 3',
+          accessor: 'registro_obra3'
+        },
+        
         {
           Header: 'Devolução 3',
           accessor: 'data_devolucao3',

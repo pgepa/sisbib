@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { FormGroup, FormLabel } from 'react-bootstrap';
+import { FormGroup, FormLabel, Row, Col } from 'react-bootstrap';
 import { BsCheckLg, BsXLg } from 'react-icons/bs';
 import UsuarioService from '../services/usuario.service';
 import * as Yup from 'yup';
@@ -100,14 +100,22 @@ const CadastroUsuario = (props) => {
             <Field name="confirmPassword" type="password" size="lg" className="form-control shadow h4 mx-1 mb-2" />
             <ErrorMessage name="confirmPassword" component="div" className="text-danger" />
           </FormGroup>
-          <FormGroup>
-            <Button type="submit" className="btn btn-usuario btn-success rounded-pill shadow-lg px-4 py-3">
-              <BsCheckLg /><span className="mx-2">REGISTRAR</span>
-            </Button>
-            <Button type="button" onClick={resetForm} className="btn btn-usuario btn-danger rounded-pill shadow-lg px-4 py-3">
-              <BsXLg /><span className="mx-2">CANCELAR</span>
-            </Button>
-          </FormGroup>
+          <Row className="mt-4">
+            <Col>
+              <FormGroup className="text-right ps-4">
+                <Button type="submit" className="btn btn-primary rounded-pill shadow-lg px-4 py-3">
+                  <BsCheckLg /><span className="mx-2">REGISTRAR</span>
+                </Button>
+              </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup>
+                <Button type="button" onClick={() => navigate(-1)} className="btn btn-danger rounded-pill shadow-lg text-right px-4 py-3">
+                  <BsXLg /><span className="mx-2">CANCELAR</span>
+                </Button>
+              </FormGroup>
+            </Col>
+          </Row>
         </Form>
       )}
     </Formik>

@@ -102,8 +102,8 @@ const EditarUsuario = (props) => {
             <Field name="department" type="text" size="lg" value={currentUser.department} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
             <ErrorMessage name="department" component="div" className="text-danger" />
           </FormGroup>
-          <FormGroup>
-            <Button type="submit" onClick={handleUpdate} className="btn btn-primary rounded-pill shadow-lg px-4 py-3 m-3">
+          <FormGroup className="text-center">
+            <Button type="submit" onClick={handleUpdate} className="btn btn-primary rounded-pill shadow-lg px-4 py-3 mt-4">
               <BsCheckLg /><span className="mx-2">ATUALIZAR</span>
             </Button>
           </FormGroup>

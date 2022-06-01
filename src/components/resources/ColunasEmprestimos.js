@@ -10,18 +10,6 @@ const columns = [
   {
     Header: 'Usuário',
     accessor: 'nome_usuario'
-  },
-  {
-    Header: 'Nº de Registro 1',
-    accessor: 'registro_obra1'
-  },
-  {
-    Header: 'Nº de Registro 2',
-    accessor: 'registro_obra2'
-  },
-  {
-    Header: 'Nº de Registro 3',
-    accessor: 'registro_obra3'
   }
 ];
 

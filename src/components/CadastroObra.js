@@ -164,14 +164,25 @@ const CadastroObra = (props) => {
               </FormGroup>
             </Col>
           </Row>
-          <FormGroup>
-            <Button type="submit" className="btn-lg btn-obra btn-success rounded-pill shadow-lg px-5 py-3">
-              <BsCheckLg /><span className="mx-2">REGISTRAR</span>
-            </Button>
-            <Button type="button" onClick={resetForm} className="btn-lg btn-obra btn-danger rounded-pill shadow-lg px-5 py-3">
-              <BsXLg /><span className="mx-2">CANCELAR</span>
-            </Button>
-          </FormGroup>
+          <Row className="mt-4">
+            <Col></Col>
+            <Col>
+              <FormGroup className="text-center">
+                <Button type="submit" className="btn-md btn-obra btn-primary rounded-pill shadow-lg px-4 py-3">
+                  <BsCheckLg /><span className="mx-2">REGISTRAR</span>
+                </Button>
+              </FormGroup>
+            </Col>
+            <Col></Col>
+            <Col>
+            <FormGroup className="text-center">
+              <Button type="button" onClick={() => navigate('/obras')} className="btn-md btn-obra btn-danger rounded-pill shadow-lg px-4 py-3">
+                <BsXLg /><span className="mx-2">CANCELAR</span>
+              </Button>
+            </FormGroup>
+            </Col>
+            <Col></Col>
+          </Row>
         </Form>
       )}
     </Formik>

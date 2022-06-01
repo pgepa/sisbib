@@ -83,7 +83,7 @@ const EditarObra = (props) => {
     <Formik enableReinitialize initialValues={currentObra}
       validationSchema={validationSchema} onSubmit={handleUpdate}>
       {() => (
-        <Form className="container card card-obra my-3">
+        <Form className="container card card-obra">
           <Row className="my-3">
             <Col>
               <FormGroup>
@@ -176,7 +176,7 @@ const EditarObra = (props) => {
               </FormGroup>
             </Col>
           </Row>
-          <FormGroup>
+          <FormGroup className="text-center">
             <Button type="submit" onClick={handleUpdate} className="btn-lg btn-primary rounded-pill shadow-lg px-5 py-3 m-5">
               <BsCheckLg />
               <span className="mx-2">ATUALIZAR</span>

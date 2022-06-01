@@ -32,6 +32,77 @@ const BuscaEmprestimos = (props) => {
     () =>
       colunasEmprestimos.concat([
         {
+          Header: 'Data de empréstimo',
+          accessor: 'data_emprestimo',
+          Cell: ({ row }) => (
+            <span>
+              {new Intl.DateTimeFormat('pt-BR', {}).format(
+                new Date(row.original.data_emprestimo.concat('T03:00Z'))
+              )}
+            </span>
+          ),
+        },
+        {
+          Header: 'Data prevista',
+          accessor: 'data_prevista',
+          Cell: ({ row }) => (
+            <span>
+              {new Intl.DateTimeFormat('pt-BR', {}).format(
+                new Date(row.original.data_prevista.concat('T03:00Z'))
+              )}
+            </span>
+          ),
+        },
+        {
+          Header: 'Nº de registro 1',
+          accessor: 'registro_obra1'
+        },
+        {
+          Header: 'Devolução 1',
+          accessor: 'data_devolucao1',
+          Cell: ({ row }) => (
+            <span>
+              { ( row.original.data_devolucao1 ?
+                  new Intl.DateTimeFormat('pt-BR', {}).format(
+                    new Date(row.original.data_devolucao1.concat('T03:00Z'))) :
+                  'dd/mm/yyyy' ) }
+            </span>
+          ),
+        },
+        {
+          Header: 'Nº de registro 2',
+          accessor: 'registro_obra2'
+        },
+        {
+          Header: 'Devolução 2',
+          accessor: 'data_devolucao2',
+          Cell: ({ row }) => (
+            <span>
+              { ( row.original.data_devolucao2 ?
+                  new Intl.DateTimeFormat('pt-BR', {}).format(
+                    new Date(row.original.data_devolucao2.concat('T03:00Z'))) :
+                  'dd/mm/yyyy' ) }
+            </span>
+          ),
+        },
+        {
+          Header: 'Nº de registro 3',
+          accessor: 'registro_obra3'
+        },
+        
+        {
+          Header: 'Devolução 3',
+          accessor: 'data_devolucao3',
+          Cell: ({ row }) => (
+            <span>
+              { ( row.original.data_devolucao3 ?
+                  new Intl.DateTimeFormat('pt-BR', {}).format(
+                    new Date(row.original.data_devolucao3.concat('T03:00Z'))) :
+                  'dd/mm/yyyy' ) }
+            </span>
+          ),
+        },
+        {
           Header: 'Ações',
           acessor: 'actions',
           Cell: (props) => {
@@ -39,7 +110,7 @@ const BuscaEmprestimos = (props) => {
             return (
               <div>
                 <Button variant="info" title="Editar" onClick={() => editEmprestimo(rowIdx)}>
-                  <FaEdit size='1rem' />
+                  <FaEdit size='1rem'/>
                 </Button>
               </div>
             );
