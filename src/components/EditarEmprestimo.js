@@ -7,6 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { BsCheckLg } from 'react-icons/bs';
 import EmprestimoService from '../services/emprestimo.service';
 import * as Yup from 'yup';
+import Select from 'react-select';
 
 const EditarEmprestimo = (props) => {
   const validationSchema = Yup.object().shape({
@@ -58,6 +59,17 @@ const EditarEmprestimo = (props) => {
         console.log(error.response.data.message);
       });
   };
+
+  const FormikSelect = ({options, field, form}) => {
+    return (
+      <Select
+        name={field.name}
+        onChange={(option) => form.setFieldValue(field.name, option.value)}
+        options={options}
+        value={options ? options.find(option => option.value === field.value) : ''}
+      />
+    );
+  }
 
   return (
     <Formik enableReinitialize initialValues={currentEmprestimo}

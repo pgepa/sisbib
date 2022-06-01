@@ -78,6 +78,7 @@ const CadastroEmprestimo = (props) => {
   ]
 
   const [selectedUser, setSelectedUser] = useState('');
+  
   const handleUserChange = (selectedUser, values) => {
     values.nome_usuario = selectedUser.value;
     setSelectedUser(selectedUser);
