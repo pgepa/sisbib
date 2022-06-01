@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { FormGroup, FormLabel, Button, Row, Col } from 'react-bootstrap';
+import { FormGroup, FormLabel, Button, Row, Col, Alert } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import { BsCheckLg } from 'react-icons/bs';
 import EmprestimosService from '../services/emprestimos.service';
@@ -48,12 +48,14 @@ const EditarEmprestimo = (props) => {
     setCurrentEmprestimo({ ...currentEmprestimo, [name]: value });
   };
 
+  const [showAlert, setShowAlert] = useState(false);
+  const [backMessage, setBackMessage] = useState('');
+
   const handleUpdate = () => {
     EmprestimosService.update(currentEmprestimo)
       .then((response) => {
-        alert(response.data.message);
-        navigate('/emprestimos');
-        props.parent.reload();
+        setBackMessage(response.data.message);
+        setShowAlert(true);
       })
       .catch((error) => {
         console.log(error.response.data.message);
@@ -177,6 +179,17 @@ const EditarEmprestimo = (props) => {
               <BsCheckLg /><span className="mx-2">ATUALIZAR</span>
             </Button>
           </FormGroup>
+          {
+            showAlert && (
+              <Alert variant="success" className="mt-4" onClose={() => {
+                setShowAlert(false);
+                navigate(-1);
+                props.parent.reload();
+              }} dismissible>
+                {backMessage}
+              </Alert>
+            )
+          }
         </Form>
       )}
     </Formik>

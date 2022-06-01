@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { FormGroup, FormLabel, Row, Col } from 'react-bootstrap';
+import { FormGroup, FormLabel, Row, Col, Alert } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import { BsCheckLg } from 'react-icons/bs';
 import ObrasService from '../services/obras.service';
@@ -67,12 +67,14 @@ const EditarObra = (props) => {
     setCurrentObra({ ...currentObra, [name]: value });
   };
 
+  const [showAlert, setShowAlert] = useState(false);
+  const [backMessage, setBackMessage] = useState('');
+
   const handleUpdate = (data) => {
     ObrasService.update(data)
       .then((response) => {
-        alert(response.data.message);
-        navigate('/obrasdetalhadas');
-        props.parent.reload();
+        setBackMessage(response.data.message);
+        setShowAlert(true);
       })
       .catch((error) => {
         console.log(error.response.data.message);
@@ -182,6 +184,17 @@ const EditarObra = (props) => {
               <span className="mx-2">ATUALIZAR</span>
             </Button>
           </FormGroup>
+          {
+            showAlert && (
+              <Alert variant="success" onClose={() => {
+                setShowAlert(false);
+                navigate(-1);
+                props.parent.reload();
+              }} dismissible>
+                {backMessage}
+              </Alert>
+            )
+          }
         </Form>
       )}
     </Formik>

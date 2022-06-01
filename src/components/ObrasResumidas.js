@@ -4,7 +4,7 @@ import ObrasService from '../services/obras.service';
 import { useTable } from 'react-table';
 import { useNavigate, Link } from 'react-router-dom';
 import { Container, Button, Form, Row, Col, Navbar, Nav, Table } from 'react-bootstrap';
-import colunasObras from './resources/ColunasObrasDetalhadas';
+import colunasObrasResumidas from './resources/ColunasObrasResumidas';
 import { FaEdit } from 'react-icons/fa';
 import { BiBookAdd } from 'react-icons/bi';
 
@@ -28,7 +28,7 @@ const ObrasResumidas = (props) => {
     navigate(`/obrasdetalhadas/edit/${id}`);
   }
 
-  const columns = useMemo(() => colunasObras.concat([
+  const columns = useMemo(() => colunasObrasResumidas.concat([
     {
       Header: 'Ações',
       acessor: 'actions',
