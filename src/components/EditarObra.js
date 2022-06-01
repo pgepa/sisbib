@@ -6,7 +6,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { FormGroup, FormLabel, Row, Col } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import { BsCheckLg } from 'react-icons/bs';
-import ObraService from '../services/obra.service';
+import ObrasService from '../services/obras.service';
 import * as Yup from 'yup';
 
 const EditarObra = (props) => {
@@ -58,7 +58,7 @@ const EditarObra = (props) => {
   const navigate = useNavigate();
 
   useEffect(async () => {
-    const awaitObra = await ObraService.getOne(id);
+    const awaitObra = await ObrasService.getOne(id);
     setCurrentObra(awaitObra.data);
   }, []);
 
@@ -68,10 +68,10 @@ const EditarObra = (props) => {
   };
 
   const handleUpdate = (data) => {
-    ObraService.update(data)
+    ObrasService.update(data)
       .then((response) => {
         alert(response.data.message);
-        navigate('/obras');
+        navigate('/obrasdetalhadas');
         props.parent.reload();
       })
       .catch((error) => {

@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import EmprestimoService from '../services/emprestimo.service';
+import EmprestimosService from '../services/emprestimos.service';
 import { useTable } from 'react-table';
 import { useNavigate, Link } from 'react-router-dom';
 import { Container, Button, Form, Row, Col, Navbar, Nav, Table } from 'react-bootstrap';
@@ -18,7 +18,7 @@ const Emprestimos = (props) => {
   form.current = emprestimos;
 
   useEffect(async () => {
-    const awaitEmprestimos = await EmprestimoService.getAll(limit, page);
+    const awaitEmprestimos = await EmprestimosService.getAll(limit, page);
     setEmprestimos(awaitEmprestimos.data);
   }, [page]);
 

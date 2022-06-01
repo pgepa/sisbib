@@ -1,10 +1,10 @@
 import axios from 'axios';
 import apiurl from './apiurl';
 
-const APIURL = `${apiurl()}/api/obras/`;
+const APIURL = `${apiurl()}/api/emprestimos/`;
 
-const addObra = (obra) => {
-    return axios.post(APIURL.concat('add'), obra); 
+const addEmprestimo = (emprestimo) => {
+    return axios.post(APIURL.concat('add'), emprestimo); 
 };
 
 const getOne = (id) => {
@@ -20,13 +20,13 @@ const getSome = (termo,limit,page) => {
 }
 
 const update = (data) => {
-  return axios.post(APIURL.concat(`update`), data);
+    return axios.post(APIURL.concat(`update`), data);
 }
 
 const remove = (id) => {
     return axios.delete(APIURL.concat(id));
 }
 
-const ObraService = { addObra, getOne, getAll, getSome, update, remove };
+const EmprestimosService = { addEmprestimo, getOne, getAll, getSome, update, remove };
 
-export default ObraService;
+export default EmprestimosService;

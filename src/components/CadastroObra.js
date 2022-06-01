@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { FormGroup, FormLabel, Row, Col } from 'react-bootstrap';
 import { BsCheckLg, BsXLg } from 'react-icons/bs';
-import ObraService from '../services/obra.service';
+import ObrasService from '../services/obras.service';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 
@@ -41,10 +41,10 @@ const CadastroObra = (props) => {
   const navigate = useNavigate();
 
   const handleSubmit = (data) => {
-    ObraService.addObra(data)
+    ObrasService.addObra(data)
       .then((response) => {
         alert(response.data.message);
-        navigate('/obras');
+        navigate('/obrasdetalhadas');
         props.parent.reload();
       })
       .catch((error) => {
@@ -176,7 +176,7 @@ const CadastroObra = (props) => {
             <Col></Col>
             <Col>
             <FormGroup className="text-center">
-              <Button type="button" onClick={() => navigate('/obras')} className="btn-md btn-obra btn-danger rounded-pill shadow-lg px-4 py-3">
+              <Button type="button" onClick={() => navigate('/obrasdetalhadas')} className="btn-md btn-obra btn-danger rounded-pill shadow-lg px-4 py-3">
                 <BsXLg /><span className="mx-2">CANCELAR</span>
               </Button>
             </FormGroup>

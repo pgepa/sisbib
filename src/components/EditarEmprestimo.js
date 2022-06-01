@@ -5,7 +5,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { FormGroup, FormLabel, Button, Row, Col } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import { BsCheckLg } from 'react-icons/bs';
-import EmprestimoService from '../services/emprestimo.service';
+import EmprestimosService from '../services/emprestimos.service';
 import * as Yup from 'yup';
 import Select from 'react-select';
 
@@ -39,7 +39,7 @@ const EditarEmprestimo = (props) => {
   const navigate = useNavigate();
 
   useEffect(async () => {
-    const awaitEmprestimo = await EmprestimoService.getOne(id);
+    const awaitEmprestimo = await EmprestimosService.getOne(id);
     setCurrentEmprestimo(awaitEmprestimo.data);
   }, []);
 
@@ -49,7 +49,7 @@ const EditarEmprestimo = (props) => {
   };
 
   const handleUpdate = () => {
-    EmprestimoService.update(currentEmprestimo)
+    EmprestimosService.update(currentEmprestimo)
       .then((response) => {
         alert(response.data.message);
         navigate('/emprestimos');
@@ -71,22 +71,40 @@ const EditarEmprestimo = (props) => {
     );
   }
 
+  const options = [
+    { value: 'alessandra', label: 'Alessandra'},
+    { value: 'carla', label: 'Carla'},
+    { value: 'rafael', label: 'Rafael'}
+  ]
+
+  const [selectedUser, setSelectedUser] = useState('');
+
+  const handleUserChange = (selectedUser, values) => {
+    values.nome_funcionario = selectedUser.value;
+    setSelectedUser(selectedUser);
+  }
+
   return (
     <Formik enableReinitialize initialValues={currentEmprestimo}
       validationSchema={validationSchema} onSubmit={handleUpdate}>
-      {() => (
+      {({ values }) => (
         <Form className="container card card-emprestimo my-3">
           <Row className="my-3">
             <Col>
               <FormGroup>
-                <FormLabel className="h4 my-2">Nome do funcionário</FormLabel>
-                <Field name="nome_funcionario" type="text" size="lg" value={currentEmprestimo.nome_funcionario} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
+                <FormLabel className="h4 my-2">Funcionário(a) da ESAP</FormLabel>
+                <Select name="nome_funcionario" component={FormikSelect} value={currentEmprestimo.nome_funcionario} options={options}
+                  onChange={(selectedOption) => {
+                      handleUserChange(selectedOption, values);
+                    }
+                  }
+                />
                 <ErrorMessage name="nome_funcionario" component="div" className="text-danger" />
               </FormGroup>
             </Col>
             <Col>
               <FormGroup>
-                <FormLabel className="h4 my-2">Nome do usuário</FormLabel>
+                <FormLabel className="h4 my-2">Nome do(a) solicitante</FormLabel>
                 <Field name="nome_usuario" type="text" size="lg" value={currentEmprestimo.nome_usuario} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
                 <ErrorMessage name="nome_usuario" component="div" className="text-danger" />
               </FormGroup>
@@ -102,7 +120,7 @@ const EditarEmprestimo = (props) => {
             </Col>
             <Col>
               <FormGroup>
-                <FormLabel className="h4 my-2">Data prevista de devolução</FormLabel>
+                <FormLabel className="h4 my-2">Data prevista da devolução</FormLabel>
                 <Field name="data_prevista" type="date" size="lg" value={currentEmprestimo.data_prevista} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
                 <ErrorMessage name="data_prevista" component="div" className="text-danger" />
               </FormGroup>

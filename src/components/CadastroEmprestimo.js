@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { FormGroup, FormLabel, Row, Col } from 'react-bootstrap';
 import { BsCheckLg, BsXLg } from 'react-icons/bs';
-import EmprestimoService from '../services/emprestimo.service';
+import EmprestimosService from '../services/emprestimos.service';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import Select from 'react-select';
@@ -29,7 +29,7 @@ const CadastroEmprestimo = (props) => {
 
   const handleSubmit = (data) => {
     data.id_transacao = DateUtils.getTransactionId();  
-    EmprestimoService.addEmprestimo(data)
+    EmprestimosService.addEmprestimo(data)
     .then((response) => {
       alert(response.data.message);
       navigate('/emprestimos');
@@ -66,19 +66,18 @@ const CadastroEmprestimo = (props) => {
   }
 
   const options = [
-    { value: 'primeiro', label: 'Primeiro'},
-    { value: 'segundo', label: 'Segundo'},
-    { value: 'terceiro', label: 'Terceiro'}
+    { value: 'alessandra', label: 'Alessandra'},
+    { value: 'carla', label: 'Carla'},
+    { value: 'rafael', label: 'Rafael'}
   ]
 
   const [selectedUser, setSelectedUser] = useState('');
 
   const handleUserChange = (selectedUser, values) => {
-    values.nome_usuario = selectedUser.value;
+    values.nome_funcionario = selectedUser.value;
     setSelectedUser(selectedUser);
   }
 
-  // <Field name="id_usuario" type="number" size="lg" className="form-control shadow h4 mx-1 mb-2" />
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema}
       onSubmit={handleSubmit}>
@@ -87,20 +86,20 @@ const CadastroEmprestimo = (props) => {
           <Row className="my-3">
             <Col>
               <FormGroup>
-                <FormLabel className="h4 my-2">Nome do funcionário</FormLabel>
-                <Field name="nome_funcionario" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2" />
-                <ErrorMessage name="nome_funcionario" component="div" className="text-danger" />
-              </FormGroup>
-            </Col>
-            <Col>
-              <FormGroup>
-                <FormLabel className="h4 my-2">Nome do usuário</FormLabel>
-                <Select name="nome_usuario" component={FormikSelect} options={options}
+                <FormLabel className="h4 my-2">Funcionário(a) da ESAP</FormLabel>
+                <Select name="nome_funcionario" component={FormikSelect} options={options}
                   onChange={(selectedOption) => {
                       handleUserChange(selectedOption, values);
                     }
                   }
                 />
+                <ErrorMessage name="nome_funcionario" component="div" className="text-danger" />
+              </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup>
+                <FormLabel className="h4 my-2">Nome do(a) solicitante</FormLabel>
+                <Field name="nome_usuario" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2" />
                 <ErrorMessage name="nome_usuario" component="div" className="text-danger" />
               </FormGroup>
             </Col>
@@ -115,7 +114,7 @@ const CadastroEmprestimo = (props) => {
             </Col>
             <Col>
               <FormGroup>
-                <FormLabel className="h4 my-2">Data prevista de devolução</FormLabel>
+                <FormLabel className="h4 my-2">Data prevista da devolução</FormLabel>
                 <Field name="data_prevista" type="date" size="lg" className="form-control shadow h4 mx-1 mb-2" />
                 <ErrorMessage name="data_prevista" component="div" className="text-danger" />
               </FormGroup>

@@ -31,6 +31,6 @@ const remove = (id) => {
     return axios.delete(APIURL.concat(id));
 }
 
-const UsuarioService = { addUsuario, getOne, getAll, getSome, getNames, update, remove };
+const UsuariosService = { addUsuario, getOne, getAll, getSome, getNames, update, remove };
 
-export default UsuarioService;
+export default UsuariosService;

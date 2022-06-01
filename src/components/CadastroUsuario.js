@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { FormGroup, FormLabel, Row, Col } from 'react-bootstrap';
 import { BsCheckLg, BsXLg } from 'react-icons/bs';
-import UsuarioService from '../services/usuario.service';
+import UsuariosService from '../services/usuarios.service';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 
@@ -39,7 +39,7 @@ const CadastroUsuario = (props) => {
   const navigate = useNavigate();
 
   const handleSubmit = (data) => {
-    UsuarioService.addUsuario(data)
+    UsuariosService.addUsuario(data)
     .then((response) => {
       alert(response.data.message);
       navigate('/usuarios');

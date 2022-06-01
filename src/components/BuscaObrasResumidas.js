@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import ObraService from '../services/obra.service';
+import ObrasService from '../services/obras.service';
 import { useTable } from 'react-table';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { Container, Button, Form, Row, Col, Navbar, Nav, Table } from 'react-bootstrap';
-import colunasObras from './resources/ColunasObras';
+import colunasObrasResumidas from './resources/ColunasObrasResumidas';
 import { FaEdit } from 'react-icons/fa';
 import { BiBookAdd } from 'react-icons/bi';
 
-const BuscaObras = (props) => {
+const BuscaObrasResumidas = (props) => {
   const limit = 20;
   const [page, setPage] = useState(1);
   const [obras, setObras] = useState([]);
@@ -19,18 +19,18 @@ const BuscaObras = (props) => {
   const form = useRef();
   
   useEffect(async () => {
-    const awaitObras = await ObraService.getSome({ termo: location.state.termo }, limit, page);
+    const awaitObras = await ObrasService.getSome({ termo: location.state.termo }, limit, page);
     setObras(awaitObras.data);
   }, [page]);
 
-  const columns = useMemo(() => colunasObras.concat([
+  const columns = useMemo(() => colunasObrasResumidas.concat([
     {
       Header: 'Ações',
       acessor: 'actions',
       Cell: (props) => {
         return (
           <div>
-            <Button variant="info" title="Editar" as={Link} to="/obras/register">
+            <Button variant="info" title="Editar" as={Link} to="/obrasdetalhadas/register">
               <FaEdit size='1rem'/>
             </Button>
           </div>
@@ -53,7 +53,7 @@ const BuscaObras = (props) => {
   const handleSearch = (e) => {
     e.preventDefault();
     setKeyword(keyword);
-    navigate('/obras/search', { state: { termo: keyword } } );
+    navigate('/obrasresumidas/search', { state: { termo: keyword } } );
     props.parent.reload();
   };
 
@@ -106,7 +106,7 @@ const BuscaObras = (props) => {
         </Col>
         <Col md={3} className="btn32">
           <Form.Group className="col-12 pt-2">
-            <Button variant="success" className="btn32" as={Link} to="/obras/register">
+            <Button variant="success" className="btn32" as={Link} to="/obrasdetalhadas/register">
               <BiBookAdd size='1rem'/>
               <span> </span>
               Adicionar obra
@@ -174,4 +174,4 @@ const BuscaObras = (props) => {
   );
 };
 
-export default BuscaObras;
+export default BuscaObrasResumidas;

@@ -5,7 +5,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { FormGroup, FormLabel, Button } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import { BsCheckLg } from 'react-icons/bs';
-import UsuarioService from '../services/usuario.service';
+import UsuariosService from '../services/usuarios.service';
 import * as Yup from 'yup';
 
 const EditarUsuario = (props) => {
@@ -51,7 +51,7 @@ const EditarUsuario = (props) => {
   const navigate = useNavigate();
 
   useEffect(async () => {
-    const awaitUsuario = await UsuarioService.getOne(id);
+    const awaitUsuario = await UsuariosService.getOne(id);
     setCurrentUser(awaitUsuario.data);
   }, []);
 
@@ -61,7 +61,7 @@ const EditarUsuario = (props) => {
   };
 
   const handleUpdate = () => {
-    UsuarioService.update(currentUser)
+    UsuariosService.update(currentUser)
       .then((response) => {
         alert(response.data.message);
         navigate('/usuarios');

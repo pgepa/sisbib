@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import ObraService from '../services/obra.service';
+import ObrasService from '../services/obras.service';
 import { useTable } from 'react-table';
 import { useNavigate, Link } from 'react-router-dom';
 import { Container, Button, Form, Row, Col, Navbar, Nav, Table } from 'react-bootstrap';
-import colunasObras from './resources/ColunasObras';
+import colunasObras from './resources/ColunasObrasDetalhadas';
 import { FaEdit } from 'react-icons/fa';
 import { BiBookAdd } from 'react-icons/bi';
 
-const Obras = (props) => {
+const ObrasResumidas = (props) => {
   const limit = 20;
   const [page, setPage] = useState(1);
   const [obras, setObras] = useState([]);
@@ -19,13 +19,13 @@ const Obras = (props) => {
   form.current = obras;
   
   useEffect(async () => {
-    const awaitObras = await ObraService.getAll(limit, page);
+    const awaitObras = await ObrasService.getReducedAll(limit, page);
     setObras(awaitObras.data);
   }, [page]);
 
   const editObra = (rowIndex) => {
     const id = form.current[rowIndex].id;
-    navigate(`/obras/edit/${id}`);
+    navigate(`/obrasdetalhadas/edit/${id}`);
   }
 
   const columns = useMemo(() => colunasObras.concat([
@@ -59,7 +59,7 @@ const Obras = (props) => {
   const handleSearch = (e) => {
     e.preventDefault();
     setKeyword(keyword);
-    navigate('/obras/search', { state: { termo: keyword } } );
+    navigate('/obrasresumidas/search', { state: { termo: keyword } } );
   };
 
   return (
@@ -111,7 +111,7 @@ const Obras = (props) => {
         </Col>
         <Col md={3} className="btn32">
           <Form.Group className="col-12 pt-2">
-            <Button variant="success" className="btn32" as={Link} to="/obras/register">
+            <Button variant="success" className="btn32" as={Link} to="/obrasdetalhadas/register">
               <BiBookAdd size='1rem'/>
               <span> </span>
               Adicionar obra
@@ -179,4 +179,4 @@ const Obras = (props) => {
   );
 };
 
-export default Obras;
+export default ObrasResumidas;

@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import UsuarioService from '../services/usuario.service';
+import UsuariosService from '../services/usuarios.service';
 import { useTable } from 'react-table';
 import { useNavigate, Link } from 'react-router-dom';
 import { Container, Button, Form, Row, Col, Navbar, Nav, Table } from 'react-bootstrap';
@@ -18,7 +18,7 @@ const Usuarios = (props) => {
   form.current = usuarios;
 
   useEffect(async () => {
-    const awaitUsuarios = await UsuarioService.getAll(limit, page);
+    const awaitUsuarios = await UsuariosService.getAll(limit, page);
     setUsuarios(awaitUsuarios.data);
   }, [page]);
 

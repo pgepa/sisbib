@@ -1,3 +1,9 @@
+a.dropdown-item {
+    background: #198754;
+    font-size: 1.1em;
+    color: #C5E1D4;
+}
+
 .area-descricao {
     height: 10rem;
 }
@@ -36,6 +42,9 @@
     opacity: 0.75;
 }
 
+div.dropdown-menu.show  {
+    background: #198754;
+}
 div.text-danger {
     width: 50%;
 }

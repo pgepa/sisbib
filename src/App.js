@@ -4,10 +4,12 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavigationBar from './components/NavigationBar';
 import Home from './components/Home';
-import Obras from './components/Obras';
+import ObrasDetalhadas from './components/ObrasDetalhadas';
+import ObrasResumidas from './components/ObrasResumidas';
 import Usuarios from './components/Usuarios';
 import Emprestimos from './components/Emprestimos';
-import BuscaObras from './components/BuscaObras';
+import BuscaObrasDetalhadas from './components/BuscaObrasDetalhadas';
+import BuscaObrasResumidas from './components/BuscaObrasResumidas';
 import BuscaUsuarios from './components/BuscaUsuarios';
 import BuscaEmprestimos from './components/BuscaEmprestimos';
 import CadastroObra from './components/CadastroObra';
@@ -26,10 +28,12 @@ const App = () => {
                 <NavigationBar />
                 <Routes>
                     <Route exact path="/" element={<Home />} />
-                    <Route exact path="/obras" element={<Obras />} />
-                    <Route path="/obras/register" element={<CadastroObra />} />
-                    <Route path="/obras/search" element={<BuscaObras />} />
-                    <Route path="/obras/edit/:id" element={<EditarObra />} />
+                    <Route exact path="/obrasdetalhadas" element={<ObrasDetalhadas />} />
+                    <Route exact path="/obrasresumidas" element={<ObrasResumidas />} />
+                    <Route path="/obrasdetalhadas/register" element={<CadastroObra />} />
+                    <Route path="/obrasdetalhadas/search" element={<BuscaObrasDetalhadas />} />
+                    <Route path="/obrasresumidas/search" element={<BuscaObrasResumidas />} />
+                    <Route path="/obrasdetalhadas/edit/:id" element={<EditarObra />} />
                     <Route exact path="/usuarios" element={<Usuarios />} />
                     <Route path="/usuarios/register" element={<CadastroUsuario />} />
                     <Route path="/usuarios/search" element={<BuscaUsuarios />} />
