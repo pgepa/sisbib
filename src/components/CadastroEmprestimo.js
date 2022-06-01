@@ -18,8 +18,8 @@ const CadastroEmprestimo = (props) => {
       .required('Código da transação obrigatório.'),
     id_funcionario: Yup.number()
       .required('ID do funcionário obrigatório.'),
-    id_usuario: Yup.number()
-      .required('ID do usuário obrigatório.'),
+    id_usuario: Yup.string()
+      .required('Nome do usuário obrigatório.'),
     id_obra: Yup.number()
       .required('ID da obra obrigatório.'),
     data_emprestimo: Yup.date()
@@ -51,45 +51,29 @@ const CadastroEmprestimo = (props) => {
     data_prevista: DateUtils.daysAfter(7)
   };
 
-  const [usuarios,setUsuarios] = useState();
+  const [usuarios,setUsuarios] = useState([]);
 
   useEffect(async () => {
     const awaitUsuarios = await UsuarioService.getNames(10, 1);
     setUsuarios(awaitUsuarios.data);
   }, []);
 
-  const options = [
-    { label: 'Audio', value: 'audio' },
-    { label: 'Graphs', value: 'graph' },
-    { label: 'Picture', value: 'picture' },
-    { label: 'Video', value: 'video' },
-    { label: 'Other', value: 'other' },
-  ];
-
   const FormikSelect = ({options, field, form}) => {
     return (
       <Select
         name={field.name}
-        onBlur={field.onBlur}
-        onChange={({ value }) => form.setFieldValue(field.name, value)}
+        onChange={(option) => form.setFieldValue(field.name, option.value)}
         options={options}
-        value={(() => {
-          if (!options) return '';
-          for (let optionsLength = options.length, i = 0; i < optionsLength; i++) {
-            const option = options[i];
-            if (option.options) {
-              const valueCandidate = option.options.find(({ value }) => value === field.value);
-              if (valueCandidate) return valueCandidate;
-            }
-            if (option.value === field.value) return option.value;
-          }
-          return '';
-        })()}
+        value={options ? options.find(option => option.value === field.value) : ''}
       />
     );
   }
 
-  // <Field name="id_usuario" type="number" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+  const options = [
+    { 'value': '1', 'label': 'Primeiro'},
+    { 'value': '2', 'label': 'Segundo'},
+    { 'value': '3', 'label': 'Terceiro'}
+  ]
 
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema}
@@ -108,7 +92,7 @@ const CadastroEmprestimo = (props) => {
           </FormGroup>
           <FormGroup>
             <FormLabel className="h4 my-2">Nome do usuário</FormLabel>
-            <Field name="name" component={FormikSelect} options={options} />
+            <Field name="id_usuario" type="number" size="lg" className="form-control shadow h4 mx-1 mb-2" />
             <ErrorMessage name="id_usuario" component="div" className="text-danger" />
           </FormGroup>
           <FormGroup>
