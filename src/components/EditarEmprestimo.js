@@ -15,7 +15,7 @@ const EditarEmprestimo = (props) => {
       .required('Informe o nome do funcionário.'),
     nome_usuario: Yup.string()
       .required('Informe o nome do usuário.'),
-    titulo_obra1: Yup.string()
+    registro_obra1: Yup.string()
       .required('Informe pelo menos o título de uma obra.'),
     data_emprestimo: Yup.date()
       .required('Informe a data de empréstimo.'),
@@ -27,9 +27,9 @@ const EditarEmprestimo = (props) => {
     id_transacao: '',
     nome_funcionario: '',
     nome_usuario: '',
-    titulo_obra1: '',
-    titulo_obra2: '',
-    titulo_obra3: '',
+    registro_obra1: '',
+    registro_obra2: '',
+    registro_obra3: '',
     data_emprestimo: '',
     data_prevista: ''
   };
@@ -87,19 +87,19 @@ const EditarEmprestimo = (props) => {
           <ErrorMessage name="nome_usuario" component="div" className="text-danger" />
         </FormGroup>
         <FormGroup>
-          <FormLabel className="h4 my-2">Título da obra 1</FormLabel>
-          <Field name="titulo_obra1" type="text" size="lg" value={currentEmprestimo.titulo_obra1} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
-          <ErrorMessage name="titulo_obra1" component="div" className="text-danger" />
+          <FormLabel className="h4 my-2">Registro da obra 1</FormLabel>
+          <Field name="registro_obra1" type="text" size="lg" value={currentEmprestimo.registro_obra1} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
+          <ErrorMessage name="registro_obra1" component="div" className="text-danger" />
         </FormGroup>
         <FormGroup>
-          <FormLabel className="h4 my-2">Título da obra 2</FormLabel>
-          <Field name="titulo_obra2" type="text" size="lg" value={currentEmprestimo.titulo_obra2} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
-          <ErrorMessage name="titulo_obra2" component="div" className="text-danger" />
+          <FormLabel className="h4 my-2">Registro da obra 2</FormLabel>
+          <Field name="registro_obra2" type="text" size="lg" value={currentEmprestimo.registro_obra2} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
+          <ErrorMessage name="registro_obra2" component="div" className="text-danger" />
         </FormGroup>
         <FormGroup>
-          <FormLabel className="h4 my-2">Título da obra 3</FormLabel>
-          <Field name="titulo_obra3" type="text" size="lg" value={currentEmprestimo.titulo_obra3} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
-          <ErrorMessage name="titulo_obra3" component="div" className="text-danger" />
+          <FormLabel className="h4 my-2">Registro da obra 3</FormLabel>
+          <Field name="registro_obra3" type="text" size="lg" value={currentEmprestimo.registro_obra3} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
+          <ErrorMessage name="registro_obra3" component="div" className="text-danger" />
         </FormGroup>
         <FormGroup>
           <FormLabel className="h4 my-2">Data de empréstimo</FormLabel>
@@ -112,9 +112,19 @@ const EditarEmprestimo = (props) => {
           <ErrorMessage name="data_prevista" component="div" className="text-danger" />
         </FormGroup>
         <FormGroup>
-          <FormLabel className="h4 my-2">Data real de devolução</FormLabel>
-          <Field name="data_devolucao" type="date" size="lg" value={currentEmprestimo.data_devolucao} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
-          <ErrorMessage name="data_devolucao" component="div" className="text-danger" />
+          <FormLabel className="h4 my-2">Data real de devolução 1</FormLabel>
+          <Field name="data_devolucao1" type="date" size="lg" value={currentEmprestimo.data_devolucao1} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
+          <ErrorMessage name="data_devolucao1" component="div" className="text-danger" />
+        </FormGroup>
+        <FormGroup>
+          <FormLabel className="h4 my-2">Data real de devolução 2</FormLabel>
+          <Field name="data_devolucao2" type="date" size="lg" value={currentEmprestimo.data_devolucao2} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
+          <ErrorMessage name="data_devolucao2" component="div" className="text-danger" />
+        </FormGroup>
+        <FormGroup>
+          <FormLabel className="h4 my-2">Data real de devolução 3</FormLabel>
+          <Field name="data_devolucao3" type="date" size="lg" value={currentEmprestimo.data_devolucao3} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
+          <ErrorMessage name="data_devolucao3" component="div" className="text-danger" />
         </FormGroup>
         <FormGroup>
           <Button type="submit" onClick={handleUpdate} className="btn btn-primary rounded-pill shadow-lg px-4 py-3 m-3">

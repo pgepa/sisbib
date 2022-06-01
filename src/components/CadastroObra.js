@@ -165,7 +165,7 @@ const CadastroObra = (props) => {
             </Col>
           </Row>
           <FormGroup>
-            <Button type="submit" onClick={handleSubmit} className="btn-lg btn-obra btn-success rounded-pill shadow-lg px-5 py-3">
+            <Button type="submit" className="btn-lg btn-obra btn-success rounded-pill shadow-lg px-5 py-3">
               <BsCheckLg /><span className="mx-2">REGISTRAR</span>
             </Button>
             <Button type="button" onClick={resetForm} className="btn-lg btn-obra btn-danger rounded-pill shadow-lg px-5 py-3">

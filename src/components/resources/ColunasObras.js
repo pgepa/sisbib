@@ -1,5 +1,9 @@
 const columns = [
   {
+    Header: 'Registro',
+    accessor: 'registro'
+  },
+  {
     Header: 'Classificação',
     accessor: 'classificacao'
   },
@@ -42,10 +46,6 @@ const columns = [
   {
     Header: 'Descritores',
     accessor: 'descritores'
-  },
-  {
-    Header: 'Registro',
-    accessor: 'registro'
   }
 ];
 

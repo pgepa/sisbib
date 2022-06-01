@@ -19,6 +19,12 @@
     padding: 40px 40px;
 }
 
+.card-emprestimo.card {
+    background-color: #f7f7f7;
+    max-width: 60rem;
+    padding: 40px 40px;
+}
+
 .card {
     padding: 20px 25px 30px;
     margin: 0 auto 25px;

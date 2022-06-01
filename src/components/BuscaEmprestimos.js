@@ -32,17 +32,6 @@ const BuscaEmprestimos = (props) => {
     () =>
       colunasEmprestimos.concat([
         {
-          Header: 'Cadastrado em',
-          accessor: 'createdAt',
-          Cell: ({ row }) => (
-            <span>
-              {new Intl.DateTimeFormat('pt-BR', {}).format(
-                new Date(row.original.createdAt)
-              )}
-            </span>
-          ),
-        },
-        {
           Header: 'Ações',
           acessor: 'actions',
           Cell: (props) => {

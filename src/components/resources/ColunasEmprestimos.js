@@ -12,16 +12,16 @@ const columns = [
     accessor: 'nome_usuario'
   },
   {
-    Header: 'Título 1',
-    accessor: 'titulo_obra1'
+    Header: 'Nº de Registro 1',
+    accessor: 'registro_obra1'
   },
   {
-    Header: 'Título 2',
-    accessor: 'titulo_obra2'
+    Header: 'Nº de Registro 2',
+    accessor: 'registro_obra2'
   },
   {
-    Header: 'Título 3',
-    accessor: 'titulo_obra3'
+    Header: 'Nº de Registro 3',
+    accessor: 'registro_obra3'
   }
 ];
 

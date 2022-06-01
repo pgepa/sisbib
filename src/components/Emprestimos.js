@@ -53,25 +53,38 @@ const Emprestimos = (props) => {
           ),
         },
         {
-          Header: 'Data de devolução',
-          accessor: 'data_devolucao',
+          Header: 'Devolução 1',
+          accessor: 'data_devolucao1',
           Cell: ({ row }) => (
             <span>
-              { ( row.original.data_devolucao ?
+              { ( row.original.data_devolucao1 ?
                   new Intl.DateTimeFormat('pt-BR', {}).format(
-                    new Date(row.original.data_devolucao.concat('T03:00Z'))) :
+                    new Date(row.original.data_devolucao1.concat('T03:00Z'))) :
                   'dd/mm/yyyy' ) }
             </span>
           ),
         },
         {
-          Header: 'Cadastrado em',
-          accessor: 'createdAt',
+          Header: 'Devolução 2',
+          accessor: 'data_devolucao2',
           Cell: ({ row }) => (
             <span>
-              {new Intl.DateTimeFormat('pt-BR', {}).format(
-                new Date(row.original.createdAt)
-              )}
+              { ( row.original.data_devolucao2 ?
+                  new Intl.DateTimeFormat('pt-BR', {}).format(
+                    new Date(row.original.data_devolucao2.concat('T03:00Z'))) :
+                  'dd/mm/yyyy' ) }
+            </span>
+          ),
+        },
+        {
+          Header: 'Devolução 3',
+          accessor: 'data_devolucao3',
+          Cell: ({ row }) => (
+            <span>
+              { ( row.original.data_devolucao3 ?
+                  new Intl.DateTimeFormat('pt-BR', {}).format(
+                    new Date(row.original.data_devolucao3.concat('T03:00Z'))) :
+                  'dd/mm/yyyy' ) }
             </span>
           ),
         },

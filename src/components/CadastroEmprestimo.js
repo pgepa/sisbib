@@ -1,12 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { FormGroup, FormLabel } from 'react-bootstrap';
+import { FormGroup, FormLabel, Row, Col } from 'react-bootstrap';
 import { BsCheckLg, BsXLg } from 'react-icons/bs';
 import EmprestimoService from '../services/emprestimo.service';
-import UsuarioService from '../services/usuario.service';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import Select from 'react-select';
@@ -18,7 +17,7 @@ const CadastroEmprestimo = (props) => {
       .required('Informe o nome do funcionário.'),
     nome_usuario: Yup.string()
       .required('Informe o nome do usuário.'),
-    titulo_obra1: Yup.string()
+    registro_obra1: Yup.string()
       .required('Informe pelo menos o título de uma obra.'),
     data_emprestimo: Yup.date()
       .required('Informe a data de empréstimo.'),
@@ -30,6 +29,8 @@ const CadastroEmprestimo = (props) => {
 
   const handleSubmit = (data) => {
     data.id_transacao = DateUtils.getTransactionId();  
+    console.log('data =');
+    console.log(data);
     EmprestimoService.addEmprestimo(data)
     .then((response) => {
       alert(response.data.message);
@@ -45,20 +46,15 @@ const CadastroEmprestimo = (props) => {
     id_transacao: '',
     nome_funcionario: '',
     nome_usuario: '',
-    titulo_obra1: '',
-    titulo_obra2: '',
-    titulo_obra3: '',
+    registro_obra1: '',
+    registro_obra2: '',
+    registro_obra3: '',
     data_emprestimo: DateUtils.today(),
     data_prevista: DateUtils.daysAfter(7),
-    data_devolucao: DateUtils.today()
+    data_devolucao1: DateUtils.today(),
+    data_devolucao2: DateUtils.today(),
+    data_devolucao3: DateUtils.today()
   };
-
-  const [usuarios,setUsuarios] = useState([]);
-
-  useEffect(async () => {
-    const awaitUsuarios = await UsuarioService.getNames(10, 1);
-    setUsuarios(awaitUsuarios.data);
-  }, []);
 
   const FormikSelect = ({options, field, form}) => {
     return (
@@ -78,7 +74,7 @@ const CadastroEmprestimo = (props) => {
   ]
 
   const [selectedUser, setSelectedUser] = useState('');
-  
+
   const handleUserChange = (selectedUser, values) => {
     values.nome_usuario = selectedUser.value;
     setSelectedUser(selectedUser);
@@ -89,54 +85,92 @@ const CadastroEmprestimo = (props) => {
     <Formik initialValues={initialValues} validationSchema={validationSchema}
       onSubmit={handleSubmit}>
         {({ values, resetForm }) => (
-        <Form className="container card card-usuario my-3">
+        <Form className="container card card-emprestimo my-3">
+          <Row className="my-3">
+            <Col>
+              <FormGroup>
+                <FormLabel className="h4 my-2">Nome do funcionário</FormLabel>
+                <Field name="nome_funcionario" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+                <ErrorMessage name="nome_funcionario" component="div" className="text-danger" />
+              </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup>
+                <FormLabel className="h4 my-2">Nome do usuário</FormLabel>
+                <Select name="nome_usuario" component={FormikSelect} options={options}
+                  onChange={(selectedOption) => {
+                      handleUserChange(selectedOption, values);
+                    }
+                  }
+                />
+                <ErrorMessage name="nome_usuario" component="div" className="text-danger" />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row className="my-3">
+          <Col>
+              <FormGroup>
+                <FormLabel className="h4 my-2">Data de empréstimo</FormLabel>
+                <Field name="data_emprestimo" type="date" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+                <ErrorMessage name="data_emprestimo" component="div" className="text-danger" />
+              </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup>
+                <FormLabel className="h4 my-2">Data prevista de devolução</FormLabel>
+                <Field name="data_prevista" type="date" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+                <ErrorMessage name="data_prevista" component="div" className="text-danger" />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row className="my-3">
+            <Col>
+              <FormGroup>
+                <FormLabel className="h4 my-2">Registro da obra 1</FormLabel>
+                <Field name="registro_obra1" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+                <ErrorMessage name="registro_obra1" component="div" className="text-danger" />
+              </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup>
+                <FormLabel className="h4 my-2">Registro da obra 2</FormLabel>
+                <Field name="registro_obra2" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+                <ErrorMessage name="registro_obra2" component="div" className="text-danger" />
+              </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup>
+                <FormLabel className="h4 my-2">Registro da obra 3</FormLabel>
+                <Field name="registro_obra3" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+                <ErrorMessage name="registro_obra3" component="div" className="text-danger" />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row className="my-3">
+            <Col>
+              <FormGroup>
+                <FormLabel className="h4 my-2">Data real de devolução 1</FormLabel>
+                <Field name="data_devolucao1" type="date" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+                <ErrorMessage name="data_devolucao1" component="div" className="text-danger" />
+              </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup>
+                <FormLabel className="h4 my-2">Data real de devolução 2</FormLabel>
+                <Field name="data_devolucao2" type="date" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+                <ErrorMessage name="data_devolucao2" component="div" className="text-danger" />
+              </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup>
+                <FormLabel className="h4 my-2">Data real de devolução 3</FormLabel>
+                <Field name="data_devolucao3" type="date" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+                <ErrorMessage name="data_devolucao3" component="div" className="text-danger" />
+              </FormGroup>
+            </Col>
+          </Row>
           <FormGroup>
-            <FormLabel className="h4 my-2">Nome do funcionário</FormLabel>
-            <Field name="nome_funcionario" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2" />
-            <ErrorMessage name="nome_funcionario" component="div" className="text-danger" />
-          </FormGroup>
-          <FormGroup>
-            <FormLabel className="h4 my-2">Nome do usuário</FormLabel>
-            <Select name="nome_usuario" component={FormikSelect} options={options}
-              onChange={(selectedOption) => {
-                  handleUserChange(selectedOption, values);
-                }
-              }
-            />
-            <ErrorMessage name="nome_usuario" component="div" className="text-danger" />
-          </FormGroup>
-          <FormGroup>
-            <FormLabel className="h4 my-2">Título da obra 1</FormLabel>
-            <Field name="titulo_obra1" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2" />
-            <ErrorMessage name="titulo_obra1" component="div" className="text-danger" />
-          </FormGroup>
-          <FormGroup>
-            <FormLabel className="h4 my-2">Título da obra 2</FormLabel>
-            <Field name="titulo_obra2" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2" />
-            <ErrorMessage name="titulo_obra2" component="div" className="text-danger" />
-          </FormGroup>
-          <FormGroup>
-            <FormLabel className="h4 my-2">Título da obra 3</FormLabel>
-            <Field name="titulo_obra3" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2" />
-            <ErrorMessage name="titulo_obra3" component="div" className="text-danger" />
-          </FormGroup>
-          <FormGroup>
-            <FormLabel className="h4 my-2">Data de empréstimo</FormLabel>
-            <Field name="data_emprestimo" type="date" size="lg" className="form-control shadow h4 mx-1 mb-2" />
-            <ErrorMessage name="data_emprestimo" component="div" className="text-danger" />
-          </FormGroup>
-          <FormGroup>
-            <FormLabel className="h4 my-2">Data prevista de devolução</FormLabel>
-            <Field name="data_prevista" type="date" size="lg" className="form-control shadow h4 mx-1 mb-2" />
-            <ErrorMessage name="data_prevista" component="div" className="text-danger" />
-          </FormGroup>
-          <FormGroup>
-            <FormLabel className="h4 my-2">Data real de devolução</FormLabel>
-            <Field name="data_devolucao" type="date" size="lg" className="form-control shadow h4 mx-1 mb-2" />
-            <ErrorMessage name="data_devolucao" component="div" className="text-danger" />
-          </FormGroup>
-          <FormGroup>
-            <Button type="submit" onClick={handleSubmit} className="btn btn-primary rounded-pill shadow-lg px-4 py-3 m-3">
+            <Button type="submit" className="btn btn-primary rounded-pill shadow-lg px-4 py-3 m-3">
               <BsCheckLg /><span className="mx-2">REGISTRAR</span>
             </Button>
             <Button type="button" onClick={resetForm} className="btn btn-danger rounded-pill shadow-lg px-4 py-3 m-3">
