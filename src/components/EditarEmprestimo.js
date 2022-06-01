@@ -10,25 +10,25 @@ import * as Yup from 'yup';
 
 const EditarEmprestimo = (props) => {
   const validationSchema = Yup.object().shape({
-    id_transacao: Yup.string()
-      .required('Código da transação obrigatório.'),
-    id_funcionario: Yup.number()
-      .required('ID do funcionário obrigatório.'),
-    id_Emprestimo: Yup.number()
-      .required('ID do usuário obrigatório.'),
-    id_obra: Yup.number()
-      .required('ID da obra obrigatório.'),
+    nome_funcionario: Yup.string()
+      .required('Informe o nome do funcionário.'),
+    nome_usuario: Yup.string()
+      .required('Informe o nome do usuário.'),
+    titulo_obra1: Yup.string()
+      .required('Informe pelo menos o título de uma obra.'),
     data_emprestimo: Yup.date()
-      .required('Data de empréstimo obrigatória.'),
+      .required('Informe a data de empréstimo.'),
     data_prevista: Yup.date()
-      .required('Data prevista obrigatória.'),
+      .required('Informe a data prevista de devolução.'),
   });
 
   const initialValues = {
     id_transacao: '',
-    id_funcionario: '',
-    id_Emprestimo: '',
-    id_obra: '',
+    nome_funcionario: '',
+    nome_usuario: '',
+    titulo_obra1: '',
+    titulo_obra2: '',
+    titulo_obra3: '',
     data_emprestimo: '',
     data_prevista: ''
   };
@@ -65,24 +65,29 @@ const EditarEmprestimo = (props) => {
       {() => (
         <Form className="container card card-usuario my-3">
         <FormGroup>
-          <FormLabel className="h4 my-2">Código da transação</FormLabel>
-          <Field name="id_transacao" type="text" size="lg" value={currentEmprestimo.id_transacao} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
-          <ErrorMessage name="id_transacao" component="div" className="text-danger" />
+          <FormLabel className="h4 my-2">Nome do funcionário</FormLabel>
+          <Field name="nome_funcionario" type="text" size="lg" value={currentEmprestimo.nome_funcionario} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
+          <ErrorMessage name="nome_funcionario" component="div" className="text-danger" />
         </FormGroup>
         <FormGroup>
-          <FormLabel className="h4 my-2">ID do funcionário</FormLabel>
-          <Field name="id_funcionario" type="number" size="lg" value={currentEmprestimo.id_funcionario} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
-          <ErrorMessage name="id_funcionario" component="div" className="text-danger" />
+          <FormLabel className="h4 my-2">Nome do usuário</FormLabel>
+          <Field name="nome_usuario" type="text" size="lg" value={currentEmprestimo.nome_usuario} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
+          <ErrorMessage name="nome_usuario" component="div" className="text-danger" />
         </FormGroup>
         <FormGroup>
-          <FormLabel className="h4 my-2">ID do usuário</FormLabel>
-          <Field name="id_usuario" type="number" size="lg" value={currentEmprestimo.id_usuario} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
-          <ErrorMessage name="id_usuario" component="div" className="text-danger" />
+          <FormLabel className="h4 my-2">Título da obra 1</FormLabel>
+          <Field name="titulo_obra1" type="text" size="lg" value={currentEmprestimo.titulo_obra1} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
+          <ErrorMessage name="titulo_obra1" component="div" className="text-danger" />
         </FormGroup>
         <FormGroup>
-          <FormLabel className="h4 my-2">ID da obra</FormLabel>
-          <Field name="id_obra" type="text" size="lg" value={currentEmprestimo.id_obra} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
-          <ErrorMessage name="id_obra" component="div" className="text-danger" />
+          <FormLabel className="h4 my-2">Título da obra 2</FormLabel>
+          <Field name="titulo_obra2" type="text" size="lg" value={currentEmprestimo.titulo_obra2} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
+          <ErrorMessage name="titulo_obra2" component="div" className="text-danger" />
+        </FormGroup>
+        <FormGroup>
+          <FormLabel className="h4 my-2">Título da obra 3</FormLabel>
+          <Field name="titulo_obra3" type="text" size="lg" value={currentEmprestimo.titulo_obra3} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
+          <ErrorMessage name="titulo_obra3" component="div" className="text-danger" />
         </FormGroup>
         <FormGroup>
           <FormLabel className="h4 my-2">Data de empréstimo</FormLabel>

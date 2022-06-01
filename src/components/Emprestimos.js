@@ -19,7 +19,6 @@ const Emprestimos = (props) => {
 
   useEffect(async () => {
     const awaitEmprestimos = await EmprestimoService.getAll(limit, page);
-    
     setEmprestimos(awaitEmprestimos.data);
   }, [page]);
 
@@ -58,9 +57,10 @@ const Emprestimos = (props) => {
           accessor: 'data_devolucao',
           Cell: ({ row }) => (
             <span>
-              {new Intl.DateTimeFormat('pt-BR', {}).format(
-                new Date(row.original.data_devolucao.concat('T03:00Z'))
-              )}
+              { ( row.original.data_devolucao ?
+                  new Intl.DateTimeFormat('pt-BR', {}).format(
+                    new Date(row.original.data_devolucao.concat('T03:00Z'))) :
+                  'dd/mm/yyyy' ) }
             </span>
           ),
         },
