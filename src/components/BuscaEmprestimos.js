@@ -20,7 +20,7 @@ const BuscaEmprestimos = (props) => {
 
   useEffect(async () => {
     const awaitEmprestimos = await EmprestimoService.getSome({ termo: location.state.termo }, limit, page);
-    return setEmprestimos(awaitEmprestimos.data);
+    setEmprestimos(awaitEmprestimos.data);
   }, [page]);
 
   const editEmprestimo = (rowIndex) => {

@@ -52,7 +52,7 @@ const EditarUsuario = (props) => {
 
   useEffect(async () => {
     const awaitUsuario = await UsuarioService.getOne(id);
-    return setCurrentUser(awaitUsuario.data);
+    setCurrentUser(awaitUsuario.data);
   }, []);
 
   const handleInputChange = (event) => {

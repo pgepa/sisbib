@@ -19,6 +19,10 @@ const getSome = (termo,limit,page) => {
     return axios.post(APIURL.concat(`search?limit=${limit}&page=${page}`), termo);
 }
 
+const getNames = (limit,page) => {
+    return axios.get(APIURL.concat(`names?limit=${limit}&page=${page}`));
+}
+
 const update = (data) => {
     return axios.post(APIURL.concat(`update`), data);
 }
@@ -27,6 +31,6 @@ const remove = (id) => {
     return axios.delete(APIURL.concat(id));
 }
 
-const UsuarioService = { addUsuario, getOne, getAll, getSome, update, remove };
+const UsuarioService = { addUsuario, getOne, getAll, getSome, getNames, update, remove };
 
 export default UsuarioService;

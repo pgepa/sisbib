@@ -20,7 +20,7 @@ const BuscaUsuarios = (props) => {
 
   useEffect(async () => {
     const awaitUsuarios = await UsuarioService.getSome({ termo: location.state.termo }, limit, page);
-    return setUsuarios(awaitUsuarios.data);
+    setUsuarios(awaitUsuarios.data);
   }, [page]);
 
   const editUser = (rowIndex) => {

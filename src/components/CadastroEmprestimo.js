@@ -1,14 +1,16 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { FormGroup, FormLabel } from 'react-bootstrap';
 import { BsCheckLg, BsXLg } from 'react-icons/bs';
 import EmprestimoService from '../services/emprestimo.service';
+import UsuarioService from '../services/usuario.service';
 import DateUtils from '../utils/date.utils';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
-import { propTypes } from 'react-bootstrap/esm/Image';
+import Select from 'react-select';
 
 const CadastroEmprestimo = (props) => {
   const validationSchema = Yup.object().shape({
@@ -33,7 +35,7 @@ const CadastroEmprestimo = (props) => {
     .then((response) => {
       alert(response.data.message);
       navigate('/emprestimos');
-      propTypes.parent.reload();
+      props.parent.reload();
     })
     .catch((error) => {
       console.log(error.response.data.message);
@@ -48,6 +50,46 @@ const CadastroEmprestimo = (props) => {
     data_emprestimo: DateUtils.today(),
     data_prevista: DateUtils.daysAfter(7)
   };
+
+  const [usuarios,setUsuarios] = useState();
+
+  useEffect(async () => {
+    const awaitUsuarios = await UsuarioService.getNames(10, 1);
+    setUsuarios(awaitUsuarios.data);
+  }, []);
+
+  const options = [
+    { label: 'Audio', value: 'audio' },
+    { label: 'Graphs', value: 'graph' },
+    { label: 'Picture', value: 'picture' },
+    { label: 'Video', value: 'video' },
+    { label: 'Other', value: 'other' },
+  ];
+
+  const FormikSelect = ({options, field, form}) => {
+    return (
+      <Select
+        name={field.name}
+        onBlur={field.onBlur}
+        onChange={({ value }) => form.setFieldValue(field.name, value)}
+        options={options}
+        value={(() => {
+          if (!options) return '';
+          for (let optionsLength = options.length, i = 0; i < optionsLength; i++) {
+            const option = options[i];
+            if (option.options) {
+              const valueCandidate = option.options.find(({ value }) => value === field.value);
+              if (valueCandidate) return valueCandidate;
+            }
+            if (option.value === field.value) return option.value;
+          }
+          return '';
+        })()}
+      />
+    );
+  }
+
+  // <Field name="id_usuario" type="number" size="lg" className="form-control shadow h4 mx-1 mb-2" />
 
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema}
@@ -65,8 +107,8 @@ const CadastroEmprestimo = (props) => {
             <ErrorMessage name="id_funcionario" component="div" className="text-danger" />
           </FormGroup>
           <FormGroup>
-            <FormLabel className="h4 my-2">ID do usuário</FormLabel>
-            <Field name="id_usuario" type="number" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+            <FormLabel className="h4 my-2">Nome do usuário</FormLabel>
+            <Field name="name" component={FormikSelect} options={options} />
             <ErrorMessage name="id_usuario" component="div" className="text-danger" />
           </FormGroup>
           <FormGroup>

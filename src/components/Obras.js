@@ -20,7 +20,7 @@ const Obras = (props) => {
   
   useEffect(async () => {
     const awaitObras = await ObraService.getAll(limit, page);
-    return setObras(awaitObras.data);
+    setObras(awaitObras.data);
   }, [page]);
 
   const editObra = (rowIndex) => {

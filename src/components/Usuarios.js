@@ -19,7 +19,7 @@ const Usuarios = (props) => {
 
   useEffect(async () => {
     const awaitUsuarios = await UsuarioService.getAll(limit, page);
-    return setUsuarios(awaitUsuarios.data);
+    setUsuarios(awaitUsuarios.data);
   }, [page]);
 
   const editUser = (rowIndex) => {

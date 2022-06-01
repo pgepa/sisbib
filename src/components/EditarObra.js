@@ -59,7 +59,7 @@ const EditarObra = (props) => {
 
   useEffect(async () => {
     const awaitObra = await ObraService.getOne(id);
-    return setCurrentObra(awaitObra.data);
+    setCurrentObra(awaitObra.data);
   }, []);
 
   const handleInputChange = (event) => {

@@ -39,7 +39,7 @@ const EditarEmprestimo = (props) => {
 
   useEffect(async () => {
     const awaitEmprestimo = await EmprestimoService.getOne(id);
-    return setCurrentEmprestimo(awaitEmprestimo.data);
+    setCurrentEmprestimo(awaitEmprestimo.data);
   }, []);
 
   const handleInputChange = (event) => {

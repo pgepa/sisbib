@@ -20,7 +20,7 @@ const BuscaObras = (props) => {
   
   useEffect(async () => {
     const awaitObras = await ObraService.getSome({ termo: location.state.termo }, limit, page);
-    return setObras(awaitObras.data);
+    setObras(awaitObras.data);
   }, [page]);
 
   const columns = useMemo(() => colunasObras.concat([

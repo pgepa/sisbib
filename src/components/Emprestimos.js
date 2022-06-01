@@ -20,7 +20,7 @@ const Emprestimos = (props) => {
   useEffect(async () => {
     const awaitEmprestimos = await EmprestimoService.getAll(limit, page);
     
-    return setEmprestimos(awaitEmprestimos.data);
+    setEmprestimos(awaitEmprestimos.data);
   }, [page]);
 
   const editEmprestimo = (rowIndex) => {
