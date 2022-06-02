@@ -22,7 +22,8 @@ const getReducedAll = (limit,page) => {
 }
 
 const getSome = (termo,limit,page) => {
-    return axios.post(APIURL.concat(`search?limit=${limit}&page=${page}`), termo);
+    return axios.post(APIURL.concat(`search?limit=${limit}&page=${page}`), termo,
+    { headers: { Authorization: auth } });
 }
 
 const update = (data) => {

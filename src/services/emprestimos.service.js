@@ -1,12 +1,11 @@
 import axios from 'axios';
-import apiurl from './apiurl';
 import authHeader from './auth-header';
-const APIURL = `${apiurl()}/api/usuarios/`;
+import apiurl from './apiurl';
+const APIURL = `${apiurl()}/api/emprestimos/`;
 const auth = authHeader().Authorization;
 
 const addEmprestimo = (emprestimo) => {
-    return axios.post(APIURL.concat('add'), emprestimo,
-    { headers: { Authorization: auth } }); 
+    return axios.post(APIURL.concat('add'), emprestimo, { headers: { Authorization: auth } }); 
 };
 
 const getOne = (id) => {
@@ -14,13 +13,11 @@ const getOne = (id) => {
 }
 
 const getAll = (limit,page) => {
-    return axios.get(APIURL.concat(`all?limit=${limit}&page=${page}`),
-    { headers: { Authorization: auth } });
+    return axios.get(APIURL.concat(`all?limit=${limit}&page=${page}`), { headers: { Authorization: auth } });
 }
 
 const getSome = (termo,limit,page) => {
-    return axios.post(APIURL.concat(`search?limit=${limit}&page=${page}`), termo,
-    { headers: { Authorization: auth } });
+    return axios.post(APIURL.concat(`search?limit=${limit}&page=${page}`), termo, { headers: { Authorization: auth } });
 }
 
 const update = (data) => {

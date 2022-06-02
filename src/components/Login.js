@@ -73,8 +73,8 @@ const Login = (props) => {
             showAlert && (
               <Alert variant="success" className="mt-4" onClose={() => {
                 setShowAlert(false);
-                navigate(-1);
-                props.parent.reload();
+                navigate('/obrasresumidas');
+                window.location.reload();
               }} dismissible>
                 {backMessage}
               </Alert>

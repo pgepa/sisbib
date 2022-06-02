@@ -3,9 +3,8 @@ import apiurl from './apiurl';
 
 const APIURL = `${apiurl()}/api/auth/`;
 
-const addUser = (inscription, name, department, cpf, email, phone, password) => {
-  return axios.post(APIURL.concat('signup'),
-    { inscription, name, department, cpf, email, phone, password });
+const addUser = (data) => {
+  return axios.post(APIURL.concat('signup'), data);
 };
 
 const login = (data) => {

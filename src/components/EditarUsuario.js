@@ -11,22 +11,22 @@ import * as Yup from 'yup';
 const EditarUsuario = (props) => {
   const validationSchema = Yup.object().shape({
     name: Yup.string()
-      .required('Nome obrigatório'),
+      .required('Informe seu nome'),
     email: Yup.string()
-      .required('Email obrigatório')
-      .email('Email deve conter "@" e ponto "."'),
+      .required('Informe seu email')
+      .email('O email deve conter "@" e ponto "."'),
     phone: Yup.string()
-      .required('Telefone obrigatório')
-      .length(9,'Número de telefone deve conter 9 digitos'),
+      .required('Informe seu telefone')
+      .min(8,'O número de telefone deve conter pelo menos 8 digitos'),
     cpf: Yup.string()
-      .required('CPF obrigatório')
-      .length(11, 'CPF deve conter 11 dígitos'),
+      .required('Informe seu CPF')
+      .length(11,'CPF deve conter 11 dígitos'),
     inscription: Yup.string()
-      .required('Número de matrícula obrigatório')
-      .min(6, 'Número de matrícula deve conter no mínimo 6 caracteres')
-      .max(8, 'Número de matrícula deve conter no máximo 8 caracteres'),
+      .required('Informe seu número de matrícula')
+      .min(6, 'O número de matrícula deve conter no mínimo 6 caracteres')
+      .max(8, 'O número de matrícula deve conter no máximo 8 caracteres'),
     department: Yup.string()
-      .required('Setor obrigatório'),
+      .required('Informe seu setor'),
     password: Yup.string()
       .required('Defina uma senha')
       .min(6, 'A senha deve conter no mínimo 6 caracteres')
