@@ -18,6 +18,10 @@ const columns = [
   {
     Header: 'Email',
     accessor: 'email'
+  },
+  {
+    Header: 'Telefone',
+    accessor: 'telefone'
   }
 ];
 

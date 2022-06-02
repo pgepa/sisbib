@@ -15,6 +15,9 @@ const CadastroUsuario = (props) => {
     email: Yup.string()
       .required('Email obrigatório')
       .email('Email deve conter "@" e ponto "."'),
+    telefone: Yup.string()
+      .required('Telefone obrigatório')
+      .length(9,'Número de telefone deve conter 9 digitos'),
     cpf: Yup.string()
       .required('CPF obrigatório')
       .length(11,'CPF deve conter 11 dígitos'),
@@ -76,6 +79,11 @@ const CadastroUsuario = (props) => {
             <FormLabel className="h4 my-2">Email</FormLabel>
             <Field name="email" type="email" size="lg" className="form-control shadow h4 mx-0 mb-2" />
             <ErrorMessage name="email" component="div" className="text-danger" />
+          </FormGroup>
+          <FormGroup>
+            <FormLabel className="h4 my-2">Telefone</FormLabel>
+            <Field name="telefone" type="telefone" size="lg" className="form-control shadow h4 mx-0 mb-2" />
+            <ErrorMessage name="telefone" component="div" className="text-danger" />
           </FormGroup>
           <FormGroup>
             <FormLabel className="h4 my-2">CPF</FormLabel>
