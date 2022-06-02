@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { FormGroup, FormLabel, Row, Col } from 'react-bootstrap';
+import { FormGroup, FormLabel, Row, Col, Alert } from 'react-bootstrap';
 import { BsCheckLg, BsXLg } from 'react-icons/bs';
-import UsuariosService from '../services/usuarios.service';
+import AuthService from '../services/auth.service';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 
@@ -38,12 +38,14 @@ const CadastroUsuario = (props) => {
 
   const navigate = useNavigate();
 
+  const [showAlert, setShowAlert] = useState(false);
+  const [backMessage, setBackMessage] = useState('');
+
   const handleSubmit = (data) => {
-    UsuariosService.addUsuario(data)
+    AuthService.addUser(data)
     .then((response) => {
-      alert(response.data.message);
-      navigate('/usuarios');
-      props.parent.reload();
+      setBackMessage(response.data.message);
+      setShowAlert(true);
     })
     .catch((error) => {
       console.log(error.response.data.message);
@@ -63,7 +65,7 @@ const CadastroUsuario = (props) => {
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema}
       onSubmit={handleSubmit}>
-        {({ resetForm }) => (
+        {() => (
         <Form className="container card card-usuario my-3">
           <FormGroup>
             <FormLabel className="h4 my-2 ">Nome</FormLabel>
@@ -116,6 +118,17 @@ const CadastroUsuario = (props) => {
               </FormGroup>
             </Col>
           </Row>
+          {
+            showAlert && (
+              <Alert variant="success" className="mt-4" onClose={() => {
+                setShowAlert(false);
+                navigate(-1);
+                props.parent.reload();
+              }} dismissible>
+                {backMessage}
+              </Alert>
+            )
+          }
         </Form>
       )}
     </Formik>

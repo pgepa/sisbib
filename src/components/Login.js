@@ -23,7 +23,7 @@ const LoginUsuario = (props) => {
   const [backMessage, setBackMessage] = useState('');
 
   const handleSubmit = (data) => {
-    AuthService.addUsuario(data)
+    AuthService.login(data)
       .then((response) => {
         setBackMessage(response.data.message);
         setShowAlert(true);

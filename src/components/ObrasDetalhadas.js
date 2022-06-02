@@ -7,18 +7,25 @@ import { Container, Button, Form, Row, Col, Navbar, Nav, Table } from 'react-boo
 import colunasObrasDetalhadas from './resources/ColunasObrasDetalhadas';
 import { FaEdit } from 'react-icons/fa';
 import { BiBookAdd } from 'react-icons/bi';
+import AuthService from '../services/auth.service';
 
 const ObrasDetalhadas = (props) => {
+  
   const limit = 20;
   const [page, setPage] = useState(1);
   const [obras, setObras] = useState([]);
   const [keyword, setKeyword] = useState('');
+  const [showAdmin, setShowAdmin] = useState(false);
 
   const navigate = useNavigate();
   const form = useRef();
   form.current = obras;
   
   useEffect(async () => {
+    const user = AuthService.getCurrentUser();
+    if (user) {
+      setShowAdmin(user.roles.includes('ROLE_ADMIN'));
+    }
     const awaitObras = await ObrasService.getAll(limit, page);
     setObras(awaitObras.data);
   }, [page]);
@@ -28,22 +35,30 @@ const ObrasDetalhadas = (props) => {
     navigate(`/obrasdetalhadas/edit/${id}`);
   }
 
-  const columns = useMemo(() => colunasObrasDetalhadas.concat([
-    {
-      Header: 'Ações',
-      acessor: 'actions',
-      Cell: (props) => {
-        const rowIdx = Number(props.row.id);
-        return (
-          <div>
-            <Button variant="info" title="Editar" onClick={() => editObra(rowIdx)}>
-              <FaEdit size='1rem'/>
-            </Button>
-          </div>
-        );
-      }
+  const columns = useMemo(() => {
+    if (showAdmin) {
+      return colunasObrasDetalhadas.concat([
+    
+        {
+          Header: 'Ações',
+          acessor: 'actions',
+          Cell: (props) => {
+            const rowIdx = Number(props.row.id);
+            return (
+              <div>
+                <Button variant="info" title="Editar" onClick={() => editObra(rowIdx)}>
+                  <FaEdit size='1rem'/>
+                </Button>
+              </div>
+            );
+          }
+        }
+      ])
     }
-  ]), []);
+    else {
+      return colunasObrasDetalhadas;
+    }
+  }, []);
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({

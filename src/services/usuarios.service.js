@@ -4,10 +4,6 @@ import apiurl from './apiurl';
 const APIURL = `${apiurl()}/api/usuarios/`;
 const auth = authHeader().Authorization;
 
-const addUsuario = (usuario) => {
-    return axios.post(APIURL.concat('add'), usuario, { headers: { Authorization: auth } });
-};
-
 const getOne = (id) => {
     return axios.get(APIURL.concat(id), { headers: { Authorization: auth } });
 }
@@ -35,6 +31,6 @@ const remove = (id) => {
     return axios.delete(APIURL.concat(id), { headers: { Authorization: auth } });
 }
 
-const UsuariosService = { addUsuario, getOne, getAll, getSome, getNames, update, remove };
+const UsuariosService = { getOne, getAll, getSome, getNames, update, remove };
 
 export default UsuariosService;
