@@ -15,7 +15,7 @@ const CadastroUsuario = (props) => {
     email: Yup.string()
       .required('Email obrigatório')
       .email('Email deve conter "@" e ponto "."'),
-    telefone: Yup.string()
+    phone: Yup.string()
       .required('Telefone obrigatório')
       .length(9,'Número de telefone deve conter 9 digitos'),
     cpf: Yup.string()
@@ -61,6 +61,7 @@ const CadastroUsuario = (props) => {
     cpf: '',
     inscription: '',
     department: '',
+    phone:'',
     password: '',
     confirmPassword: ''
   };
@@ -81,11 +82,6 @@ const CadastroUsuario = (props) => {
             <ErrorMessage name="email" component="div" className="text-danger" />
           </FormGroup>
           <FormGroup>
-            <FormLabel className="h4 my-2">Telefone</FormLabel>
-            <Field name="telefone" type="telefone" size="lg" className="form-control shadow h4 mx-0 mb-2" />
-            <ErrorMessage name="telefone" component="div" className="text-danger" />
-          </FormGroup>
-          <FormGroup>
             <FormLabel className="h4 my-2">CPF</FormLabel>
             <Field name="cpf" type="text" size="lg" className="form-control shadow h4 mx-0 mb-2" />
             <ErrorMessage name="cpf" component="div" className="text-danger" />
@@ -94,6 +90,11 @@ const CadastroUsuario = (props) => {
             <FormLabel className="h4 my-2">Matrícula</FormLabel>
             <Field name="inscription" type="text" size="lg" className="form-control shadow h4 mx-0 mb-2" />
             <ErrorMessage name="inscription" component="div" className="text-danger" />
+          </FormGroup>
+          <FormGroup>
+            <FormLabel className="h4 my-2">Telefone</FormLabel>
+            <Field name="phone" type="text" size="lg" className="form-control shadow h4 mx-0 mb-2" />
+            <ErrorMessage name="phone" component="div" className="text-danger" />
           </FormGroup>
           <FormGroup>
             <FormLabel className="h4 my-2">Setor</FormLabel>

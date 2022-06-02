@@ -21,7 +21,7 @@ const columns = [
   },
   {
     Header: 'Telefone',
-    accessor: 'telefone'
+    accessor: 'phone'
   }
 ];
 

@@ -15,6 +15,9 @@ const EditarUsuario = (props) => {
     email: Yup.string()
       .required('Email obrigatório')
       .email('Email deve conter "@" e ponto "."'),
+    phone: Yup.string()
+      .required('Telefone obrigatório')
+      .length(9,'Número de telefone deve conter 9 digitos'),
     cpf: Yup.string()
       .required('CPF obrigatório')
       .length(11, 'CPF deve conter 11 dígitos'),
@@ -42,6 +45,7 @@ const EditarUsuario = (props) => {
     cpf: '',
     inscription: '',
     department: '',
+    phone: '',
     password: '',
     confirmPassword: ''
   };
@@ -98,6 +102,11 @@ const EditarUsuario = (props) => {
             <FormLabel className="h4 my-2">Matrícula</FormLabel>
             <Field name="inscription" type="text" size="lg" value={currentUser.inscription} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
             <ErrorMessage name="inscription" component="div" className="text-danger" />
+          </FormGroup>
+          <FormGroup>
+            <FormLabel className="h4 my-2">Telefone</FormLabel>
+            <Field name="phone" type="text" size="lg" value={currentUser.phone} onChange={handleInputChange} className="form-control shadow h4 mx-0 mb-2" />
+            <ErrorMessage name="phone" component="div" className="text-danger" />
           </FormGroup>
           <FormGroup>
             <FormLabel className="h4 my-2">Setor</FormLabel>
