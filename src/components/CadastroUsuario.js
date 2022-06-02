@@ -66,51 +66,51 @@ const CadastroUsuario = (props) => {
         {({ resetForm }) => (
         <Form className="container card card-usuario my-3">
           <FormGroup>
-            <FormLabel className="h4 my-2">Nome</FormLabel>
-            <Field name="name" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+            <FormLabel className="h4 my-2 ">Nome</FormLabel>
+            <Field name="name" type="text" size="lg" className="form-control shadow h4 mx-0 mb-2" />
             <ErrorMessage name="name" component="div" className="text-danger" />
           </FormGroup>
           <FormGroup>
             <FormLabel className="h4 my-2">Email</FormLabel>
-            <Field name="email" type="email" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+            <Field name="email" type="email" size="lg" className="form-control shadow h4 mx-0 mb-2" />
             <ErrorMessage name="email" component="div" className="text-danger" />
           </FormGroup>
           <FormGroup>
             <FormLabel className="h4 my-2">CPF</FormLabel>
-            <Field name="cpf" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+            <Field name="cpf" type="text" size="lg" className="form-control shadow h4 mx-0 mb-2" />
             <ErrorMessage name="cpf" component="div" className="text-danger" />
           </FormGroup>
           <FormGroup>
             <FormLabel className="h4 my-2">Matrícula</FormLabel>
-            <Field name="inscription" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+            <Field name="inscription" type="text" size="lg" className="form-control shadow h4 mx-0 mb-2" />
             <ErrorMessage name="inscription" component="div" className="text-danger" />
           </FormGroup>
           <FormGroup>
             <FormLabel className="h4 my-2">Setor</FormLabel>
-            <Field name="department" type="text" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+            <Field name="department" type="text" size="lg" className="form-control shadow h4 mx-0 mb-2" />
             <ErrorMessage name="department" component="div" className="text-danger" />
           </FormGroup>
           <FormGroup>
             <FormLabel className="h4 my-2">Senha</FormLabel>
-            <Field name="password" type="password" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+            <Field name="password" type="password" size="lg" className="form-control shadow h4 mx-0 mb-2" />
             <ErrorMessage name="password" component="div" className="text-danger" />
           </FormGroup>
           <FormGroup>
             <FormLabel className="h4 my-2">Confirmar senha</FormLabel>
-            <Field name="confirmPassword" type="password" size="lg" className="form-control shadow h4 mx-1 mb-2" />
+            <Field name="confirmPassword" type="password" size="lg" className="form-control shadow h4 mx-0 mb-2" />
             <ErrorMessage name="confirmPassword" component="div" className="text-danger" />
           </FormGroup>
-          <Row className="mt-4">
+          <Row className="mt-4 mx-0">
             <Col>
-              <FormGroup className="text-right ps-4">
+              <FormGroup className="text-center">
                 <Button type="submit" className="btn btn-primary rounded-pill shadow-lg px-4 py-3">
                   <BsCheckLg /><span className="mx-2">REGISTRAR</span>
                 </Button>
               </FormGroup>
             </Col>
-            <Col>
-              <FormGroup>
-                <Button type="button" onClick={() => navigate(-1)} className="btn btn-danger rounded-pill shadow-lg text-right px-4 py-3">
+            <Col>  
+              <FormGroup className="text-center">
+                <Button type="button" onClick={() => navigate(-1)} className="btn btn-danger rounded-pill shadow-lg px-4 py-3">
                   <BsXLg /><span className="mx-2">CANCELAR</span>
                 </Button>
               </FormGroup>
