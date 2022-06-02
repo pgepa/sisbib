@@ -1,10 +1,12 @@
 import axios from 'axios';
 import apiurl from './apiurl';
-
+import authHeader from './auth-header';
 const APIURL = `${apiurl()}/api/obras/`;
+const auth = authHeader().Authorization;
 
 const addObra = (obra) => {
-    return axios.post(APIURL.concat('add'), obra); 
+    return axios.post(APIURL.concat('add'), obra,
+    { headers: { Authorization: auth } });
 };
 
 const getOne = (id) => {
@@ -24,11 +26,12 @@ const getSome = (termo,limit,page) => {
 }
 
 const update = (data) => {
-  return axios.post(APIURL.concat(`update`), data);
+  return axios.post(APIURL.concat(`update`), data,
+  { headers: { Authorization: auth } });
 }
 
 const remove = (id) => {
-    return axios.delete(APIURL.concat(id));
+    return axios.delete(APIURL.concat(id), { headers: { Authorization: auth } });
 }
 
 const ObrasService = { addObra, getOne, getAll, getReducedAll, getSome, update, remove };

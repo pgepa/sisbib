@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+import AuthService from './services/auth.service';
+
 import NavigationBar from './components/NavigationBar';
 import Home from './components/Home';
 import ObrasDetalhadas from './components/ObrasDetalhadas';
@@ -19,36 +22,51 @@ import EditarObra from './components/EditarObra';
 import EditarUsuario from './components/EditarUsuario';
 import EditarEmprestimo from './components/EditarEmprestimo';
 import PageNotFound from './components/PageNotFound';
-import LoginUsuario from './components/Login';
+import Login from './components/Login';
 
 const App = () => {
-    return (
-        <>
-            <Router>
-                <NavigationBar />
-                <Routes>
-                    <Route exact path="/" element={<Home />} />
-                    <Route exact path="/obrasdetalhadas" element={<ObrasDetalhadas />} />
-                    <Route exact path="/obrasresumidas" element={<ObrasResumidas />} />
-                    <Route path="/obrasdetalhadas/register" element={<CadastroObra />} />
-                    <Route path="/obrasdetalhadas/search" element={<BuscaObrasDetalhadas />} />
-                    <Route path="/obrasresumidas/search" element={<BuscaObrasResumidas />} />
-                    <Route path="/obrasdetalhadas/edit/:id" element={<EditarObra />} />
-                    <Route exact path="/usuarios" element={<Usuarios />} />
-                    <Route path="/usuarios/register" element={<CadastroUsuario />} />
-                    <Route path="/usuarios/search" element={<BuscaUsuarios />} />
-                    <Route path="/usuarios/edit/:id" element={<EditarUsuario />} />
-                    <Route exact path="/emprestimos" element={<Emprestimos />} />
-                    <Route path="/emprestimos/register" element={<CadastroEmprestimo />} />
-                    <Route path="/emprestimos/search" element={<BuscaEmprestimos />} />
-                    <Route path="/emprestimos/edit/:id" element={<EditarEmprestimo />} />
-                    <Route path="/login" element={<LoginUsuario/>} />
-                    <Route path="/404" element={<PageNotFound />} />
-                    <Route path="*" element={<Navigate replace to="/404" />} />
-                </Routes>
-            </Router>        
-        </>
-    );
+  const [showAdmin, setShowAdmin] = useState(false);
+  useEffect(() => {
+    const user = AuthService.getCurrentUser();
+    if (user) {
+      setShowAdmin(user.roles.includes('ROLE_ADMIN'));
+    }
+  },[]);
+  return (
+    <>
+      <Router>
+        <NavigationBar />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/obrasdetalhadas" element={<ObrasDetalhadas />} />
+          <Route exact path="/obrasresumidas" element={<ObrasResumidas />} />
+          <Route path="/obrasdetalhadas/register" element={<CadastroObra />} />
+          <Route path="/obrasdetalhadas/search" element={<BuscaObrasDetalhadas />} />
+          <Route path="/obrasresumidas/search" element={<BuscaObrasResumidas />} />
+          <Route path="/obrasdetalhadas/edit/:id" element={<EditarObra />} />
+          {showAdmin && (
+            <Route exact path="/usuarios" element={<Usuarios />} />)}
+          {showAdmin && (
+            <Route path="/usuarios/register" element={<CadastroUsuario />} />)}
+          {showAdmin && (
+            <Route path="/usuarios/search" element={<BuscaUsuarios />} />)}
+          {showAdmin && (
+            <Route path="/usuarios/edit/:id" element={<EditarUsuario />} />)}
+          {showAdmin && (
+            <Route exact path="/emprestimos" element={<Emprestimos />} />)}
+          {showAdmin && (
+            <Route path="/emprestimos/register" element={<CadastroEmprestimo />} />)}
+          {showAdmin && (
+            <Route path="/emprestimos/search" element={<BuscaEmprestimos />} />)}
+          {showAdmin && (
+            <Route path="/emprestimos/edit/:id" element={<EditarEmprestimo />} />)}
+          <Route path="/login" element={<Login />} />
+          <Route path="/404" element={<PageNotFound />} />
+          <Route path="*" element={<Navigate replace to="/404" />} />
+        </Routes>
+      </Router>
+    </>
+  );
 };
 
 export default App;
