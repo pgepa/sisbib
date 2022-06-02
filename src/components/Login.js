@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState }  from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
@@ -8,7 +8,7 @@ import AuthService from '../services/auth.service';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 
-const LoginUsuario = (props) => {
+const Login = (props) => {
   const validationSchema = Yup.object().shape({
     email: Yup.string()
       .required('Informe seu email.')
@@ -22,14 +22,14 @@ const LoginUsuario = (props) => {
   const [showAlert, setShowAlert] = useState(false);
   const [backMessage, setBackMessage] = useState('');
 
-  const handleSubmit = (data) => {
+  const handleLogin = (data) => {
     AuthService.login(data)
       .then((response) => {
-        setBackMessage(response.data.message);
         setShowAlert(true);
+        setBackMessage(response.data.message);
       })
       .catch((error) => {
-        console.log(error.response.data.message);
+        console.log(error);
       });
   };
 
@@ -40,7 +40,7 @@ const LoginUsuario = (props) => {
 
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema}
-      onSubmit={handleSubmit}>
+      onSubmit={handleLogin}>
       {() => (
         <Form className="container card card-usuario my-3">
           <FormGroup>
@@ -86,4 +86,4 @@ const LoginUsuario = (props) => {
   );
 }
 
-export default LoginUsuario;
+export default Login;

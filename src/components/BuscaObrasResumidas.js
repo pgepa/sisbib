@@ -7,6 +7,7 @@ import { Container, Button, Form, Row, Col, Navbar, Nav, Table } from 'react-boo
 import colunasObrasResumidas from './resources/ColunasObrasResumidas';
 import { FaEdit } from 'react-icons/fa';
 import { BiBookAdd } from 'react-icons/bi';
+import AuthService from '../services/auth.service';
 
 const BuscaObrasResumidas = (props) => {
   const limit = 20;
@@ -14,30 +15,42 @@ const BuscaObrasResumidas = (props) => {
   const [obras, setObras] = useState([]);
   const location = useLocation();
   const [keyword, setKeyword] = useState(location.state.termo);
+  const [showAdmin, setShowAdmin] = useState(false);
 
   const navigate = useNavigate();
   const form = useRef();
   
   useEffect(async () => {
+    const user = AuthService.getCurrentUser();
+    if (user) {
+      setShowAdmin(user.roles.includes('ROLE_ADMIN'));
+    }
     const awaitObras = await ObrasService.getSome({ termo: location.state.termo }, limit, page);
     setObras(awaitObras.data);
   }, [page]);
 
-  const columns = useMemo(() => colunasObrasResumidas.concat([
-    {
-      Header: 'Ações',
-      acessor: 'actions',
-      Cell: (props) => {
-        return (
-          <div>
-            <Button variant="info" title="Editar" as={Link} to="/obrasdetalhadas/register">
-              <FaEdit size='1rem'/>
-            </Button>
-          </div>
-        );
-      }
+  const columns = useMemo(() => {
+    if (showAdmin) {
+      return colunasObrasResumidas.concat([
+        {
+          Header: 'Ações',
+          acessor: 'actions',
+          Cell: (props) => {
+            return (
+              <div>
+                <Button variant="info" title="Editar" as={Link} to="/obrasdetalhadas/register">
+                  <FaEdit size='1rem'/>
+                </Button>
+              </div>
+            );
+          }
+        }
+      ]);
     }
-  ]), []);
+    else {
+      return colunasObrasResumidas;
+    }
+  }, []);
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({
@@ -54,7 +67,7 @@ const BuscaObrasResumidas = (props) => {
     e.preventDefault();
     setKeyword(keyword);
     navigate('/obrasresumidas/search', { state: { termo: keyword } } );
-    props.parent.reload();
+    window.location.reload();
   };
 
   return (
@@ -104,15 +117,16 @@ const BuscaObrasResumidas = (props) => {
             </Form.Group>
           </Form>
         </Col>
-        <Col md={3} className="btn32">
-          <Form.Group className="col-12 pt-2">
-            <Button variant="success" className="btn32" as={Link} to="/obrasdetalhadas/register">
-              <BiBookAdd size='1rem'/>
-              <span> </span>
-              Adicionar obra
-            </Button>
-          </Form.Group>
-        </Col>
+        { showAdmin && (
+          <Col md={3} className="btn32">
+            <Form.Group className="col-12 pt-2">
+              <Button variant="success" className="btn32" as={Link} to="/obrasdetalhadas/register">
+                <BiBookAdd size='1rem'/>
+                <span> </span>
+                Adicionar obra
+              </Button>
+            </Form.Group>
+          </Col>)}
       </Row>
       
       <Container fluid className="col-md-12 list my-3">

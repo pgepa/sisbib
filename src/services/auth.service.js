@@ -1,5 +1,6 @@
 import axios from 'axios';
 import apiurl from './apiurl';
+
 const APIURL = `${apiurl()}/api/auth/`;
 
 const addUser = (inscription, name, department, cpf, email, password) => {
@@ -7,16 +8,19 @@ const addUser = (inscription, name, department, cpf, email, password) => {
     { inscription, name, department, cpf, email, password });
 };
 
-const login = (email, password) => {
+const login = (data) => {
   return axios
-    .post(APIURL.concat('signin'), { email, password })
+    .post(APIURL.concat('signin'), data)
     .then((response) => {
       if (response.data.accessToken) {
-        localStorage.setItem('email', email);
+        localStorage.setItem('email', response.data.email);
         localStorage.setItem('user', JSON.stringify(response.data));
         localStorage.setItem('department', response.data.department);
       }
-      return response.data;
+      return response;
+    })
+    .catch((error) => {
+      return error.message;  
     });
 };
 
@@ -46,6 +50,7 @@ const changeNewPassword = (email, newPassword) => {
   return axios.post(APIURL.concat('changenewpass'), { email, newPassword });
 }
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default { addUser, login, logout, getCurrentUser, getEmail,
+const AuthService = { addUser, login, logout, getCurrentUser, getEmail,
   getDepartment, changePassword, changeNewPassword };
+
+export default AuthService;

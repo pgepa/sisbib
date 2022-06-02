@@ -40,14 +40,16 @@ const App = () => {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/obrasdetalhadas" element={<ObrasDetalhadas />} />
           <Route exact path="/obrasresumidas" element={<ObrasResumidas />} />
-          <Route path="/obrasdetalhadas/register" element={<CadastroObra />} />
           <Route path="/obrasdetalhadas/search" element={<BuscaObrasDetalhadas />} />
           <Route path="/obrasresumidas/search" element={<BuscaObrasResumidas />} />
-          <Route path="/obrasdetalhadas/edit/:id" element={<EditarObra />} />
+          {showAdmin && (
+            <Route path="/obrasdetalhadas/register" element={<CadastroObra />} />)}
+          {showAdmin && (
+            <Route path="/obrasdetalhadas/edit/:id" element={<EditarObra />} />)}
           {showAdmin && (
             <Route exact path="/usuarios" element={<Usuarios />} />)}
-          
-            <Route path="/usuarios/register" element={<CadastroUsuario />} />
+          {showAdmin && (
+            <Route path="/usuarios/register" element={<CadastroUsuario />} />)}
           {showAdmin && (
             <Route path="/usuarios/search" element={<BuscaUsuarios />} />)}
           {showAdmin && (

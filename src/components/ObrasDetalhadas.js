@@ -38,7 +38,6 @@ const ObrasDetalhadas = (props) => {
   const columns = useMemo(() => {
     if (showAdmin) {
       return colunasObrasDetalhadas.concat([
-    
         {
           Header: 'Ações',
           acessor: 'actions',
@@ -124,15 +123,16 @@ const ObrasDetalhadas = (props) => {
             </Form.Group>
           </Form>
         </Col>
-        <Col md={3} className="btn32">
-          <Form.Group className="col-12 pt-2">
-            <Button variant="success" className="btn32" as={Link} to="/obrasdetalhadas/register">
-              <BiBookAdd size='1rem'/>
-              <span> </span>
-              Adicionar obra
-            </Button>
-          </Form.Group>
-        </Col>
+        { showAdmin && (
+          <Col md={3} className="btn32">
+            <Form.Group className="col-12 pt-2">
+              <Button variant="success" className="btn32" as={Link} to="/obrasdetalhadas/register">
+                <BiBookAdd size='1rem'/>
+                <span> </span>
+                Adicionar obra
+              </Button>
+            </Form.Group>
+          </Col>)}
       </Row>
       
       <Container fluid className="col-md-12 list my-3">

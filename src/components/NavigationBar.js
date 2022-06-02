@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 const NavigationBar = (props) => {
   const [showAdmin, setShowAdmin] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+  
   useEffect(() => {
     const user = AuthService.getCurrentUser();
     if (user) {
@@ -17,12 +18,17 @@ const NavigationBar = (props) => {
       setShowAdmin(user.roles.includes('ROLE_ADMIN'));
     }
   },[]);
+  
   const navigate = useNavigate();
+
   const logout = () => {
     AuthService.logout();
+    alert('Usuário(a) efetuou logout com sucesso.');
+    setShowAdmin(false);
+    setCurrentUser(null);
     navigate('/');
-    props.parent.reload();
   }
+
   return (
     <Navbar bg="success" variant="dark" expand="lg">
       <Container fluid>

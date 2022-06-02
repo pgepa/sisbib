@@ -11,7 +11,7 @@ const Emprestimos = (props) => {
   const limit = 20;
   const [page, setPage] = useState(1);
   const [emprestimos, setEmprestimos] = useState([]);
-  const [keyword, setKeyword] = useState("");
+  const [keyword, setKeyword] = useState('');
 
   const navigate = useNavigate();
   const form = useRef();
@@ -36,7 +36,7 @@ const Emprestimos = (props) => {
           Cell: ({ row }) => (
             <span>
               {new Intl.DateTimeFormat('pt-BR', {}).format(
-                new Date(row.original.data_emprestimo.concat('T03:00Z'))
+                new Date(String(row.original.data_emprestimo).concat('T03:00Z'))
               )}
             </span>
           ),
@@ -88,7 +88,6 @@ const Emprestimos = (props) => {
           Header: 'Nº de registro 3',
           accessor: 'registro_obra3'
         },
-        
         {
           Header: 'Devolução 3',
           accessor: 'data_devolucao3',

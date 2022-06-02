@@ -7,18 +7,24 @@ import { Container, Button, Form, Row, Col, Navbar, Nav, Table } from 'react-boo
 import colunasObrasResumidas from './resources/ColunasObrasResumidas';
 import { FaEdit } from 'react-icons/fa';
 import { BiBookAdd } from 'react-icons/bi';
+import AuthService from '../services/auth.service';
 
 const ObrasResumidas = (props) => {
   const limit = 20;
   const [page, setPage] = useState(1);
   const [obras, setObras] = useState([]);
   const [keyword, setKeyword] = useState('');
+  const [showAdmin, setShowAdmin] = useState(false);
 
   const navigate = useNavigate();
   const form = useRef();
   form.current = obras;
   
   useEffect(async () => {
+    const user = AuthService.getCurrentUser();
+    if (user) {
+      setShowAdmin(user.roles.includes('ROLE_ADMIN'));
+    }
     const awaitObras = await ObrasService.getReducedAll(limit, page);
     setObras(awaitObras.data);
   }, [page]);
@@ -28,22 +34,29 @@ const ObrasResumidas = (props) => {
     navigate(`/obrasdetalhadas/edit/${id}`);
   }
 
-  const columns = useMemo(() => colunasObrasResumidas.concat([
-    {
-      Header: 'Ações',
-      acessor: 'actions',
-      Cell: (props) => {
-        const rowIdx = Number(props.row.id);
-        return (
-          <div>
-            <Button variant="info" title="Editar" onClick={() => editObra(rowIdx)}>
-              <FaEdit size='1rem'/>
-            </Button>
-          </div>
-        );
-      }
+  const columns = useMemo(() => {
+    if (showAdmin) {
+      return colunasObrasResumidas.concat([
+        {
+          Header: 'Ações',
+          acessor: 'actions',
+          Cell: (props) => {
+            const rowIdx = Number(props.row.id);
+            return (
+              <div>
+                <Button variant="info" title="Editar" onClick={() => editObra(rowIdx)}>
+                  <FaEdit size='1rem'/>
+                </Button>
+              </div>
+            );
+          }
+        }
+      ])
     }
-  ]), []);
+    else {
+      return colunasObrasResumidas;
+    }
+  }, []);
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({
@@ -109,15 +122,16 @@ const ObrasResumidas = (props) => {
             </Form.Group>
           </Form>
         </Col>
-        <Col md={3} className="btn32">
-          <Form.Group className="col-12 pt-2">
-            <Button variant="success" className="btn32" as={Link} to="/obrasdetalhadas/register">
-              <BiBookAdd size='1rem'/>
-              <span> </span>
-              Adicionar obra
-            </Button>
-          </Form.Group>
-        </Col>
+        { showAdmin && (
+          <Col md={3} className="btn32">
+            <Form.Group className="col-12 pt-2">
+              <Button variant="success" className="btn32" as={Link} to="/obrasdetalhadas/register">
+                <BiBookAdd size='1rem'/>
+                <span> </span>
+                Adicionar obra
+              </Button>
+            </Form.Group>
+          </Col>)}
       </Row>
       
       <Container fluid className="col-md-12 list my-3">
