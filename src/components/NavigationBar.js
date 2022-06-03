@@ -23,7 +23,7 @@ const NavigationBar = (props) => {
 
   const logout = () => {
     AuthService.logout();
-    alert('Usuário(a) efetuou logout com sucesso.');
+    alert('Logout efetuado com sucesso.');
     setShowAdmin(false);
     setCurrentUser(null);
     navigate('/');

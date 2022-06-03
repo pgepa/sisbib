@@ -74,9 +74,9 @@ const EditarEmprestimo = (props) => {
   }
 
   const options = [
-    { value: 'alessandra', label: 'Alessandra'},
-    { value: 'carla', label: 'Carla'},
-    { value: 'rafael', label: 'Rafael'}
+    { value: 'alessandra', label: 'Alessandra Mendonça'},
+    { value: 'carla', label: 'Carla Blanco'},
+    { value: 'rafael', label: 'Rafael Rolo'}
   ]
 
   const [selectedUser, setSelectedUser] = useState('');
