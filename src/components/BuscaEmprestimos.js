@@ -89,7 +89,6 @@ const BuscaEmprestimos = (props) => {
           Header: 'Nº de registro 3',
           accessor: 'registro_obra3'
         },
-        
         {
           Header: 'Devolução 3',
           accessor: 'data_devolucao3',
@@ -98,6 +97,38 @@ const BuscaEmprestimos = (props) => {
               { ( row.original.data_devolucao3 ?
                   new Intl.DateTimeFormat('pt-BR', {}).format(
                     new Date(row.original.data_devolucao3.concat('T03:00Z'))) :
+                  'dd/mm/yyyy' ) }
+            </span>
+          ),
+        },
+        {
+          Header: 'Nº de registro 4',
+          accessor: 'registro_obra4'
+        },
+        {
+          Header: 'Devolução 4',
+          accessor: 'data_devolucao4',
+          Cell: ({ row }) => (
+            <span>
+              { ( row.original.data_devolucao4 ?
+                  new Intl.DateTimeFormat('pt-BR', {}).format(
+                    new Date(row.original.data_devolucao4.concat('T03:00Z'))) :
+                  'dd/mm/yyyy' ) }
+            </span>
+          ),
+        },
+        {
+          Header: 'Nº de registro 5',
+          accessor: 'registro_obra5'
+        },
+        {
+          Header: 'Devolução 5',
+          accessor: 'data_devolucao5',
+          Cell: ({ row }) => (
+            <span>
+              { ( row.original.data_devolucao5 ?
+                  new Intl.DateTimeFormat('pt-BR', {}).format(
+                    new Date(row.original.data_devolucao5.concat('T03:00Z'))) :
                   'dd/mm/yyyy' ) }
             </span>
           ),

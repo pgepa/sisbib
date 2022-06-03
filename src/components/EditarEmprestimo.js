@@ -30,6 +30,8 @@ const EditarEmprestimo = (props) => {
     registro_obra1: '',
     registro_obra2: '',
     registro_obra3: '',
+    registro_obra4: '',
+    registro_obra5: '',
     data_emprestimo: '',
     data_prevista: ''
   };
@@ -128,6 +130,7 @@ const EditarEmprestimo = (props) => {
               </FormGroup>
             </Col>
           </Row>
+          <hr className="mt-5"/>
           <Row className="my-3">
             <Col>
               <FormGroup>
@@ -138,25 +141,18 @@ const EditarEmprestimo = (props) => {
             </Col>
             <Col>
               <FormGroup>
-                <FormLabel className="h4 my-2">Nº do registro da obra 2</FormLabel>
-                <Field name="registro_obra2" type="text" size="lg" value={currentEmprestimo.registro_obra2} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
-                <ErrorMessage name="registro_obra2" component="div" className="text-danger" />
-              </FormGroup>
-            </Col>
-            <Col>
-              <FormGroup>
-                <FormLabel className="h4 my-2">Nº do registro da obra 3</FormLabel>
-                <Field name="registro_obra3" type="text" size="lg" value={currentEmprestimo.registro_obra3} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
-                <ErrorMessage name="registro_obra3" component="div" className="text-danger" />
+                <FormLabel className="h4 my-2">Data real de devolução 1</FormLabel>
+                <Field name="data_devolucao1" type="date" size="lg" value={currentEmprestimo.data_devolucao1} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
+                <ErrorMessage name="data_devolucao1" component="div" className="text-danger" />
               </FormGroup>
             </Col>
           </Row>
           <Row className="my-3">
             <Col>
               <FormGroup>
-                <FormLabel className="h4 my-2">Data real de devolução 1</FormLabel>
-                <Field name="data_devolucao1" type="date" size="lg" value={currentEmprestimo.data_devolucao1} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
-                <ErrorMessage name="data_devolucao1" component="div" className="text-danger" />
+                <FormLabel className="h4 my-2">Nº do registro da obra 2</FormLabel>
+                <Field name="registro_obra2" type="text" size="lg" value={currentEmprestimo.registro_obra2} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
+                <ErrorMessage name="registro_obra2" component="div" className="text-danger" />
               </FormGroup>
             </Col>
             <Col>
@@ -166,11 +162,52 @@ const EditarEmprestimo = (props) => {
                 <ErrorMessage name="data_devolucao2" component="div" className="text-danger" />
               </FormGroup>
             </Col>
+          </Row>
+          <Row className="my-3">
+          <Col>
+            <FormGroup>
+                <FormLabel className="h4 my-2">Nº do registro da obra 3</FormLabel>
+                <Field name="registro_obra3" type="text" size="lg" value={currentEmprestimo.registro_obra3} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
+                <ErrorMessage name="registro_obra3" component="div" className="text-danger" />
+              </FormGroup>
+            </Col>
             <Col>
               <FormGroup>
                 <FormLabel className="h4 my-2">Data real de devolução 3</FormLabel>
                 <Field name="data_devolucao3" type="date" size="lg" value={currentEmprestimo.data_devolucao3} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
                 <ErrorMessage name="data_devolucao3" component="div" className="text-danger" />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row className="my-3">
+             <Col>
+              <FormGroup>
+                <FormLabel className="h4 my-2">Nº do registro da obra 4</FormLabel>
+                <Field name="registro_obra4" type="text" size="lg" value={currentEmprestimo.registro_obra4} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
+                <ErrorMessage name="registro_obra4" component="div" className="text-danger" />
+              </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup>
+                <FormLabel className="h4 my-2">Data real de devolução 4</FormLabel>
+                <Field name="data_devolucao4" type="date" size="lg" value={currentEmprestimo.data_devolucao4} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
+                <ErrorMessage name="data_devolucao4" component="div" className="text-danger" />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row className="my-3">
+            <Col>
+              <FormGroup>
+                <FormLabel className="h4 my-2">Nº do registro da obra 5</FormLabel>
+                <Field name="registro_obra5" type="text" size="lg" value={currentEmprestimo.registro_obra5} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
+                <ErrorMessage name="registro_obra5" component="div" className="text-danger" />
+              </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup>
+                <FormLabel className="h4 my-2">Data real de devolução 5</FormLabel>
+                <Field name="data_devolucao5" type="date" size="lg" value={currentEmprestimo.data_devolucao5} onChange={handleInputChange} className="form-control shadow h4 mx-1 mb-2" />
+                <ErrorMessage name="data_devolucao5" component="div" className="text-danger" />
               </FormGroup>
             </Col>
           </Row>
