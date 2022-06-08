@@ -21,10 +21,12 @@ const Login = (props) => {
 
   const [showAlert, setShowAlert] = useState(false);
   const [backMessage, setBackMessage] = useState('');
+  const [variantColor, setVariantColor] = useState('');
 
   const handleLogin = (data) => {
     AuthService.login(data)
       .then((response) => {
+        console.log(`handleLogin response = ${response}`);
         setShowAlert(true);
         setBackMessage(response.data.message);
       })

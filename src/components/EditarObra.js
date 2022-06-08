@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { FormGroup, FormLabel, Row, Col, Alert } from 'react-bootstrap';
+import { FormGroup, FormLabel, Row, Col, Modal } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import { BsCheckLg } from 'react-icons/bs';
 import ObrasService from '../services/obras.service';
@@ -54,6 +54,18 @@ const EditarObra = (props) => {
   };
 
   const [currentObra, setCurrentObra] = useState(initialValues);
+  const [showModal, setShowModal] = useState(false);
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    navigate(-1);
+    props.parent.reload();
+  }
+
+  const handleShowModal = () => {
+    setShowModal(true);
+  }
+
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -67,14 +79,13 @@ const EditarObra = (props) => {
     setCurrentObra({ ...currentObra, [name]: value });
   };
 
-  const [showAlert, setShowAlert] = useState(false);
   const [backMessage, setBackMessage] = useState('');
 
   const handleUpdate = (data) => {
     ObrasService.update(data)
       .then((response) => {
         setBackMessage(response.data.message);
-        setShowAlert(true);
+        handleShowModal();
       })
       .catch((error) => {
         console.log(error.response.data.message);
@@ -185,14 +196,18 @@ const EditarObra = (props) => {
             </Button>
           </FormGroup>
           {
-            showAlert && (
-              <Alert variant="success" onClose={() => {
-                setShowAlert(false);
-                navigate(-1);
-                props.parent.reload();
-              }} dismissible>
-                {backMessage}
-              </Alert>
+            showModal && (
+              <Modal show={showModal} onHide={handleCloseModal} centered>
+                <Modal.Header closeButton>
+                  <Modal.Title>Mensagem</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  {backMessage}
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="primary" onClick={handleCloseModal}>Fechar</Button>
+                </Modal.Footer>
+              </Modal>
             )
           }
         </Form>
