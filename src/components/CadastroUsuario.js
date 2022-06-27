@@ -49,7 +49,8 @@ const CadastroUsuario = (props) => {
       props.parent.reload();
     })
     .catch((error) => {
-      console.log(error.response.data.message);
+      alert('Erro ao cadastrar usuário!');
+      console.log(error);
     });
   };
 

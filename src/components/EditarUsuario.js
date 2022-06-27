@@ -72,7 +72,8 @@ const EditarUsuario = (props) => {
         props.parent.reload();
       })
       .catch((error) => {
-        console.log(error.response.data.message);
+        alert('Erro ao atualizar usuário!');
+        console.log(error);
       });
   };
 
