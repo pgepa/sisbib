@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { FormGroup, FormLabel, Row, Col, Alert } from 'react-bootstrap';
+import { FormGroup, FormLabel, Row, Col } from 'react-bootstrap';
 import { BsCheckLg, BsXLg } from 'react-icons/bs';
 import AuthService from '../services/auth.service';
 import * as Yup from 'yup';
@@ -41,14 +41,12 @@ const CadastroUsuario = (props) => {
 
   const navigate = useNavigate();
 
-  const [showAlert, setShowAlert] = useState(false);
-  const [backMessage, setBackMessage] = useState('');
-
   const handleSubmit = (data) => {
     AuthService.addUser(data)
     .then((response) => {
-      setBackMessage(response.data.message);
-      setShowAlert(true);
+      alert(response.data.message);
+      navigate(-1);
+      props.parent.reload();
     })
     .catch((error) => {
       console.log(error.response.data.message);
@@ -127,17 +125,6 @@ const CadastroUsuario = (props) => {
               </FormGroup>
             </Col>
           </Row>
-          {
-            showAlert && (
-              <Alert variant="success" className="mt-4" onClose={() => {
-                setShowAlert(false);
-                navigate(-1);
-                props.parent.reload();
-              }} dismissible>
-                {backMessage}
-              </Alert>
-            )
-          }
         </Form>
       )}
     </Formik>

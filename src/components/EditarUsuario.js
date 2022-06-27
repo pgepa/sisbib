@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { FormGroup, FormLabel, Button, Alert } from 'react-bootstrap';
+import { FormGroup, FormLabel, Button } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import { BsCheckLg } from 'react-icons/bs';
 import UsuariosService from '../services/usuarios.service';
@@ -64,14 +64,12 @@ const EditarUsuario = (props) => {
     setCurrentUser({ ...currentUser, [name]: value });
   };
 
-  const [showAlert, setShowAlert] = useState(false);
-  const [backMessage, setBackMessage] = useState('');
-
   const handleUpdate = () => {
     UsuariosService.update(currentUser)
       .then((response) => {
-        setBackMessage(response.data.message);
-        setShowAlert(true);
+        alert(response.data.message);
+        navigate(-1);
+        props.parent.reload();
       })
       .catch((error) => {
         console.log(error.response.data.message);
@@ -118,17 +116,6 @@ const EditarUsuario = (props) => {
               <BsCheckLg /><span className="mx-2">ATUALIZAR</span>
             </Button>
           </FormGroup>
-          {
-            showAlert && (
-              <Alert variant="success" className="mt-4" onClose={() => {
-                setShowAlert(false);
-                navigate(-1);
-                props.parent.reload();
-              }} dismissible>
-                {backMessage}
-              </Alert>
-            )
-          }
         </Form>
       )}
     </Formik>

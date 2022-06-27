@@ -1,8 +1,8 @@
-import React, { useState }  from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { FormGroup, FormLabel, Col, Row, Alert } from 'react-bootstrap';
+import { FormGroup, FormLabel, Col, Row } from 'react-bootstrap';
 import { BsCheckLg, BsXLg } from 'react-icons/bs';
 import AuthService from '../services/auth.service';
 import * as Yup from 'yup';
@@ -19,18 +19,16 @@ const Login = (props) => {
 
   const navigate = useNavigate();
 
-  const [showAlert, setShowAlert] = useState(false);
-  const [backMessage, setBackMessage] = useState('');
-  const [variantColor, setVariantColor] = useState('');
-
   const handleLogin = (data) => {
     AuthService.login(data)
       .then((response) => {
         console.log(`handleLogin response = ${response}`);
-        setShowAlert(true);
-        setBackMessage(response.data.message);
+        alert(response.data.message);
+        navigate('/obrasresumidas');
+        window.location.reload();
       })
       .catch((error) => {
+        alert('Login ou senha inválidos!');
         console.log(error);
       });
   };
@@ -71,17 +69,6 @@ const Login = (props) => {
               </FormGroup>
             </Col>
           </Row>
-          {
-            showAlert && (
-              <Alert variant="success" className="mt-4" onClose={() => {
-                setShowAlert(false);
-                navigate('/obrasresumidas');
-                window.location.reload();
-              }} dismissible>
-                {backMessage}
-              </Alert>
-            )
-          }
         </Form>
       )}
     </Formik>
