@@ -14,6 +14,7 @@ const ObrasDetalhadas = (props) => {
   const limit = 20;
   const [page, setPage] = useState(1);
   const [obras, setObras] = useState([]);
+  const [registers,setRegisters] = useState(0);
   const [keyword, setKeyword] = useState('');
   const [showAdmin, setShowAdmin] = useState(false);
 
@@ -28,6 +29,8 @@ const ObrasDetalhadas = (props) => {
     }
     const awaitObras = await ObrasService.getAll(limit, page);
     setObras(awaitObras.data);
+    const awaitRegisters = await ObrasService.count();
+    setRegisters(awaitRegisters.data);
   }, [page]);
 
   const editObra = (rowIndex) => {

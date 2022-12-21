@@ -26,6 +26,10 @@ const getSome = (termo,limit,page) => {
     { headers: { Authorization: auth } });
 }
 
+const getCount = () => {
+    return axios.get(APIURL.concat('count'));
+}
+
 const update = (data) => {
   return axios.post(APIURL.concat(`update`), data,
   { headers: { Authorization: auth } });
@@ -35,6 +39,6 @@ const remove = (id) => {
     return axios.delete(APIURL.concat(id), { headers: { Authorization: auth } });
 }
 
-const ObrasService = { addObra, getOne, getAll, getReducedAll, getSome, update, remove };
+const ObrasService = { addObra, getOne, getAll, getReducedAll, getSome, getCount, update, remove };
 
 export default ObrasService;
