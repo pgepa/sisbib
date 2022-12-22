@@ -20,6 +20,10 @@ const getSome = (termo,limit,page) => {
     return axios.post(APIURL.concat(`search?limit=${limit}&page=${page}`), termo, { headers: { Authorization: auth } });
 }
 
+const getCount = () => {
+    return axios.get(APIURL.concat('count'));
+}
+
 const update = (data) => {
     return axios.post(APIURL.concat(`update`), data, { headers: { Authorization: auth } });
 }
@@ -28,6 +32,6 @@ const remove = (id) => {
     return axios.delete(APIURL.concat(id), { headers: { Authorization: auth } });
 }
 
-const EmprestimosService = { addEmprestimo, getOne, getAll, getSome, update, remove };
+const EmprestimosService = { addEmprestimo, getOne, getAll, getSome, getCount, update, remove };
 
 export default EmprestimosService;

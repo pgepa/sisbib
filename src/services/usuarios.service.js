@@ -23,6 +23,10 @@ const getNames = (limit,page) => {
     { headers: { Authorization: auth } });
 }
 
+const getCount = () => {
+    return axios.get(APIURL.concat('count'));
+}
+
 const update = (data) => {
     return axios.post(APIURL.concat(`update`), data, { headers: { Authorization: auth } });
 }
@@ -31,6 +35,6 @@ const remove = (id) => {
     return axios.delete(APIURL.concat(id), { headers: { Authorization: auth } });
 }
 
-const UsuariosService = { getOne, getAll, getSome, getNames, update, remove };
+const UsuariosService = { getOne, getAll, getSome, getNames, getCount, update, remove };
 
 export default UsuariosService;

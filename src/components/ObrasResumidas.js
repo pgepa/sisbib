@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import ObrasService from '../services/obras.service';
+import UsuariosService from '../services/usuarios.service';
+import EmprestimosService from '../services/emprestimos.service';
 import { useTable } from 'react-table';
 import { useNavigate, Link } from 'react-router-dom';
 import { Container, Button, Form, Row, Col, Navbar, Nav, Table } from 'react-bootstrap';
@@ -15,6 +17,9 @@ const ObrasResumidas = (props) => {
   const [obras, setObras] = useState([]);
   const [keyword, setKeyword] = useState('');
   const [showAdmin, setShowAdmin] = useState(false);
+  const [obrasTotais, setObrasTotais] = useState(0);
+  const [usuariosTotais, setUsuariosTotais] = useState(0);
+  const [emprestimosTotais, setEmprestimosTotais] = useState(0);
 
   const navigate = useNavigate();
   const form = useRef();
@@ -25,6 +30,12 @@ const ObrasResumidas = (props) => {
     if (user) {
       setShowAdmin(user.roles.includes('ROLE_ADMIN'));
     }
+    const awaitObrasTotais = await ObrasService.getCount();
+    setObrasTotais(awaitObrasTotais.data.data);
+    const awaitUsuariosTotais = await UsuariosService.getCount();
+    setUsuariosTotais(awaitUsuariosTotais.data.data);
+    const awaitEmprestimosTotais = await EmprestimosService.getCount();
+    setEmprestimosTotais(awaitEmprestimosTotais.data.data);
     const awaitObras = await ObrasService.getReducedAll(limit, page);
     setObras(awaitObras.data);
   }, [page]);
@@ -165,30 +176,36 @@ const ObrasResumidas = (props) => {
           </tbody>
         </Table>
       </Container>
-      <Col md={3}>
-        <Navbar className="pt-2" aria-label="Page navigation example">
-          <Nav className="pagination pt-1">
-            <Nav.Item key="anterior" className="page-item">
-              <Button className="page-link mx-1" onClick={() => setPage(page - 1)}>
-                Anterior
-              </Button>
-            </Nav.Item>
-            {
-              [...Array(5)].map((object,i) =>
-                <Nav.Item key={i} className="page-item">
-                  <Button className="page-link" onClick={() => setPage(i + 1)}>
-                    {i + 1}
-                  </Button>
-                </Nav.Item>)
-            }
-            <Nav.Item key="seguinte" className="page-item">
-              <Button className="page-link mx-1" onClick={() => setPage(page + 1)}>
-                Seguinte
-              </Button>
-            </Nav.Item>
-          </Nav>
-        </Navbar>
-      </Col>
+      <Row>
+        <Col md={3}>
+          <Navbar className="pt-2" aria-label="Page navigation example">
+            <Nav className="pagination pt-1">
+              <Nav.Item key="anterior" className="page-item">
+                <Button className="page-link mx-1" onClick={() => setPage(page - 1)}>
+                  Anterior
+                </Button>
+              </Nav.Item>
+              {
+                [...Array(5)].map((object,i) =>
+                  <Nav.Item key={i} className="page-item">
+                    <Button className="page-link" onClick={() => setPage(i + 1)}>
+                      {i + 1}
+                    </Button>
+                  </Nav.Item>)
+              }
+              <Nav.Item key="seguinte" className="page-item">
+                <Button className="page-link mx-1" onClick={() => setPage(page + 1)}>
+                  Seguinte
+                </Button>
+              </Nav.Item>
+            </Nav>
+          </Navbar>
+        </Col>
+        <Col md={1}></Col>
+        <Col md={8}>
+          <i>Total de obras = {obrasTotais} ; usuários = {usuariosTotais} ; empréstimos = {emprestimosTotais}</i>
+        </Col>
+      </Row>
     </Container>
   );
 };
