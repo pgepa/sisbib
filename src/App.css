@@ -1,8 +1,3 @@
-a.dropdown-item {
-    background: #198754;
-    font-size: 1.1em;
-    color: #C5E1D4;
-}
 
 .area-descricao {
     height: 10rem;
@@ -44,17 +39,15 @@ a.dropdown-item {
 
 div.dropdown-menu.show  {
     background: #198754;
+    
 }
+
 div.text-danger {
     width: 50%;
 }
 
 .font-size {
     font-size: 1.3em;
-}
-
-img:hover {
-    opacity: 0.5;
 }
 
 .margin-large {
