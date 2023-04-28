@@ -7,6 +7,7 @@ import { BsCheckLg, BsXLg } from 'react-icons/bs';
 import AuthService from '../services/auth.service';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
+import './Styles/Login.scss';
 
 const Login = (props) => {
   const validationSchema = Yup.object().shape({
@@ -42,7 +43,7 @@ const Login = (props) => {
     <Formik initialValues={initialValues} validationSchema={validationSchema}
       onSubmit={handleLogin}>
       {() => (
-        <Form className="container card card-usuario my-3">
+        <Form className="container card card-usuario my-5">
           <FormGroup>
             <FormLabel className="h4 my-2">Email</FormLabel>
             <Field name="email" type="email" size="lg" className="form-control shadow h4 mx-0 mb-2" />
@@ -53,20 +54,11 @@ const Login = (props) => {
             <Field name="password" type="password" size="lg" className="form-control shadow h4 mx-0 mb-2" />
             <ErrorMessage name="password" component="div" className="text-danger" />
           </FormGroup>
-          <Row className="mt-4 mx-0">
+          <Row className="mt-4">
             <Col>
-              <FormGroup className="text-center">
-                <Button type="submit" className="btn btn-primary rounded-pill shadow-lg px-4 py-3">
+            <Button type="submit" className="btn shadow-lg">
                   <BsCheckLg /><span className="mx-2">ENTRAR</span>
                 </Button>
-              </FormGroup>
-            </Col>
-            <Col>
-              <FormGroup className="text-center">
-                <Button type="button" onClick={() => navigate(-1)} className="btn btn-danger rounded-pill shadow-lg px-4 py-3">
-                  <BsXLg /><span className="mx-2">CANCELAR</span>
-                </Button>
-              </FormGroup>
             </Col>
           </Row>
         </Form>
