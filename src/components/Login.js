@@ -56,7 +56,7 @@ const Login = (props) => {
           </FormGroup>
           <Row className="mt-4">
             <Col>
-            <Button type="submit" className="btn shadow-lg">
+            <Button type="submit" className="btnLogin shadow-lg">
                   <BsCheckLg /><span className="mx-2">ENTRAR</span>
                 </Button>
             </Col>
