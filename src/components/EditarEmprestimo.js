@@ -223,7 +223,7 @@ const EditarEmprestimo = (props) => {
             </Col>
           </Row>
           <FormGroup className="text-center">
-            <Button type="submit" onClick={handleUpdate} className="btn btn-primary rounded-pill shadow-lg px-4 py-3 m-3">
+            <Button type="submit" onClick={handleUpdate} className="btn btn-success shadow-lg px-4 py-3 m-3">
               <BsCheckLg /><span className="mx-2">ATUALIZAR</span>
             </Button>
           </FormGroup>

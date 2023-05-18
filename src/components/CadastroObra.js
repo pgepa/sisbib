@@ -168,7 +168,7 @@ const CadastroObra = (props) => {
             <Col></Col>
             <Col>
               <FormGroup className="text-center">
-                <Button type="submit" className="btn-md btn-obra btn-primary rounded-pill shadow-lg px-4 py-3">
+                <Button type="submit" className="btn-md btn-obra btn-success shadow-lg px-4 py-3">
                   <BsCheckLg /><span className="mx-2">REGISTRAR</span>
                 </Button>
               </FormGroup>
@@ -176,7 +176,7 @@ const CadastroObra = (props) => {
             <Col></Col>
             <Col>
             <FormGroup className="text-center">
-              <Button type="button" onClick={() => navigate('/obrasdetalhadas')} className="btn-md btn-obra btn-danger rounded-pill shadow-lg px-4 py-3">
+              <Button type="button" onClick={() => navigate('/obrasdetalhadas')} className="btn-md btn-obra btn-danger shadow-lg px-4 py-3">
                 <BsXLg /><span className="mx-2">CANCELAR</span>
               </Button>
             </FormGroup>

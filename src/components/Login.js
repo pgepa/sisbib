@@ -43,7 +43,12 @@ const Login = (props) => {
     <Formik initialValues={initialValues} validationSchema={validationSchema}
       onSubmit={handleLogin}>
       {() => (
-        <Form className="container card card-usuario my-5">
+        <section>
+
+          <h1 className='text-center mt-5'>Bem-vindo(a) ao Sistema de Controle Bibliográfico SiSBiB!</h1>
+
+          <Form className="container card card-usuario my-5">
+          <h2 className='LoginText'>Login</h2>
           <FormGroup>
             <FormLabel className="h4 my-2">Email</FormLabel>
             <Field name="email" type="email" size="lg" className="form-control shadow h4 mx-0 mb-2" />
@@ -62,6 +67,8 @@ const Login = (props) => {
             </Col>
           </Row>
         </Form>
+        </section>
+        
       )}
     </Formik>
   );

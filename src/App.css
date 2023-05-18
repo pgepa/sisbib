@@ -67,3 +67,9 @@ td {
     font-size: 120%;
 }
 
+.LoginText{
+    text-align: center;
+    padding-bottom: 0.5em;
+    border-bottom: 1px black solid;
+}
+

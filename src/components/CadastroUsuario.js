@@ -113,14 +113,14 @@ const CadastroUsuario = (props) => {
           <Row className="mt-4 mx-0">
             <Col>
               <FormGroup className="text-center">
-                <Button type="submit" className="btn btn-primary rounded-pill shadow-lg px-4 py-3">
+                <Button type="submit" className="btn btn-success shadow-lg px-4 py-3">
                   <BsCheckLg /><span className="mx-2">REGISTRAR</span>
                 </Button>
               </FormGroup>
             </Col>
             <Col>  
               <FormGroup className="text-center">
-                <Button type="button" onClick={() => navigate(-1)} className="btn btn-danger rounded-pill shadow-lg px-4 py-3">
+                <Button type="button" onClick={() => navigate(-1)} className="btn btn-danger shadow-lg px-4 py-3">
                   <BsXLg /><span className="mx-2">CANCELAR</span>
                 </Button>
               </FormGroup>

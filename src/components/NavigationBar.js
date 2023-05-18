@@ -32,7 +32,7 @@ const NavigationBar = (props) => {
 
   return (
     <Navbar className='navigationBar navbar-expand-lg' expand="lg">
-      <Container fluid>
+      <Container fluid className='mx-4'>
 
         <img src={brasao} className='brasao' alt="brasao.png" />
 
@@ -40,19 +40,17 @@ const NavigationBar = (props) => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mx-auto font-size">
 
-            <Nav.Link as={Link} to="/" >
-              <FaHome /> <span className="align-middle">Início</span>
-            </Nav.Link>
+          {!currentUser && (
+              <Nav.Link as={Link} to="/login" >
+                <BiLogIn /> <span className="align-middle">Login</span>
+              </Nav.Link>)}
             
             <NavDropdown className='dropdown' title="Obras">
               <NavDropdown.Item as={Link}  to="/obrasdetalhadas" className='dropdown-item' >Detalhadas</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/obrasresumidas" className='dropdown-item' >Resumidas</NavDropdown.Item>
             </NavDropdown>
 
-            {!currentUser && (
-              <Nav.Link as={Link} to="/login" >
-                <BiLogIn /> <span className="align-middle">Login</span>
-              </Nav.Link>)}
+            
             {showAdmin && (
               <Nav.Link as={Link} to="/usuarios" >
                 <FaUsers /> <span className="align-middle">Usuários</span>

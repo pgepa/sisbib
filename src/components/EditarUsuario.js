@@ -113,7 +113,7 @@ const EditarUsuario = (props) => {
             <ErrorMessage name="department" component="div" className="text-danger" />
           </FormGroup>
           <FormGroup className="text-center">
-            <Button type="submit" onClick={handleUpdate} className="btn btn-primary rounded-pill shadow-lg px-4 py-3 mt-4">
+            <Button type="submit" onClick={handleUpdate} className="btn btn-success shadow-lg px-4 py-3 mt-4">
               <BsCheckLg /><span className="mx-2">ATUALIZAR</span>
             </Button>
           </FormGroup>

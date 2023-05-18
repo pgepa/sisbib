@@ -209,7 +209,7 @@ const CadastroEmprestimo = (props) => {
             <Col></Col>
             <Col>
               <FormGroup>
-                <Button type="submit" className="btn-md btn-primary rounded-pill shadow-lg px-3 py-3">
+                <Button type="submit" className="btn-md btn-success shadow-lg px-3 py-3">
                   <BsCheckLg /><span className="mx-2">REGISTRAR</span>
                 </Button>
               </FormGroup>
@@ -217,7 +217,7 @@ const CadastroEmprestimo = (props) => {
             <Col></Col>
             <Col>
               <FormGroup>
-                <Button type="button" onClick={() => navigate('/emprestimos')} className="btn-md btn-danger rounded-pill shadow-lg px-3 py-3">
+                <Button type="button" onClick={() => navigate('/emprestimos')} className="btn-md btn-danger shadow-lg px-3 py-3">
                   <BsXLg /><span className="mx-2">CANCELAR</span>
                 </Button>
               </FormGroup>

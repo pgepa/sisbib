@@ -190,7 +190,7 @@ const EditarObra = (props) => {
             </Col>
           </Row>
           <FormGroup className="text-center">
-            <Button type="submit" onClick={handleUpdate} className="btn-lg btn-primary rounded-pill shadow-lg px-5 py-3 m-5">
+            <Button type="submit" onClick={handleUpdate} className="btn-lg btn-success shadow-lg px-5 py-3 m-5">
               <BsCheckLg />
               <span className="mx-2">ATUALIZAR</span>
             </Button>
