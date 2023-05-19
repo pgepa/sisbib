@@ -41,26 +41,26 @@ const NavigationBar = (props) => {
           <Nav className="mx-auto font-size">
 
           {!currentUser && (
-              <Nav.Link as={Link} to="/login" >
+              <Nav.Link as={Link} className='mx-3' to="/" >
                 <BiLogIn /> <span className="align-middle">Login</span>
               </Nav.Link>)}
             
-            <NavDropdown className='dropdown' title="Obras">
-              <NavDropdown.Item as={Link}  to="/obrasdetalhadas" className='dropdown-item' >Detalhadas</NavDropdown.Item>
+            <NavDropdown className='dropdown mx-3' title="Obras">
+              <NavDropdown.Item as={Link} to="/obrasdetalhadas" className='dropdown-item' >Detalhadas</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/obrasresumidas" className='dropdown-item' >Resumidas</NavDropdown.Item>
             </NavDropdown>
 
             
             {showAdmin && (
-              <Nav.Link as={Link} to="/usuarios" >
+              <Nav.Link as={Link} className='mx-3' to="/usuarios" >
                 <FaUsers /> <span className="align-middle">Usuários</span>
               </Nav.Link>)}
             {showAdmin && (
-              <Nav.Link as={Link} to="/emprestimos" >
+              <Nav.Link as={Link} className='mx-3' to="/emprestimos" >
                 <FaExchangeAlt /> <span className="align-middle">Empréstimos</span>
               </Nav.Link>)}
             {currentUser && (
-              <Nav.Link onClick={logout} >
+              <Nav.Link onClick={logout} className='mx-3'>
                 <BiLogOut /> <span className="align-middle">Logout</span>
               </Nav.Link>)}
 

@@ -37,7 +37,7 @@ const App = () => {
       <Router>
         <NavigationBar />
         <Routes>
-          <Route exact path="/" element={<Home />} />
+          <Route exact path="/" element={<Login />} />
           <Route exact path="/obrasdetalhadas" element={<ObrasDetalhadas />} />
           <Route exact path="/obrasresumidas" element={<ObrasResumidas />} />
           <Route path="/obrasdetalhadas/search" element={<BuscaObrasDetalhadas />} />
@@ -61,7 +61,7 @@ const App = () => {
             <Route path="/emprestimos/search" element={<BuscaEmprestimos />} />)}
           {showAdmin && (
             <Route path="/emprestimos/edit/:id" element={<EditarEmprestimo />} />)}
-          <Route path="/login" element={<Login />} />
+          
           <Route path="/404" element={<PageNotFound />} />
           <Route path="*" element={<Navigate replace to="/404" />} />
         </Routes>
