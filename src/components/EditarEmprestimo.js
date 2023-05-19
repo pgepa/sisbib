@@ -92,7 +92,7 @@ const EditarEmprestimo = (props) => {
     { value: 'rafael', label: 'Rafael Rolo'}
   ]
 
-  const [selectedUser, setSelectedUser] = useState('');
+  const [setSelectedUser] = useState('');
 
   const handleUserChange = (selectedUser, values) => {
     values.nome_funcionario = selectedUser.value;

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import brasao from '../brasao.png';
-import { FaHome, FaUsers, FaExchangeAlt} from 'react-icons/fa';
+import { FaUsers, FaExchangeAlt} from 'react-icons/fa';
 import { BiLogIn, BiLogOut } from 'react-icons/bi';
 import AuthService from '../services/auth.service';
 import { useNavigate } from 'react-router-dom';

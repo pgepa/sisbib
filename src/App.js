@@ -6,7 +6,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import AuthService from './services/auth.service';
 
 import NavigationBar from './components/NavigationBar';
-import Home from './components/Home';
 import ObrasDetalhadas from './components/ObrasDetalhadas';
 import ObrasResumidas from './components/ObrasResumidas';
 import Usuarios from './components/Usuarios';
