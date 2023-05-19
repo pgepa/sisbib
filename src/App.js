@@ -22,6 +22,7 @@ import EditarUsuario from './components/EditarUsuario';
 import EditarEmprestimo from './components/EditarEmprestimo';
 import PageNotFound from './components/PageNotFound';
 import Login from './components/Login';
+import Devolucao from './components/Devolucao';
 
 const App = () => {
   const [showAdmin, setShowAdmin] = useState(false);
@@ -60,6 +61,8 @@ const App = () => {
             <Route path="/emprestimos/search" element={<BuscaEmprestimos />} />)}
           {showAdmin && (
             <Route path="/emprestimos/edit/:id" element={<EditarEmprestimo />} />)}
+            {showAdmin && (
+            <Route path="/emprestimos/devolucao/:id" element={<Devolucao />} />)}
           
           <Route path="/404" element={<PageNotFound />} />
           <Route path="*" element={<Navigate replace to="/404" />} />

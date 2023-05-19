@@ -27,6 +27,11 @@ const Emprestimos = (props) => {
     navigate(`/emprestimos/edit/${id}`);
   }
 
+  const editDevolucao = (rowIndex) => {
+    const id = form.current[rowIndex].id;
+    navigate(`/emprestimos/devolucao/${id}`);
+  }
+
   const columns = useMemo(() => colunasEmprestimos.concat([
     {
       Header: 'Data de empréstimo',
@@ -134,6 +139,10 @@ const Emprestimos = (props) => {
         return (
           <div>
             <Button variant="info" title="Editar" onClick={() => editEmprestimo(rowIdx)}>
+              <FaEdit size='1rem'/>
+            </Button>
+
+            <Button variant="info" title="Devolução" className='mx-2' onClick={() => editDevolucao(rowIdx)}>
               <FaEdit size='1rem'/>
             </Button>
           </div>
