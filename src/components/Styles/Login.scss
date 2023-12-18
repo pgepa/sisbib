@@ -1,11 +1,23 @@
-.btnLogin {
-    background-color: #198754;
-    border-color: #198754;
-    width: 100%;
-}
+.card-usuario {
+    width: auto;
+    max-width: 30em;
 
-.btnLogin:hover {
-    background-color: #105535;
-    border-color: #105535;
-}
+    .LoginText {
+        text-align: center;
+        padding-bottom: 0.5em;
+        border-bottom: 1px black solid;
+    }
 
+    .btnLogin {
+        background-color: #198754;
+        border-color: #198754;
+        width: 100%;
+
+        &:hover {
+            background-color: #105535;
+            border-color: #105535;
+        }
+    }
+
+    
+}

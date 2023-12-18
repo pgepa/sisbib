@@ -2,7 +2,7 @@
     height: 10rem;
 }
 
-.card-usuario.card, .card-emprestimo.card {
+.card-emprestimo.card {
     background-color: #f7f7f7;
     max-width: 30rem;
     padding: 40px 40px;
@@ -65,11 +65,5 @@ td {
 
 .text-large {
     font-size: 120%;
-}
-
-.LoginText{
-    text-align: center;
-    padding-bottom: 0.5em;
-    border-bottom: 1px black solid;
 }
 

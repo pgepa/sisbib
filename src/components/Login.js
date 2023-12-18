@@ -48,27 +48,30 @@ const Login = (props) => {
           <h1 className='text-center mt-5'>Bem-vindo(a) ao Sistema de Controle Bibliográfico SiSBiB!</h1>
 
           <Form className="container card card-usuario my-5">
-          <h2 className='LoginText'>Login</h2>
-          <FormGroup>
-            <FormLabel className="h4 my-2">Email</FormLabel>
-            <Field name="email" type="email" size="lg" className="form-control shadow h4 mx-0 mb-2" />
-            <ErrorMessage name="email" component="div" className="text-danger" />
-          </FormGroup>
-          <FormGroup>
-            <FormLabel className="h4 my-2">Senha</FormLabel>
-            <Field name="password" type="password" size="lg" className="form-control shadow h4 mx-0 mb-2" />
-            <ErrorMessage name="password" component="div" className="text-danger" />
-          </FormGroup>
-          <Row className="mt-4">
-            <Col>
-            <Button type="submit" className="btnLogin shadow-lg">
+            <h2 className='LoginText'>Login</h2>
+
+            <FormGroup>
+              <FormLabel className="h4 my-2">Email</FormLabel>
+              <Field name="email" type="email" size="lg" className="form-control shadow h4 mx-0 mb-2" />
+              <ErrorMessage name="email" component="div" className="text-danger" />
+            </FormGroup>
+
+            <FormGroup>
+              <FormLabel className="h4 my-2">Senha</FormLabel>
+              <Field name="password" type="password" size="lg" className="form-control shadow h4 mx-0 mb-2" />
+              <ErrorMessage name="password" component="div" className="text-danger" />
+            </FormGroup>
+
+            <Row className="mt-4">
+              <Col>
+                <Button type="submit" className="btnLogin shadow-lg">
                   <BsCheckLg /><span className="mx-2">ENTRAR</span>
                 </Button>
-            </Col>
-          </Row>
-        </Form>
+              </Col>
+            </Row>
+          </Form>
         </section>
-        
+
       )}
     </Formik>
   );
