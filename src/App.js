@@ -25,7 +25,7 @@ import Login from './components/Login';
 import Devolucao from './components/Devolucao';
 
 const App = () => {
-  const [showAdmin, setShowAdmin] = useState(true);
+  const [showAdmin, setShowAdmin] = useState(false);
   useEffect(() => {
     const user = AuthService.getCurrentUser();
     if (user) {

@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import './Styles/NavigationBar.scss';
 
 const NavigationBar = (props) => {
-  const [showAdmin, setShowAdmin] = useState(true);
+  const [showAdmin, setShowAdmin] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
