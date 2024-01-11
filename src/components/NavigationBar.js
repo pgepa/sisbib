@@ -58,7 +58,7 @@ const NavigationBar = (props) => {
               </Nav.Link>)}
             {showAdmin && (
               <Nav.Link  href='http://esap.pge.pa.gov.br:5000/' target='_blank' className='mx-3'>
-                <BiBarcodeReader /> <span className="align-middle">Etiquetas</span>
+                <BiBarcodeReader /> <span className="align-middle">SIEB</span>
               </Nav.Link>)}
             {showAdmin && (
               <Nav.Link as={Link} className='mx-3' to="/emprestimos" >
