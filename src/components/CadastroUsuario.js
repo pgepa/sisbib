@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Card } from 'react-bootstrap';
 import { Formik, Field, ErrorMessage } from 'formik';
@@ -6,8 +7,7 @@ import { Form, FormGroup, FormLabel, Row, Col, Container } from 'react-bootstrap
 import { BsCheckLg, BsXLg } from 'react-icons/bs';
 import AuthService from '../services/auth.service';
 import * as Yup from 'yup';
-import { useNavigate } from 'react-router-dom';
-import './Styles/CadastroUsuario.scss';
+import InputMask from 'react-input-mask';
 
 const CadastroUsuario = (props) => {
   const validationSchema = Yup.object().shape({
@@ -21,7 +21,7 @@ const CadastroUsuario = (props) => {
       .min(8, 'O número de telefone deve conter pelo menos 8 digitos'),
     cpf: Yup.string()
       .required('Informe seu CPF')
-      .length(11, 'CPF deve conter 11 dígitos'),
+      .length(14, 'CPF deve conter 11 dígitos'),
     inscription: Yup.string()
       .required('Informe seu número de matrícula')
       .min(6, 'O número de matrícula deve conter no mínimo 6 caracteres')
@@ -76,7 +76,7 @@ const CadastroUsuario = (props) => {
           <Container>
             <Card className='mt-5 mb-5 p-3'>
 
-              <div className='cardHeader'>
+              <div className='text-center mt-3'>
                 <h1>Cadastro de Usuário</h1>
                 <hr />
               </div>
@@ -88,37 +88,39 @@ const CadastroUsuario = (props) => {
                   <ErrorMessage name="name" component="div" className="text-danger" />
                 </FormGroup>
                 <FormGroup className='mb-3'>
-                  <Form.Label className='mx-1'>Email</Form.Label>
-                  <Field name="email" type="email" className="form-control" />
-                  <ErrorMessage name="email" component="div" className="text-danger" />
-                </FormGroup>
-                <FormGroup className='mb-3'>
                   <Row>
                     <Col>
+                      <Form.Label className='mx-1'>Email</Form.Label>
+                      <Field name="email" type="email" className="form-control" />
+                      <ErrorMessage name="email" component="div" className="text-danger" />
+                    </Col>
+                    <Col>
+                      <Form.Label className='mx-1'>Telefone</Form.Label>
+                      <Field name="phone" type="text" className="form-control" />
+                      <ErrorMessage name="phone" component="div" className="text-danger" />
+                    </Col>
+                  </Row>
+                </FormGroup>
+                <FormGroup>
+                  <Row>
+                    <Col md className='mb-3'>
                       <Form.Label className='mx-1'>CPF</Form.Label>
-                      <Field name="cpf" type="text" className="form-control" />
+                      <Field as={InputMask} mask='999.999.999-99' placeholder='___.___.___-__' name="cpf" type="text" className="form-control" />
                       <ErrorMessage name="cpf" component="div" className="text-danger" />
                     </Col>
 
-                    <Col>
+                    <Col md className='mb-3'>
                       <Form.Label className='mx-1'>Matrícula</Form.Label>
                       <Field name="inscription" type="text" className="form-control" />
                       <ErrorMessage name="inscription" component="div" className="text-danger" />
                     </Col>
 
-                    <Col>
+                    <Col md className='mb-3'>
                       <Form.Label className='mx-1'>Setor</Form.Label>
                       <Field name="department" type="text" className="form-control" />
                       <ErrorMessage name="department" component="div" className="text-danger" />
                     </Col>
                   </Row>
-
-                </FormGroup>
-
-                <FormGroup className='mb-3'>
-                  <Form.Label className='mx-1'>Telefone</Form.Label>
-                  <Field name="phone" type="text" className="form-control" />
-                  <ErrorMessage name="phone" component="div" className="text-danger" />
                 </FormGroup>
 
                 <FormGroup className='mb-3'>
@@ -137,22 +139,24 @@ const CadastroUsuario = (props) => {
                   </Row>
 
                 </FormGroup>
-                <Row className="mt-4 mx-0">
-                  <Col>
-                    <FormGroup className="text-center">
+
+                <Container className='mt-5 mb-3 text-center'>
+                  <Row>
+                    <Col>
                       <Button type="submit" className="btn btn-success px-4 py-2 ">
                         <BsCheckLg className='icon mx-1' size={15} /> Registrar
                       </Button>
-                    </FormGroup>
-                  </Col>
-                  <Col>
-                    <FormGroup className="text-center">
+
+                    </Col>
+                    <Col>
                       <Button type="button" onClick={() => navigate(-1)} className="btn btn-danger px-4 py-2 ">
                         <BsXLg className='icon mx-1' size={15} /> Cancelar
                       </Button>
-                    </FormGroup>
-                  </Col>
-                </Row>
+
+                    </Col>
+                  </Row>
+                </Container>
+
               </Form>
             </Card>
 
