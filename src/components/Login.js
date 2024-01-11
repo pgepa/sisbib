@@ -1,8 +1,8 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { FormGroup, FormLabel, Col, Row } from 'react-bootstrap';
+import { Formik, Field, ErrorMessage } from 'formik';
+import { FormGroup, Form, Card, Container, Col, Row } from 'react-bootstrap';
 import { BsCheckLg, BsXLg } from 'react-icons/bs';
 import AuthService from '../services/auth.service';
 import * as Yup from 'yup';
@@ -45,35 +45,46 @@ const Login = (props) => {
       {() => (
         <section>
 
-          <h1 className='text-center mt-5'>Bem-vindo(a) ao Sistema de Controle Bibliográfico SiSBiB!</h1>
+          <Container>
+            <h1 className='text-center mt-5'>Bem-vindo(a) ao Sistema de Controle Bibliográfico <br /> SiSBiB!</h1>
+            <hr />
+          </Container>
 
-          <Form className="container card card-usuario my-5">
-            <h2 className='LoginText'>Login</h2>
+          <Container>
+            <Card className='cardLogin'>
+              <Form>
 
-            <FormGroup>
-              <FormLabel className="h4 my-2">Email</FormLabel>
-              <Field name="email" type="email" size="lg" className="form-control shadow h4 mx-0 mb-2" />
-              <ErrorMessage name="email" component="div" className="text-danger" />
-            </FormGroup>
+                <h2 className='text-center'>Login</h2>
+                <hr />
 
-            <FormGroup>
-              <FormLabel className="h4 my-2">Senha</FormLabel>
-              <Field name="password" type="password" size="lg" className="form-control shadow h4 mx-0 mb-2" />
-              <ErrorMessage name="password" component="div" className="text-danger" />
-            </FormGroup>
+                <FormGroup>
+                  <Form.Label className='mx-1'>Email</Form.Label>
+                  <Field name="email" type="email" className="form-control mb-2" />
+                  <ErrorMessage name="email" component="div" className="text-danger" />
+                </FormGroup>
 
-            <Row className="mt-4">
-              <Col>
-                <Button type="submit" className="btnLogin shadow-lg">
-                  <BsCheckLg /><span className="mx-2">ENTRAR</span>
-                </Button>
-              </Col>
-            </Row>
-          </Form>
+                <FormGroup>
+                  <Form.Label className='mx-1'>Senha</Form.Label>
+                  <Field name="password" type="password" className="form-control mb-2" />
+                  <ErrorMessage name="password" component="div" className="text-danger" />
+                </FormGroup>
+
+                <Row className="mt-4">
+                  <Col>
+                    <Button type="submit" className="btnLogin shadow-lg">
+                      <BsCheckLg /><span className="mx-2">ENTRAR</span>
+                    </Button>
+                  </Col>
+                </Row>
+              </Form>
+            </Card>
+          </Container>
+
         </section>
 
-      )}
-    </Formik>
+      )
+      }
+    </Formik >
   );
 }
 
