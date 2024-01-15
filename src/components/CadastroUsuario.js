@@ -2,8 +2,8 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Card } from 'react-bootstrap';
-import { Formik, Field, ErrorMessage } from 'formik';
-import { Form, FormGroup, FormLabel, Row, Col, Container } from 'react-bootstrap';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { FormGroup, FormLabel, Row, Col, Container } from 'react-bootstrap';
 import { BsCheckLg, BsXLg } from 'react-icons/bs';
 import AuthService from '../services/auth.service';
 import * as Yup from 'yup';
@@ -67,105 +67,104 @@ const CadastroUsuario = (props) => {
   };
 
   return (
-    <section id='usuerRegister'>
 
-      <Formik initialValues={initialValues} validationSchema={validationSchema}
-        onSubmit={handleSubmit}>
-        {() => (
 
-          <Container>
-            <Card className='mt-5 mb-5 p-3'>
+    <Formik initialValues={initialValues} validationSchema={validationSchema}
+      onSubmit={handleSubmit}>
+      {() => (
 
-              <div className='text-center mt-3'>
-                <h1>Cadastro de Usuário</h1>
-                <hr />
-              </div>
+        <Container>
+          <Card className='mt-5 mb-5 p-3'>
 
-              <Form>
-                <FormGroup className='mb-3'>
-                  <Form.Label className='mx-1'>Nome</Form.Label>
-                  <Field name="name" type="text" className="form-control" />
-                  <ErrorMessage name="name" component="div" className="text-danger" />
-                </FormGroup>
-                <FormGroup className='mb-3'>
-                  <Row>
-                    <Col>
-                      <Form.Label className='mx-1'>Email</Form.Label>
-                      <Field name="email" type="email" className="form-control" />
-                      <ErrorMessage name="email" component="div" className="text-danger" />
-                    </Col>
-                    <Col>
-                      <Form.Label className='mx-1'>Telefone</Form.Label>
-                      <Field name="phone" type="text" className="form-control" />
-                      <ErrorMessage name="phone" component="div" className="text-danger" />
-                    </Col>
-                  </Row>
-                </FormGroup>
-                <FormGroup>
-                  <Row>
-                    <Col md className='mb-3'>
-                      <Form.Label className='mx-1'>CPF</Form.Label>
-                      <Field as={InputMask} mask='999.999.999-99' placeholder='___.___.___-__' name="cpf" type="text" className="form-control" />
-                      <ErrorMessage name="cpf" component="div" className="text-danger" />
-                    </Col>
+            <div className='text-center mt-3'>
+              <h1>Cadastro de Usuário</h1>
+              <hr />
+            </div>
 
-                    <Col md className='mb-3'>
-                      <Form.Label className='mx-1'>Matrícula</Form.Label>
-                      <Field name="inscription" type="text" className="form-control" />
-                      <ErrorMessage name="inscription" component="div" className="text-danger" />
-                    </Col>
+            <Form>
+              <FormGroup className='mb-3'>
+                <FormLabel className='mx-1'>Nome</FormLabel>
+                <Field name="name" type="text" className="form-control" />
+                <ErrorMessage name="name" component="div" className="text-danger" />
+              </FormGroup>
+              <FormGroup className='mb-3'>
+                <Row>
+                  <Col>
+                    <FormLabel className='mx-1'>Email</FormLabel>
+                    <Field name="email" type="email" className="form-control" />
+                    <ErrorMessage name="email" component="div" className="text-danger" />
+                  </Col>
+                  <Col>
+                    <FormLabel className='mx-1'>Telefone</FormLabel>
+                    <Field name="phone" type="text" className="form-control" />
+                    <ErrorMessage name="phone" component="div" className="text-danger" />
+                  </Col>
+                </Row>
+              </FormGroup>
+              <FormGroup>
+                <Row>
+                  <Col md className='mb-3'>
+                    <FormLabel className='mx-1'>CPF</FormLabel>
+                    <Field as={InputMask} mask='999.999.999-99' placeholder='___.___.___-__' name="cpf" type="text" className="form-control" />
+                    <ErrorMessage name="cpf" component="div" className="text-danger" />
+                  </Col>
 
-                    <Col md className='mb-3'>
-                      <Form.Label className='mx-1'>Setor</Form.Label>
-                      <Field name="department" type="text" className="form-control" />
-                      <ErrorMessage name="department" component="div" className="text-danger" />
-                    </Col>
-                  </Row>
-                </FormGroup>
+                  <Col md className='mb-3'>
+                    <FormLabel className='mx-1'>Matrícula</FormLabel>
+                    <Field name="inscription" type="text" className="form-control" />
+                    <ErrorMessage name="inscription" component="div" className="text-danger" />
+                  </Col>
 
-                <FormGroup className='mb-3'>
-                  <Row>
-                    <Col>
-                      <Form.Label className='mx-1'>Senha</Form.Label>
-                      <Field name="password" type="password" className="form-control" />
-                      <ErrorMessage name="password" component="div" className="text-danger" />
-                    </Col>
+                  <Col md className='mb-3'>
+                    <FormLabel className='mx-1'>Setor</FormLabel>
+                    <Field name="department" type="text" className="form-control" />
+                    <ErrorMessage name="department" component="div" className="text-danger" />
+                  </Col>
+                </Row>
+              </FormGroup>
 
-                    <Col>
-                      <Form.Label className='mx-1'>Confirmar senha</Form.Label>
-                      <Field name="confirmPassword" type="password" className="form-control" />
-                      <ErrorMessage name="confirmPassword" component="div" className="text-danger" />
-                    </Col>
-                  </Row>
+              <FormGroup className='mb-3'>
+                <Row>
+                  <Col>
+                    <FormLabel className='mx-1'>Senha</FormLabel>
+                    <Field name="password" type="password" className="form-control" />
+                    <ErrorMessage name="password" component="div" className="text-danger" />
+                  </Col>
 
-                </FormGroup>
+                  <Col>
+                    <FormLabel className='mx-1'>Confirmar senha</FormLabel>
+                    <Field name="confirmPassword" type="password" className="form-control" />
+                    <ErrorMessage name="confirmPassword" component="div" className="text-danger" />
+                  </Col>
+                </Row>
 
-                <Container className='mt-5 mb-3 text-center'>
-                  <Row>
-                    <Col>
-                      <Button type="submit" className="btn btn-success px-4 py-2 ">
-                        <BsCheckLg className='icon mx-1' size={15} /> Registrar
-                      </Button>
+              </FormGroup>
 
-                    </Col>
-                    <Col>
-                      <Button type="button" onClick={() => navigate(-1)} className="btn btn-danger px-4 py-2 ">
-                        <BsXLg className='icon mx-1' size={15} /> Cancelar
-                      </Button>
+              <Container className='mt-5 mb-3 text-center'>
+                <Row>
+                  <Col>
+                    <Button type="submit" className="btn btn-success px-4 py-2 ">
+                      <BsCheckLg className='icon mx-1' size={15} /> Registrar
+                    </Button>
 
-                    </Col>
-                  </Row>
-                </Container>
+                  </Col>
+                  <Col>
+                    <Button type="button" onClick={() => navigate(-1)} className="btn btn-danger px-4 py-2 ">
+                      <BsXLg className='icon mx-1' size={15} /> Cancelar
+                    </Button>
 
-              </Form>
-            </Card>
+                  </Col>
+                </Row>
+              </Container>
 
-          </Container>
+            </Form>
+          </Card>
 
-        )}
-      </Formik>
+        </Container>
 
-    </section>
+      )}
+    </Formik>
+
   );
 };
 
