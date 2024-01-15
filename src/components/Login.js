@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { FormGroup, FormLabel, Card, Container, Col, Row } from 'react-bootstrap';
+import { FormGroup, FormLabel, Card, Col, Row } from 'react-bootstrap';
 import { BsCheckLg } from 'react-icons/bs';
 import AuthService from '../services/auth.service';
 import * as Yup from 'yup';
@@ -46,11 +46,11 @@ const Login = (props) => {
       {() => (
         <section>
           <h1 className='text-center mt-5'>Bem-vindo(a) ao Sistema de Controle Bibliográfico <br /> SiSBiB!</h1>
-          <hr />
-          <h2 className='text-center'>Login</h2>
-          <hr />
+          <hr className='container' />
           <Form>
             <Card className="cardLogin">
+              <h2 className='text-center'>Login</h2>
+              <hr />
               <FormGroup>
                 <FormLabel className='mx-1'>Email</FormLabel>
                 <Field name="email" type="email" className="form-control mb-2" />
