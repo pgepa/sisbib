@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
 import { Formik, Field, ErrorMessage } from 'formik';
 import { FormGroup, Form, Card, Container, Col, Row } from 'react-bootstrap';
-import { BsCheckLg, BsXLg } from 'react-icons/bs';
+import { BsCheckLg } from 'react-icons/bs';
 import AuthService from '../services/auth.service';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
