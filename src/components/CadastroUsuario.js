@@ -74,12 +74,12 @@ const CadastroUsuario = (props) => {
       {() => (
 
         <Container>
-          <Card className='mt-5 mb-5 p-3'>
+          <Card >
 
-            <div className='text-center mt-3'>
-              <h1>Cadastro de Usuário</h1>
-              <hr />
-            </div>
+
+            <h1 className='text-center mt-3'>Cadastro de Usuário</h1>
+            <hr />
+
 
             <Form>
               <FormGroup className='mb-3'>
@@ -96,7 +96,7 @@ const CadastroUsuario = (props) => {
                   </Col>
                   <Col>
                     <FormLabel className='mx-1'>Telefone</FormLabel>
-                    <Field name="phone" type="text" className="form-control" />
+                    <Field as={InputMask} mask='(99)99999-9999' placeholder='(__)_____-____' name="phone" type="text" className="form-control" />
                     <ErrorMessage name="phone" component="div" className="text-danger" />
                   </Col>
                 </Row>

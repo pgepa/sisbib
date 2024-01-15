@@ -1,6 +1,7 @@
 .navigationBar {
     background-color: #198754;
     text-align: center;
+
     .brasao {
         height: auto;
         max-height: 5em;
@@ -15,9 +16,13 @@
         color: rgb(6, 71, 43);
     }
 
-    .dropdown{
+    .dropdown {
         margin: auto;
-        margin-top: 0.15em ;
+        margin-top: 0.15em;
+
+        .show {
+            background: #198754;
+        }
     }
 
     .dropdown-item {
@@ -26,7 +31,7 @@
         color: white;
     }
 
-    .dropdown-item:hover {
+    .dropdown-menu .dropdown-item:hover {
         background-color: #015e36;
         color: white;
     }
