@@ -43,7 +43,16 @@ const CadastroUsuario = (props) => {
   const navigate = useNavigate();
 
   const handleSubmit = (data) => {
-    AuthService.addUser(data)
+    const cleanedData = {
+      ...data,
+      cpf: data.cpf.replace(/[^\d]/g, ''),
+      phone: data.phone.replace(/[^\d]/g, ''),
+    };
+
+    console.log('CPF sem pontos e traços:', cleanedData.cpf);
+    console.log('Telefone sem caracteres não numéricos:', cleanedData.phone);
+
+    AuthService.addUser(cleanedData)
       .then((response) => {
         alert(response.data.message);
         navigate(-1);
