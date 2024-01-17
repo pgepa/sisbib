@@ -9,11 +9,12 @@
 
     a {
         color: white;
-        font-size: 1.1em;
-    }
-
-    a:hover {
-        color: rgb(6, 71, 43);
+        border-radius: 5px;
+        
+        &:hover {
+            color: white;
+            background-color: #015e36;
+        }
     }
 
     .dropdown {
@@ -27,13 +28,22 @@
 
     .dropdown-item {
         background-color: #198754;
-        font-size: 1.1em;
         color: white;
     }
 
     .dropdown-menu .dropdown-item:hover {
         background-color: #015e36;
         color: white;
+    }
+
+    .btnLogin, .btnLogout{
+        background-color: #015e36;
+        border-color: #015e36;
+
+        &:hover{
+            background-color: #004125;
+            border-color: #004125;
+        }
     }
 
 }

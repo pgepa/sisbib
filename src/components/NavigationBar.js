@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, Container, NavDropdown, Button } from 'react-bootstrap';
 import brasao from '../brasao.png';
 import { FaUsers, FaExchangeAlt } from 'react-icons/fa';
 import { BiLogIn, BiLogOut } from 'react-icons/bi';
@@ -41,35 +41,37 @@ const NavigationBar = (props) => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mx-auto font-size">
 
-            {!currentUser && (
-              <Nav.Link as={Link} className='mx-3' to="/" >
-                <BiLogIn /> <span className="align-middle">Login</span>
-              </Nav.Link>)}
-
             <NavDropdown className='dropdown mx-3' title="Obras">
               <NavDropdown.Item as={Link} to="/obrasdetalhadas" className='dropdown-item' >Detalhadas</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/obrasresumidas" className='dropdown-item' >Resumidas</NavDropdown.Item>
             </NavDropdown>
 
+            {showAdmin && (
+              <Nav.Link href='http://esap.pge.pa.gov.br:5000/' target='_blank' className='mx-3'>
+                <BiBarcodeReader /> <span className="align-middle">SIEB</span>
+              </Nav.Link>)}
 
             {showAdmin && (
               <Nav.Link as={Link} className='mx-3' to="/usuarios" >
                 <FaUsers /> <span className="align-middle">Usuários</span>
               </Nav.Link>)}
-            {showAdmin && (
-              <Nav.Link  href='http://esap.pge.pa.gov.br:5000/' target='_blank' className='mx-3'>
-                <BiBarcodeReader /> <span className="align-middle">SIEB</span>
-              </Nav.Link>)}
+
             {showAdmin && (
               <Nav.Link as={Link} className='mx-3' to="/emprestimos" >
                 <FaExchangeAlt /> <span className="align-middle">Empréstimos</span>
               </Nav.Link>)}
-            {currentUser && (
-              <Nav.Link onClick={logout} className='mx-3'>
-                <BiLogOut /> <span className="align-middle">Logout</span>
-              </Nav.Link>)}
 
           </Nav>
+
+          {!currentUser && (
+            <Button as={Link} className='btnLogin mx-3' to="/" >
+              <BiLogIn /> <span className="align-middle">Login</span>
+            </Button>)}
+
+          {currentUser && (
+            <Button onClick={logout} className='btnLogout mx-3'>
+              <BiLogOut /> <span className="align-middle">Logout</span>
+            </Button>)}
         </Navbar.Collapse>
       </Container>
     </Navbar>
