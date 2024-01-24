@@ -49,6 +49,7 @@ const App = () => {
           {showAdmin && (
             <Route exact path="/usuarios" element={<Usuarios />} />)}
             <Route path="/usuarios/register" element={<CadastroUsuario />} />
+            
           {showAdmin && (
             <Route path="/usuarios/search" element={<BuscaUsuarios />} />)}
           {showAdmin && (
