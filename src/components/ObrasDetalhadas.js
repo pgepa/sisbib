@@ -23,14 +23,11 @@ const ObrasDetalhadas = (props) => {
   form.current = obras;
   
   useEffect(async () => {
-    const user = AuthService.getCurrentUser();
-    if (user) {
-      setShowAdmin(user.roles.includes('ROLE_ADMIN'));
-    }
     const awaitObras = await ObrasService.getAll(limit, page);
     setObras(awaitObras.data);
-    const awaitRegisters = await ObrasService.count();
+    const awaitRegisters = await ObrasService.getCount();
     setRegisters(awaitRegisters.data);
+    console.log(`registers = ${registers}`);
   }, [page]);
 
   const editObra = (rowIndex) => {
@@ -39,6 +36,12 @@ const ObrasDetalhadas = (props) => {
   }
 
   const columns = useMemo(() => {
+    const user = AuthService.getCurrentUser();
+    if (user) {
+      setShowAdmin(user.roles.includes('ROLE_ADMIN'));
+      console.log(`flag 1 - inside useEffect(): showAdmin = ${showAdmin}`);
+    }
+    console.log(`flag 2 - inside useMemo(): showAdmin = ${showAdmin}`);
     if (showAdmin) {
       return colunasObrasDetalhadas.concat([
         {
@@ -55,7 +58,7 @@ const ObrasDetalhadas = (props) => {
             );
           }
         }
-      ])
+      ]);
     }
     else {
       return colunasObrasDetalhadas;

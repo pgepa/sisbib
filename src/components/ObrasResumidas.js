@@ -26,10 +26,6 @@ const ObrasResumidas = (props) => {
   form.current = obras;
   
   useEffect(async () => {
-    const user = AuthService.getCurrentUser();
-    if (user) {
-      setShowAdmin(user.roles.includes('ROLE_ADMIN'));
-    }
     const awaitObrasTotais = await ObrasService.getCount();
     setObrasTotais(awaitObrasTotais.data.data);
     const awaitUsuariosTotais = await UsuariosService.getCount();
@@ -46,6 +42,12 @@ const ObrasResumidas = (props) => {
   }
 
   const columns = useMemo(() => {
+    const user = AuthService.getCurrentUser();
+    if (user) {
+      setShowAdmin(user.roles.includes('ROLE_ADMIN'));
+      console.log(`flag 1 - inside useEffect(): showAdmin = ${showAdmin}`);
+    }
+    console.log(`flag 2 - inside useMemo(): showAdmin = ${showAdmin}`);
     if (showAdmin) {
       return colunasObrasResumidas.concat([
         {
