@@ -30,26 +30,21 @@ const BuscaObrasDetalhadas = (props) => {
   }, [page]);
 
   const columns = useMemo(() => {
-    if (showAdmin) {
-      return colunasObrasDetalhadas.concat([
-        {
-          Header: 'Ações',
-          acessor: 'actions',
-          Cell: (props) => {
-            return (
-              <div>
-                <Button variant="info" title="Editar" as={Link} to="/obrasdetalhadas/register">
-                  <FaEdit size='1rem'/>
-                </Button>
-              </div>
-            );
-          }
+    return colunasObrasDetalhadas.concat([
+      {
+        Header: 'Ações',
+        acessor: 'actions',
+        Cell: (props) => {
+          return (
+            <div>
+              <Button variant="info" title="Editar" as={Link} to="/obrasdetalhadas/register">
+                <FaEdit size='1rem'/>
+              </Button>
+            </div>
+          );
         }
-      ]);
-    }
-    else {
-      return colunasObrasDetalhadas;
-    }
+      }
+    ]);
   }, []);
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
