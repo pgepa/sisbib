@@ -42,27 +42,22 @@ const ObrasDetalhadas = (props) => {
       console.log(`flag 1 - inside useEffect(): showAdmin = ${showAdmin}`);
     }
     console.log(`flag 2 - inside useMemo(): showAdmin = ${showAdmin}`);
-    if (showAdmin) {
-      return colunasObrasDetalhadas.concat([
-        {
-          Header: 'Ações',
-          acessor: 'actions',
-          Cell: (props) => {
-            const rowIdx = Number(props.row.id);
-            return (
-              <div>
-                <Button variant="info" title="Editar" onClick={() => editObra(rowIdx)}>
-                  <FaEdit size='1rem'/>
-                </Button>
-              </div>
-            );
-          }
+    return colunasObrasDetalhadas.concat([
+      {
+        Header: 'Ações',
+        acessor: 'actions',
+        Cell: (props) => {
+          const rowIdx = Number(props.row.id);
+          return (
+            <div>
+              <Button variant="info" title="Editar" onClick={() => editObra(rowIdx)}>
+                <FaEdit size='1rem'/>
+              </Button>
+            </div>
+          );
         }
-      ]);
-    }
-    else {
-      return colunasObrasDetalhadas;
-    }
+      }
+    ]);
   }, []);
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
