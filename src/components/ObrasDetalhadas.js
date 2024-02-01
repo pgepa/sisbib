@@ -10,24 +10,23 @@ import { BiBookAdd } from 'react-icons/bi';
 import AuthService from '../services/auth.service';
 
 const ObrasDetalhadas = (props) => {
-  
+
   const limit = 20;
   const [page, setPage] = useState(1);
   const [obras, setObras] = useState([]);
-  const [registers,setRegisters] = useState(0);
+  const [registers, setRegisters] = useState(0);
   const [keyword, setKeyword] = useState('');
   const [showAdmin, setShowAdmin] = useState(false);
 
   const navigate = useNavigate();
   const form = useRef();
   form.current = obras;
-  
+
   useEffect(async () => {
     const awaitObras = await ObrasService.getAll(limit, page);
     setObras(awaitObras.data);
     const awaitRegisters = await ObrasService.getCount();
     setRegisters(awaitRegisters.data);
-    console.log(`registers = ${registers}`);
   }, [page]);
 
   const editObra = (rowIndex) => {
@@ -39,33 +38,36 @@ const ObrasDetalhadas = (props) => {
     const user = AuthService.getCurrentUser();
     if (user) {
       setShowAdmin(user.roles.includes('ROLE_ADMIN'));
-      console.log(`flag 1 - inside useEffect(): showAdmin = ${showAdmin}`);
     }
-    console.log(`flag 2 - inside useMemo(): showAdmin = ${showAdmin}`);
-    return colunasObrasDetalhadas.concat([
-      {
-        Header: 'Ações',
-        acessor: 'actions',
-        Cell: (props) => {
-          const rowIdx = Number(props.row.id);
-          return (
-            <div>
-              <Button variant="info" title="Editar" onClick={() => editObra(rowIdx)}>
-                <FaEdit size='1rem'/>
-              </Button>
-            </div>
-          );
+    if (showAdmin) {
+      return colunasObrasDetalhadas.concat([
+        {
+          Header: 'Ações',
+          acessor: 'actions',
+          Cell: (props) => {
+            const rowIdx = Number(props.row.id);
+            return (
+              <div>
+                <Button variant="info" title="Editar" onClick={() => editObra(rowIdx)}>
+                  <FaEdit size='1rem' />
+                </Button>
+              </div>
+            );
+          }
         }
-      }
-    ]);
-  }, []);
+      ]);
+    }else{
+      return colunasObrasDetalhadas
+    }
+
+  }, [showAdmin, colunasObrasDetalhadas]);
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({
       columns,
       data: obras
     });
-  
+
   const onChangeKeyword = (e) => {
     const keyword = e.target.value;
     setKeyword(keyword);
@@ -74,7 +76,7 @@ const ObrasDetalhadas = (props) => {
   const handleSearch = (e) => {
     e.preventDefault();
     setKeyword(keyword);
-    navigate('/obrasdetalhadas/search', { state: { termo: keyword } } );
+    navigate('/obrasdetalhadas/search', { state: { termo: keyword } });
   };
 
   return (
@@ -89,12 +91,12 @@ const ObrasDetalhadas = (props) => {
                 </Button>
               </Nav.Item>
               {
-                [...Array(5)].map((object,i) =>
-                <Nav.Item key={i} className="page-item">
-                  <Button className="page-link" onClick={() => setPage(i + 1)}>
-                    {i + 1}
-                  </Button>
-                </Nav.Item>)
+                [...Array(5)].map((object, i) =>
+                  <Nav.Item key={i} className="page-item">
+                    <Button className="page-link" onClick={() => setPage(i + 1)}>
+                      {i + 1}
+                    </Button>
+                  </Nav.Item>)
               }
               <Nav.Item key="seguinteSup" className="page-item">
                 <Button className="page-link mx-1" onClick={() => setPage(page + 1)}>
@@ -124,18 +126,18 @@ const ObrasDetalhadas = (props) => {
             </Form.Group>
           </Form>
         </Col>
-        { showAdmin && (
+        {showAdmin && (
           <Col md={3} className="btn32">
             <Form.Group className="col-12 pt-2">
               <Button variant="success" className="btn32" as={Link} to="/obrasdetalhadas/register">
-                <BiBookAdd size='1rem'/>
+                <BiBookAdd size='1rem' />
                 <span> </span>
                 Adicionar obra
               </Button>
             </Form.Group>
           </Col>)}
       </Row>
-      
+
       <Container fluid className="col-md-12 list my-3">
         <Table size="sm" striped hover responsive {...getTableProps()}>
           <thead>
@@ -176,7 +178,7 @@ const ObrasDetalhadas = (props) => {
               </Button>
             </Nav.Item>
             {
-              [...Array(5)].map((object,i) =>
+              [...Array(5)].map((object, i) =>
                 <Nav.Item key={i} className="page-item">
                   <Button className="page-link" onClick={() => setPage(i + 1)}>
                     {i + 1}

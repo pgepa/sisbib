@@ -19,7 +19,8 @@ const BuscaObrasResumidas = (props) => {
 
   const navigate = useNavigate();
   const form = useRef();
-  
+  form.current = obras;
+
   useEffect(async () => {
     const user = AuthService.getCurrentUser();
     if (user) {
@@ -29,30 +30,41 @@ const BuscaObrasResumidas = (props) => {
     setObras(awaitObras.data);
   }, [page]);
 
+  const editObra = (rowIndex) => {
+    const id = form.current[rowIndex].id;
+    navigate(`/obrasdetalhadas/edit/${id}`);
+  }
+
   const columns = useMemo(() => {
-    return colunasObrasResumidas.concat([
-      {
-        Header: 'Ações',
-        acessor: 'actions',
-        Cell: (props) => {
-          return (
-            <div>
-              <Button variant="info" title="Editar" as={Link} to="/obrasdetalhadas/register">
-                <FaEdit size='1rem'/>
-              </Button>
-            </div>
-          );
+    if (showAdmin) {
+      return colunasObrasResumidas.concat([
+        {
+          Header: 'Ações',
+          acessor: 'actions',
+          Cell: (props) => {
+            const rowIdx = Number(props.row.id);
+            return (
+              <div>
+                <Button variant="info" title="Editar" onClick={() => editObra(rowIdx)}>
+                  <FaEdit size='1rem' />
+                </Button>
+              </div>
+            );
+          }
         }
-      }
-    ]);
-  }, []);
+      ]);
+    }else{
+      return colunasObrasResumidas;
+    }
+
+  }, [showAdmin, colunasObrasResumidas]);
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({
       columns,
       data: obras
     });
-  
+
   const onChangeKeyword = (e) => {
     const keyword = e.target.value;
     setKeyword(keyword);
@@ -61,7 +73,7 @@ const BuscaObrasResumidas = (props) => {
   const handleSearch = (e) => {
     e.preventDefault();
     setKeyword(keyword);
-    navigate('/obrasresumidas/search', { state: { termo: keyword } } );
+    navigate('/obrasresumidas/search', { state: { termo: keyword } });
     window.location.reload();
   };
 
@@ -77,12 +89,12 @@ const BuscaObrasResumidas = (props) => {
                 </Button>
               </Nav.Item>
               {
-                [...Array(5)].map((object,i) =>
-                <Nav.Item key={i} className="page-item">
-                  <Button className="page-link" onClick={() => setPage(i + 1)}>
-                    {i + 1}
-                  </Button>
-                </Nav.Item>)
+                [...Array(5)].map((object, i) =>
+                  <Nav.Item key={i} className="page-item">
+                    <Button className="page-link" onClick={() => setPage(i + 1)}>
+                      {i + 1}
+                    </Button>
+                  </Nav.Item>)
               }
               <Nav.Item key="seguinte" className="page-item">
                 <Button className="page-link mx-1" onClick={() => setPage(page + 1)}>
@@ -112,18 +124,18 @@ const BuscaObrasResumidas = (props) => {
             </Form.Group>
           </Form>
         </Col>
-        { showAdmin && (
+        {showAdmin && (
           <Col md={3} className="btn32">
             <Form.Group className="col-12 pt-2">
               <Button variant="success" className="btn32" as={Link} to="/obrasdetalhadas/register">
-                <BiBookAdd size='1rem'/>
+                <BiBookAdd size='1rem' />
                 <span> </span>
                 Adicionar obra
               </Button>
             </Form.Group>
           </Col>)}
       </Row>
-      
+
       <Container fluid className="col-md-12 list my-3">
         <Table size="sm" striped hover responsive {...getTableProps()}>
           <thead>
@@ -164,7 +176,7 @@ const BuscaObrasResumidas = (props) => {
               </Button>
             </Nav.Item>
             {
-              [...Array(5)].map((object,i) =>
+              [...Array(5)].map((object, i) =>
                 <Nav.Item key={i} className="page-item">
                   <Button className="page-link" onClick={() => setPage(i + 1)}>
                     {i + 1}
