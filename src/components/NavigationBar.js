@@ -12,6 +12,14 @@ import './Styles/NavigationBar.scss';
 const NavigationBar = (props) => {
   const [showAdmin, setShowAdmin] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+  const [show, setShow] = useState(false);
+
+  const showDropdown = (e) => {
+    setShow(!show);
+  }
+  const hideDropdown = e => {
+    setShow(false);
+  }
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();
@@ -41,7 +49,10 @@ const NavigationBar = (props) => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mx-auto font-size">
 
-            <NavDropdown className='dropdown mx-3' title="Obras">
+            <NavDropdown className='dropdown mx-3' title="Obras" id="collasible-nav-dropdown"
+              show={show}
+              onMouseEnter={showDropdown}
+              onMouseLeave={hideDropdown}>
               <NavDropdown.Item as={Link} to="/obrasdetalhadas" className='dropdown-item' >Detalhadas</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/obrasresumidas" className='dropdown-item' >Resumidas</NavDropdown.Item>
             </NavDropdown>
