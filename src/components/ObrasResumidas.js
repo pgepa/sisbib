@@ -87,7 +87,7 @@ const ObrasResumidas = (props) => {
   };
 
   return (
-    <Container fluid className="list row p-0">
+    <Container fluid className="list row p-0 mx-auto">
       <Row>
         <Col md={3}>
           <Navbar className="pt-2" aria-label="Page navigation example">
@@ -146,7 +146,7 @@ const ObrasResumidas = (props) => {
       </Row>
 
       <Container fluid className="col-md-12 list my-3">
-        <Table size="sm" striped hover responsive {...getTableProps()}>
+        <Table size="sm" striped bordered hover responsive {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
