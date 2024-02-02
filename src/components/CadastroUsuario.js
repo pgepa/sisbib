@@ -84,12 +84,8 @@ const CadastroUsuario = (props) => {
 
         <Container>
           <Card >
-
-
             <h1 className='text-center mt-3'>Cadastro de Usuário</h1>
             <hr />
-
-
             <Form>
               <FormGroup className='mb-3'>
                 <FormLabel className='mx-1'>Nome</FormLabel>
@@ -150,25 +146,15 @@ const CadastroUsuario = (props) => {
               </FormGroup>
 
               <Container className='mt-5 mb-3 text-center'>
-                <Row>
-                  <Col>
-                    <Button type="submit" className="btn btn-success px-4 py-2 ">
-                      <BsCheckLg className='icon mx-1' size={15} /> Registrar
-                    </Button>
-
-                  </Col>
-                  <Col>
-                    <Button type="button" onClick={() => navigate(-1)} className="btn btn-danger px-4 py-2 ">
-                      <BsXLg className='icon mx-1' size={15} /> Cancelar
-                    </Button>
-
-                  </Col>
-                </Row>
+                <Button type="submit" className="btn btn-success">
+                  <BsCheckLg className='icon mx-1' size={15} /> Cadastrar
+                </Button>
+                <Button type="button" onClick={() => navigate(-1)} className="btn btn-danger mx-5">
+                  <BsXLg className='icon mx-1' size={15} /> Cancelar
+                </Button>
               </Container>
-
             </Form>
           </Card>
-
         </Container>
 
       )}
