@@ -22,16 +22,26 @@ const Login = (props) => {
   const navigate = useNavigate();
 
   const handleLogin = (data) => {
-    AuthService.login(data)
+    AuthService.login({
+      email: data.email?.trim(),
+      password: data.password,
+    })
       .then((response) => {
-        console.log(`handleLogin response = ${response}`);
+        if (!response.data?.accessToken) {
+          alert(response.data?.message || 'Login ou senha inválidos!');
+          return;
+        }
         alert(response.data.message);
         navigate('/obrasresumidas');
         window.location.reload();
       })
       .catch((error) => {
-        alert('Login ou senha inválidos!');
-        console.log(error);
+        const message = error.response?.data?.message
+          || (error.response?.status === 401 ? 'Senha inválida.' : null)
+          || (error.message === 'Network Error' ? 'Não foi possível contactar o servidor. Verifique se o backend está em execução.' : null)
+          || 'Login ou senha inválidos!';
+        alert(message);
+        console.error(error);
       });
   };
 

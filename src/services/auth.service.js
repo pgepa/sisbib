@@ -8,8 +8,12 @@ const addUser = (data) => {
 };
 
 const login = (data) => {
+  const payload = {
+    email: data.email?.trim(),
+    password: data.password,
+  };
   return axios
-    .post(APIURL.concat('signin'), data)
+    .post(APIURL.concat('signin'), payload)
     .then((response) => {
       if (response.data.accessToken) {
         localStorage.setItem('email', response.data.email);
@@ -17,9 +21,6 @@ const login = (data) => {
         localStorage.setItem('department', response.data.department);
       }
       return response;
-    })
-    .catch((error) => {
-      return error.message;  
     });
 };
 
