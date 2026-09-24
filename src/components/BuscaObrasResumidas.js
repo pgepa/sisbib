@@ -17,6 +17,7 @@ const BuscaObrasResumidas = (props) => {
   const [totalObras, setTotalObras] = useState(0);
   const location = useLocation();
   const [keyword, setKeyword] = useState(location.state?.termo || '');
+  const [filtro, setFiltro] = useState(location.state?.filtro || 'todos');
   const [showAdmin, setShowAdmin] = useState(false);
 
   const navigate = useNavigate();
@@ -29,8 +30,10 @@ const BuscaObrasResumidas = (props) => {
       setShowAdmin(user.roles.includes('ROLE_ADMIN'));
     }
     const currentTermo = location.state?.termo || '';
+    const currentFiltro = location.state?.filtro || 'todos';
     setKeyword(currentTermo);
-    const awaitObras = await ObrasService.getSome({ termo: currentTermo }, limit, page);
+    setFiltro(currentFiltro);
+    const awaitObras = await ObrasService.getSome({ termo: currentTermo, filtro: currentFiltro }, limit, page);
     const responseData = awaitObras?.data;
     if (Array.isArray(responseData)) {
       setObras(responseData);
@@ -42,7 +45,7 @@ const BuscaObrasResumidas = (props) => {
       setObras([]);
       setTotalObras(0);
     }
-  }, [page, location.state?.termo]);
+  }, [page, location.state?.termo, location.state?.filtro]);
 
   const totalPages = Math.ceil(totalObras / limit) || 1;
 
@@ -86,21 +89,42 @@ const BuscaObrasResumidas = (props) => {
     setKeyword(keyword);
   }
 
+  const onChangeFiltro = (e) => {
+    setFiltro(e.target.value);
+  }
+
   const handleSearch = (e) => {
     e.preventDefault();
     setPage(1);
-    navigate('/obrasresumidas/search', { state: { termo: keyword } });
+    navigate('/obrasresumidas/search', { state: { termo: keyword, filtro: filtro } });
   };
 
   return (
     <Container fluid className="list row p-0 mx-auto">
-      <Row>
-        <Col md={5}>
+      <Row className="align-items-center">
+        <Col md="auto">
           <PaginationComponent page={page} totalPages={totalPages} onPageChange={setPage} />
         </Col>
         <Col>
-          <Form className="d-flex" onSubmit={handleSearch} ref={form}>
-            <Form.Group className="col-5 pt-2">
+          <Form className="d-flex align-items-center" onSubmit={handleSearch} ref={form}>
+            <Form.Group className="pt-2 me-2">
+              <Form.Select
+                value={filtro}
+                onChange={onChangeFiltro}
+                className="mt-1"
+                style={{ width: 'auto', minWidth: '135px' }}
+              >
+                <option value="todos">Todos</option>
+                <option value="titulo">Título</option>
+                <option value="autor">Autor</option>
+                <option value="registro">Registro</option>
+                <option value="classificacao">Classificação</option>
+                <option value="descritores">Descritores</option>
+                <option value="editor">Editora</option>
+                <option value="ano">Ano</option>
+              </Form.Select>
+            </Form.Group>
+            <Form.Group className="flex-grow-1 pt-2 me-2">
               <Form.Control
                 type="text"
                 className="form-control mt-1"
@@ -110,15 +134,15 @@ const BuscaObrasResumidas = (props) => {
                 placeholder="termo de busca"
               />
             </Form.Group>
-            <Form.Group className="col-2 pt-2">
-              <Button type="submit" className="btn-success mt-1 mx-2">
+            <Form.Group className="pt-2">
+              <Button type="submit" className="btn-success mt-1">
                 Buscar
               </Button>
             </Form.Group>
           </Form>
         </Col>
         {showAdmin && (
-          <Col md={3} className="btn32">
+          <Col md="auto" className="btn32">
             <Form.Group className="col-12 pt-2">
               <Button variant="success" className="btn32" as={Link} to="/obrasdetalhadas/register">
                 <BiBookAdd size='1rem' />
