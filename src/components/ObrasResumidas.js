@@ -7,6 +7,7 @@ import { useTable } from 'react-table';
 import { useNavigate, Link } from 'react-router-dom';
 import { Container, Button, Form, Row, Col, Navbar, Nav, Table } from 'react-bootstrap';
 import colunasObrasResumidas from './resources/ColunasObrasResumidas';
+import PaginationComponent from './resources/PaginationComponent';
 import { FaEdit } from 'react-icons/fa';
 import { BiBookAdd } from 'react-icons/bi';
 import AuthService from '../services/auth.service';
@@ -20,6 +21,7 @@ const ObrasResumidas = (props) => {
   const [obrasTotais, setObrasTotais] = useState(0);
   const [usuariosTotais, setUsuariosTotais] = useState(0);
   const [emprestimosTotais, setEmprestimosTotais] = useState(0);
+  const totalPages = Math.ceil(obrasTotais / limit) || 1;
 
   const navigate = useNavigate();
   const form = useRef();
@@ -89,31 +91,9 @@ const ObrasResumidas = (props) => {
   return (
     <Container fluid className="list row p-0 mx-auto">
       <Row>
-        <Col md={3}>
-          <Navbar className="pt-2" aria-label="Page navigation example">
-            <Nav className="pagination pt-1">
-              <Nav.Item key="anteriorSup" className="page-item">
-                <Button className="page-link mx-1" onClick={() => setPage(page - 1)}>
-                  Anterior
-                </Button>
-              </Nav.Item>
-              {
-                [...Array(5)].map((object, i) =>
-                  <Nav.Item key={i} className="page-item">
-                    <Button className="page-link" onClick={() => setPage(i + 1)}>
-                      {i + 1}
-                    </Button>
-                  </Nav.Item>)
-              }
-              <Nav.Item key="seguinteSup" className="page-item">
-                <Button className="page-link mx-1" onClick={() => setPage(page + 1)}>
-                  Seguinte
-                </Button>
-              </Nav.Item>
-            </Nav>
-          </Navbar>
+        <Col md={5}>
+          <PaginationComponent page={page} totalPages={totalPages} onPageChange={setPage} />
         </Col>
-        <Col md={1}></Col>
         <Col>
           <Form className="d-flex" onSubmit={handleSearch} ref={form}>
             <Form.Group className="col-5 pt-2">
@@ -177,32 +157,10 @@ const ObrasResumidas = (props) => {
         </Table>
       </Container>
       <Row>
-        <Col md={3}>
-          <Navbar className="pt-2" aria-label="Page navigation example">
-            <Nav className="pagination pt-1">
-              <Nav.Item key="anterior" className="page-item">
-                <Button className="page-link mx-1" onClick={() => setPage(page - 1)}>
-                  Anterior
-                </Button>
-              </Nav.Item>
-              {
-                [...Array(5)].map((object, i) =>
-                  <Nav.Item key={i} className="page-item">
-                    <Button className="page-link" onClick={() => setPage(i + 1)}>
-                      {i + 1}
-                    </Button>
-                  </Nav.Item>)
-              }
-              <Nav.Item key="seguinte" className="page-item">
-                <Button className="page-link mx-1" onClick={() => setPage(page + 1)}>
-                  Seguinte
-                </Button>
-              </Nav.Item>
-            </Nav>
-          </Navbar>
+        <Col md={5}>
+          <PaginationComponent page={page} totalPages={totalPages} onPageChange={setPage} />
         </Col>
-        <Col md={1}></Col>
-        <Col md={8}>
+        <Col md={7} className="d-flex align-items-center">
           <i>Total de obras = {obrasTotais} ; usuários = {usuariosTotais} ; empréstimos = {emprestimosTotais}</i>
         </Col>
       </Row>
