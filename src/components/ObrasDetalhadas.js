@@ -2,8 +2,8 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import ObrasService from '../services/obras.service';
 import { useTable } from 'react-table';
-import { useNavigate, Link } from 'react-router-dom';
-import { Container, Button, Form, Row, Col, Navbar, Nav, Table } from 'react-bootstrap';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { Container, Button, Form, Row, Col, Table, Toast, ToastContainer } from 'react-bootstrap';
 import colunasObrasDetalhadas from './resources/ColunasObrasDetalhadas';
 import PaginationComponent from './resources/PaginationComponent';
 import { FaEdit, FaSearch } from 'react-icons/fa';
@@ -18,10 +18,21 @@ const ObrasDetalhadas = (props) => {
   const [keyword, setKeyword] = useState('');
   const [filtro, setFiltro] = useState('todos');
   const [showAdmin, setShowAdmin] = useState(false);
+  const [toastInfo, setToastInfo] = useState(null);
+  const [showToast, setShowToast] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
   const form = useRef();
   form.current = obras;
+
+  useEffect(() => {
+    if (location.state?.toast) {
+      setToastInfo(location.state.toast);
+      setShowToast(true);
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state]);
 
   useEffect(async () => {
     const awaitObras = await ObrasService.getAll(limit, page);
@@ -93,7 +104,28 @@ const ObrasDetalhadas = (props) => {
   };
 
   return (
-    <Container fluid className="px-3 py-3">
+    <Container fluid className="px-3 py-3 position-relative">
+      <ToastContainer position="top-end" className="p-3" style={{ zIndex: 9999, position: 'fixed' }}>
+        {toastInfo && (
+          <Toast
+            show={showToast}
+            onClose={() => setShowToast(false)}
+            delay={4000}
+            autohide
+            bg={toastInfo.type === 'success' ? 'success' : 'danger'}
+            className="text-white shadow"
+          >
+            <Toast.Header closeButton>
+              <strong className="me-auto text-dark">{toastInfo.title || 'SISBIB'}</strong>
+              <small className="text-muted">agora</small>
+            </Toast.Header>
+            <Toast.Body className="fs-6 text-white">
+              {toastInfo.message}
+            </Toast.Body>
+          </Toast>
+        )}
+      </ToastContainer>
+
       <div className="toolbar-container w-100">
         <Row className="align-items-center g-2">
           <Col md="auto" className="d-flex align-items-center">

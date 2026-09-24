@@ -46,11 +46,18 @@ const CadastroObra = (props) => {
     setErrorMessage('');
     ObrasService.addObra(data)
       .then((response) => {
-        alert(response.data.message || 'Obra cadastrada com sucesso.');
-        navigate('/obrasdetalhadas');
         if (props.parent && props.parent.reload) {
           props.parent.reload();
         }
+        navigate('/obrasdetalhadas', {
+          state: {
+            toast: {
+              type: 'success',
+              title: 'Sucesso',
+              message: response.data?.message || 'Obra cadastrada com sucesso!'
+            }
+          }
+        });
       })
       .catch((error) => {
         const msg = error.response?.data?.message || 'Erro ao cadastrar obra. Por favor, verifique os dados e tente novamente.';
