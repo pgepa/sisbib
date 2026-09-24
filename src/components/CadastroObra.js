@@ -101,7 +101,7 @@ const CadastroObra = (props) => {
 
             {submitCount > 0 && Object.keys(errors).length > 0 && (
               <Alert variant="warning" className="mx-4 mt-2">
-                Existem campos obrigatórios com erros ou não preenchidos (destacados em vermelho). Corrija-os para prosseguir.
+                Existem campos obrigatórios com erros ou não preenchidos. Corrija-os para prosseguir.
               </Alert>
             )}
 
