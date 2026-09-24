@@ -80,13 +80,13 @@ td {
     border-radius: 8px !important;
     color: #334155;
     font-weight: 500;
-    font-size: 0.85rem;
-    min-width: 34px;
-    height: 34px;
+    font-size: 0.8rem;
+    min-width: 30px;
+    height: 30px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0 8px;
+    padding: 0 6px;
     background-color: #ffffff;
     transition: all 0.15s ease-in-out;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
@@ -124,6 +124,11 @@ td {
     padding: 12px 18px;
     border: 1px solid #e2e8f0;
     margin-bottom: 18px;
+}
+
+.toolbar-container .form-select {
+    min-width: 175px;
+    padding-right: 2.25rem;
 }
 
 .toolbar-container .form-select,

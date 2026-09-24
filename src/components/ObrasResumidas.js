@@ -110,7 +110,7 @@ const ObrasResumidas = (props) => {
               <Form.Select
                 value={filtro}
                 onChange={onChangeFiltro}
-                style={{ width: 'auto', minWidth: '140px' }}
+                style={{ width: 'auto', minWidth: '175px' }}
               >
                 <option value="todos">Todos os campos</option>
                 <option value="titulo">Título</option>

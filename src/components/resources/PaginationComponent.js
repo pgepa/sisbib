@@ -10,7 +10,7 @@ import {
 const PaginationComponent = ({ page, totalPages, onPageChange }) => {
   if (!totalPages || totalPages <= 1) return null;
 
-  const maxButtons = 5;
+  const maxButtons = 3;
   let startPage = Math.max(1, page - Math.floor(maxButtons / 2));
   let endPage = startPage + maxButtons - 1;
 
@@ -41,13 +41,6 @@ const PaginationComponent = ({ page, totalPages, onPageChange }) => {
         <FaChevronLeft size="0.75rem" />
       </Pagination.Prev>
 
-      {startPage > 1 && (
-        <>
-          <Pagination.Item onClick={() => onPageChange(1)}>1</Pagination.Item>
-          {startPage > 2 && <Pagination.Ellipsis disabled />}
-        </>
-      )}
-
       {pages.map((p) => (
         <Pagination.Item
           key={p}
@@ -57,15 +50,6 @@ const PaginationComponent = ({ page, totalPages, onPageChange }) => {
           {p}
         </Pagination.Item>
       ))}
-
-      {endPage < totalPages && (
-        <>
-          {endPage < totalPages - 1 && <Pagination.Ellipsis disabled />}
-          <Pagination.Item onClick={() => onPageChange(totalPages)}>
-            {totalPages}
-          </Pagination.Item>
-        </>
-      )}
 
       <Pagination.Next
         onClick={() => onPageChange(Math.min(totalPages, page + 1))}
