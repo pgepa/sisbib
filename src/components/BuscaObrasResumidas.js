@@ -6,7 +6,7 @@ import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { Container, Button, Form, Row, Col, Navbar, Nav, Table } from 'react-bootstrap';
 import colunasObrasResumidas from './resources/ColunasObrasResumidas';
 import PaginationComponent from './resources/PaginationComponent';
-import { FaEdit } from 'react-icons/fa';
+import { FaEdit, FaSearch } from 'react-icons/fa';
 import { BiBookAdd } from 'react-icons/bi';
 import AuthService from '../services/auth.service';
 
@@ -64,9 +64,14 @@ const BuscaObrasResumidas = (props) => {
             const rowIdx = Number(props.row.id);
             return (
               <div>
-                <Button variant="info" title="Editar" onClick={() => editObra(rowIdx)}>
-                  <FaEdit size='1rem' />
-                </Button>
+                <button
+                  type="button"
+                  className="btn-action-edit"
+                  title="Editar obra"
+                  onClick={() => editObra(rowIdx)}
+                >
+                  <FaEdit size="0.9rem" />
+                </button>
               </div>
             );
           }
@@ -100,21 +105,20 @@ const BuscaObrasResumidas = (props) => {
   };
 
   return (
-    <Container fluid className="list row p-0 mx-auto">
-      <Row className="align-items-center">
-        <Col md="auto">
-          <PaginationComponent page={page} totalPages={totalPages} onPageChange={setPage} />
-        </Col>
-        <Col>
-          <Form className="d-flex align-items-center" onSubmit={handleSearch} ref={form}>
-            <Form.Group className="pt-2 me-2">
+    <Container fluid className="px-3 py-3">
+      <div className="toolbar-container w-100">
+        <Row className="align-items-center g-2">
+          <Col md="auto" className="d-flex align-items-center">
+            <PaginationComponent page={page} totalPages={totalPages} onPageChange={setPage} />
+          </Col>
+          <Col>
+            <Form className="d-flex align-items-center gap-2" onSubmit={handleSearch} ref={form}>
               <Form.Select
                 value={filtro}
                 onChange={onChangeFiltro}
-                className="mt-1"
-                style={{ width: 'auto', minWidth: '135px' }}
+                style={{ width: 'auto', minWidth: '140px' }}
               >
-                <option value="todos">Todos</option>
+                <option value="todos">Todos os campos</option>
                 <option value="titulo">Título</option>
                 <option value="autor">Autor</option>
                 <option value="registro">Registro</option>
@@ -123,38 +127,33 @@ const BuscaObrasResumidas = (props) => {
                 <option value="editor">Editora</option>
                 <option value="ano">Ano</option>
               </Form.Select>
-            </Form.Group>
-            <Form.Group className="flex-grow-1 pt-2 me-2">
               <Form.Control
                 type="text"
-                className="form-control mt-1"
+                className="flex-grow-1"
                 name="termo"
                 value={keyword}
                 onChange={onChangeKeyword}
-                placeholder="termo de busca"
+                placeholder="Digite o termo para buscar..."
               />
-            </Form.Group>
-            <Form.Group className="pt-2">
-              <Button type="submit" className="btn-success mt-1">
-                Buscar
+              <Button type="submit" variant="success">
+                <FaSearch size="0.85rem" />
+                <span>Buscar</span>
               </Button>
-            </Form.Group>
-          </Form>
-        </Col>
-        {showAdmin && (
-          <Col md="auto" className="btn32">
-            <Form.Group className="col-12 pt-2">
-              <Button variant="success" className="btn32" as={Link} to="/obrasdetalhadas/register">
-                <BiBookAdd size='1rem' />
-                <span> </span>
-                Adicionar obra
+            </Form>
+          </Col>
+          {showAdmin && (
+            <Col md="auto">
+              <Button variant="success" as={Link} to="/obrasdetalhadas/register">
+                <BiBookAdd size="1.1rem" />
+                <span>Adicionar obra</span>
               </Button>
-            </Form.Group>
-          </Col>)}
-      </Row>
+            </Col>
+          )}
+        </Row>
+      </div>
 
-      <Container fluid className="col-md-12 list my-3">
-        <Table size="sm" striped bordered hover responsive {...getTableProps()}>
+      <div className="table-card w-100">
+        <Table responsive hover {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
@@ -183,15 +182,14 @@ const BuscaObrasResumidas = (props) => {
             })}
           </tbody>
         </Table>
-      </Container>
-      <Row>
-        <Col md={5}>
-          <PaginationComponent page={page} totalPages={totalPages} onPageChange={setPage} />
-        </Col>
-        <Col md={7} className="d-flex align-items-center">
-          <i>Total de obras encontradas = {totalObras}</i>
-        </Col>
-      </Row>
+      </div>
+
+      <div className="d-flex flex-wrap justify-content-between align-items-center w-100 mt-2 mb-4 gap-2">
+        <PaginationComponent page={page} totalPages={totalPages} onPageChange={setPage} />
+        <div className="stats-pill">
+          <span>Obras encontradas: <strong>{totalObras}</strong></span>
+        </div>
+      </div>
     </Container>
   );
 };

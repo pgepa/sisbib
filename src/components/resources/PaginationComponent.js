@@ -1,5 +1,11 @@
 import React from 'react';
 import { Pagination } from 'react-bootstrap';
+import {
+  FaAngleDoubleLeft,
+  FaChevronLeft,
+  FaChevronRight,
+  FaAngleDoubleRight
+} from 'react-icons/fa';
 
 const PaginationComponent = ({ page, totalPages, onPageChange }) => {
   if (!totalPages || totalPages <= 1) return null;
@@ -19,17 +25,21 @@ const PaginationComponent = ({ page, totalPages, onPageChange }) => {
   }
 
   return (
-    <Pagination className="pt-1 mb-0 flex-wrap">
+    <Pagination className="pagination-modern mb-0 flex-wrap align-items-center">
       <Pagination.First
         onClick={() => onPageChange(1)}
         disabled={page <= 1}
         title="Primeira página"
-      />
+      >
+        <FaAngleDoubleLeft size="0.75rem" />
+      </Pagination.First>
       <Pagination.Prev
         onClick={() => onPageChange(Math.max(1, page - 1))}
         disabled={page <= 1}
         title="Página anterior"
-      />
+      >
+        <FaChevronLeft size="0.75rem" />
+      </Pagination.Prev>
 
       {startPage > 1 && (
         <>
@@ -61,12 +71,16 @@ const PaginationComponent = ({ page, totalPages, onPageChange }) => {
         onClick={() => onPageChange(Math.min(totalPages, page + 1))}
         disabled={page >= totalPages}
         title="Próxima página"
-      />
+      >
+        <FaChevronRight size="0.75rem" />
+      </Pagination.Next>
       <Pagination.Last
         onClick={() => onPageChange(totalPages)}
         disabled={page >= totalPages}
         title="Última página"
-      />
+      >
+        <FaAngleDoubleRight size="0.75rem" />
+      </Pagination.Last>
     </Pagination>
   );
 };
