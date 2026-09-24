@@ -104,7 +104,7 @@ const ObrasDetalhadas = (props) => {
               <Form.Select
                 value={filtro}
                 onChange={onChangeFiltro}
-                style={{ width: 'auto', minWidth: '154px' }}
+                style={{ width: 'auto', minWidth: '162px' }}
               >
                 <option value="todos">Todos os campos</option>
                 <option value="titulo">Título</option>

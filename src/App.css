@@ -128,10 +128,10 @@ td {
 
 .toolbar-container .form-select {
     width: auto;
-    min-width: 154px;
+    min-width: 162px;
     padding-left: 10px;
-    padding-right: 28px;
-    background-position: right 10px center;
+    padding-right: 32px;
+    background-position: right 12px center;
 }
 
 .toolbar-container .form-select,
